@@ -6,23 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Markdown基本语法 | Sivan的博客</title>
+  <title>利用github+hexo+yilia搭建个人博客 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习一下Markdown的基本语法，以下作为记录，方便日后查找。">
+  <meta name="description" content="个人博客搭建也比较简单，网上也有很多方案，我这里选择yilia主题，感觉这个比较喜欢。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown基本语法">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;04&#x2F;29&#x2F;markdown&#x2F;index.html">
+<meta property="og:title" content="利用github+hexo+yilia搭建个人博客">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;20&#x2F;%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="学习一下Markdown的基本语法，以下作为记录，方便日后查找。">
-<meta property="og:image" content="https:&#x2F;&#x2F;yezixcc.github.io&#x2F;images&#x2F;head.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;yezixcc.github.io&#x2F;images&#x2F;head.jpg">
-<meta property="article:published_time" content="2019-04-29T06:09:47.000Z">
-<meta property="article:modified_time" content="2019-12-20T07:42:27.834Z">
+<meta property="og:description" content="个人博客搭建也比较简单，网上也有很多方案，我这里选择yilia主题，感觉这个比较喜欢。">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA&#x2F;image-20191220170926147.png">
+<meta property="article:published_time" content="2019-12-20T07:51:40.000Z">
+<meta property="article:modified_time" content="2019-12-20T09:38:53.638Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="其他">
-<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yezixcc.github.io&#x2F;images&#x2F;head.jpg">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA&#x2F;image-20191220170926147.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -172,176 +171,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-markdown" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-个人博客搭建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Markdown基本语法
+      利用github+hexo+yilia搭建个人博客
     </h1>
   
 
         
-        <a href="/2019/04/29/markdown/" class="archive-article-date">
-  	<time datetime="2019-04-29T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-29</time>
+        <a href="/2019/12/20/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="archive-article-date">
+  	<time datetime="2019-12-20T07:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学习一下Markdown的基本语法，以下作为记录，方便日后查找。</p>
+        <p>个人博客搭建也比较简单，网上也有很多方案，我这里选择yilia主题，感觉这个比较喜欢。</p>
 <a id="more"></a>
 
-<!-- toc -->
+<h3><span id="本地服务">本地服务</span></h3><p>1、安装nodejs，且是6.0以上的，可以先看看自己的版本，如果没有可以在<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs官网</a>下载，我是mac系统，所以选择masOS Installer。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><a href="#一-标题">一、标题</a></li>
-<li><a href="#二-字体">二、字体</a></li>
-<li><a href="#三-引用">三、引用</a></li>
-<li><a href="#四-分割线">四、分割线</a></li>
-<li><a href="#五-图片">五、图片</a></li>
-<li><a href="#六-超链接">六、超链接</a></li>
-<li><a href="#七-列表">七、列表</a></li>
-<li><a href="#八-表格">八、表格</a></li>
-<li><a href="#九-代码">九、代码</a></li>
-</ul>
-<!-- tocstop -->
+<p>2、安装hexo，如果没有npm，安装终端提示进行安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
-<h2><span id="一-标题">一、标题</span></h2><p>标题用<strong>#</strong>来表示:<br>一个<strong>#</strong>是一级标题<br> 两个<strong>#</strong>是二级标题<br>以此类推，可以到六级标题，<strong>#</strong>号后面要加个空格。<br><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
+<p>3、找一个文件夹，在目录下面新建一个hexo文件夹，然后cd到hexo文件夹，执行以下命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd hexo</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
+<p>4、更换yilia主题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;litten&#x2F;hexo-theme-yilia.git themes&#x2F;yilia</span><br></pre></td></tr></table></figure>
 
+<p>进入hexo/themes目录下，发现会多了一个yilia文件夹，这就是yilia主题。</p>
+<p>在hexo目录下找到_config.yml文件，打开文件找到<strong>theme项修改成yilia</strong>。</p>
+<p>5、执行hexo命令，然后终端就会提示通过<code>https://localhost:4000</code>来访问搭建的博客了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  #清除静态文件</span><br><span class="line">hexo g #生成静态文件</span><br><span class="line">hexo s #启动服务器，本地测试</span><br></pre></td></tr></table></figure>
 
+<p>当然还有常用命令，比如下面两个，后面再用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo d #将本地编译好的静态文件发布到github上</span><br><span class="line">hexo n &#39;文章名称&#39; #新建一篇文章</span><br></pre></td></tr></table></figure>
 
+<p>好了，本地服务的博客搭建好了，可以hexo n 一篇文章来试试啦，文章支持Markdown语法，可参考<a href="https://yezixcc.github.io/2019/04/29/markdown/" target="_blank" rel="noopener">《Markdown基本语法》</a>，写作工具推荐用<a href="https://www.typora.io/" target="_blank" rel="noopener">Typora</a>，很好用的Markdown编辑器。</p>
+<h3><span id="远程服务">远程服务</span></h3><p>上面我们已经完成了本地服务的博客搭建，下面我们利用github，将博客放到远程仓库，公开访问。</p>
+<p>1、登录github，新建一个仓库，命名格式：xxxx.github.io，以后访问博客的地址就是<code>https://xxxx.github.io</code>。</p>
+<p>2、来到仓库的Settings，上滑来到GitHub Pages项目。</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20191220170926147.png" alt="image-20191220170926147"></p>
+<p>​      选择完一个主题之后，会出现<code>Your site is published at https://xxxx.github.io/</code>。如果有购买个人域名，可以      在Custom domain中输入域名，这样就可以使用自己的域名访问，不用再显示github.io啦。</p>
+<p>3、配置ssh key，可以参考<a href="[https://yezixcc.github.io/2019/12/20/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/](https://yezixcc.github.io/2019/12/20/配置多个git账号/)">《配置多个git账号》</a>。</p>
+<p>4、修改hexo目录下的_config.yml文件，找到deploy，修改repo地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: git@github.com:xxxx&#x2F;xxxx.github.io.git,master #上面新建的仓库地址,分支名</span><br></pre></td></tr></table></figure>
 
-<h2><span id="二-字体">二、字体</span></h2><ul>
-<li><p><strong>加粗</strong><br>用两个*包起来。</p>
-</li>
-<li><p><em>斜体</em><br>用一个*包起来。</p>
-</li>
-<li><p><strong><em>斜体加粗</em></strong><br>用三个*包起来。</p>
-</li>
-<li><p>删除线</p>
-<p>用两个~~包起来。</p>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**加粗的文字**</span><br><span class="line">*倾斜的文字*</span><br><span class="line">***倾斜加粗的文字**</span><br><span class="line">~~带删除线的文字~~</span><br></pre></td></tr></table></figure>
+<p>5、cd到hexo目录，编译执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line">#出现ERROR Deployer not found: git，回到用户目录执行下面命令</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line">#然后再cd到hexo目录，执行hexo d</span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line">#如果出现错误，大多数是ssh key没有配置好，配置好就可以了。</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p><strong>效果：</strong></p>
-<blockquote>
-<p><strong>加粗的文字</strong><br><em>倾斜的文字</em><br><strong>*倾斜加粗的文字</strong><br><del>带删除线的文字</del></p>
-</blockquote>
-<h2><span id="三-引用">三、引用</span></h2><p>在引用的文字前加&gt;就好了。<br><strong>示例</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是引用的内容</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong></p>
-<blockquote>
-<p>这是引用的内容</p>
-</blockquote>
-<h2><span id="四-分割线">四、分割线</span></h2><p>三个或三个以上的 - 或者 * 都可以形成分割线。<br><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--- </span><br><span class="line">---- </span><br><span class="line">***</span><br><span class="line">****</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果：</strong></p>
-<blockquote>
-<hr>
-<hr>
-<hr>
-<hr>
-</blockquote>
-<h2><span id="五-图片">五、图片</span></h2><p>Markdown本身的语法是下面着这样的，但是这样不可以控制图片的大小和显示位置，只能居左显示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![图片的标题](图片地址)</span><br><span class="line">图片的标题 可以为空，例如：</span><br><span class="line">![头像](&#x2F;images&#x2F;head.jpg)</span><br></pre></td></tr></table></figure>
-
-<p>但是，在Markdown中可以引入html代码，可以控制图片的大小和显示位置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、固定图片显示大小：</span><br><span class="line">&lt;img src&#x3D;&quot;&#x2F;images&#x2F;head.jpg&quot; width&#x3D;256 height&#x3D;256 &#x2F;&gt;</span><br><span class="line">2、根据一定比例显示：</span><br><span class="line">&lt;img src&#x3D;&quot;&#x2F;images&#x2F;head.jpg&quot; width&#x3D;&quot;50%&quot; height&#x3D;&quot;50%&quot; &#x2F;&gt;</span><br><span class="line">3、给图片加个标注并居中显示：</span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;&#x2F;images&#x2F;head.jpg&quot; width&#x3D;&quot;25%&quot; height&#x3D;&quot;25%&quot; &#x2F;&gt;</span><br><span class="line">很有深意的图片</span><br><span class="line">&lt;&#x2F;center&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果：</strong><br>Markdown语法效果：<br><img src="https://yezixcc.github.io/images/head.jpg" alt="头像"></p>
-<p>给图片加个标注并居中显示效果：</p>
-<p><img src="https://yezixcc.github.io/images/head.jpg" alt="img"><br>head.jpg</p>
-<h2><span id="六-超链接">六、超链接</span></h2><p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[链接名称](链接地址)</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果：</strong></p>
-<blockquote>
-<p><a href="https://www.baidu.com/" target="_blank" rel="noopener">百度</a></p>
-</blockquote>
-<h2><span id="七-列表">七、列表</span></h2><p><strong>1. 无序列表：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- + * 都可以，加在列表内容的前面就好了，和内容之间留一个空格</span><br><span class="line">- 列表1</span><br><span class="line">* 列表2</span><br><span class="line">+ 列表3</span><br></pre></td></tr></table></figure>
-
-<p>效果：</p>
-<blockquote>
-<ul>
-<li><p>列表1</p>
-</li>
-<li><p>列表2</p>
-</li>
-<li><p>列表3</p>
-</li>
-</ul>
-</blockquote>
-<p><strong>2. 有序列表：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 序号1</span><br><span class="line">2. 序号2</span><br><span class="line">3. 序号3</span><br></pre></td></tr></table></figure>
-
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>序号1</li>
-<li>序号2</li>
-<li>序号3</li>
-</ol>
-</blockquote>
-<p><strong>3. 列表嵌套：</strong><br>二级列表前面三个空格就好<br>效果：</p>
-<blockquote>
-<ul>
-<li><p>一级列表</p>
-<ul>
-<li><p>二级列表</p>
-</li>
-<li><p>二级列表</p>
-</li>
-<li><p>二级列表</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2><span id="八-表格">八、表格</span></h2><p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">- | :-: | -:</span><br><span class="line">内容 | 内容 | 内容</span><br><span class="line">内容 | 内容 | 内容</span><br><span class="line"></span><br><span class="line">上面就是表格的语法格式</span><br><span class="line">- | :-: | -: 这个:在那边就是居那边对齐，默认居左对齐，两边都有:则是居中对齐</span><br><span class="line">例如：(表格和正文之间要空一行，不然表格会当做正文来显示)</span><br><span class="line"></span><br><span class="line">姓名|性别|年龄</span><br><span class="line">-|:-:|-:</span><br><span class="line">张三|男|20</span><br><span class="line">李四|男|19</span><br><span class="line">翠花|女|18</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果：</strong></p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">性别</th>
-<th align="right">年龄</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>张三</td>
-<td align="center">男</td>
-<td align="right">20</td>
-</tr>
-<tr>
-<td>李四</td>
-<td align="center">男</td>
-<td align="right">19</td>
-</tr>
-<tr>
-<td>翠花</td>
-<td align="center">女</td>
-<td align="right">18</td>
-</tr>
-</tbody></table>
-<h2><span id="九-代码">九、代码</span></h2><p>一段代码用有个点包起来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;hello world&#96;</span><br></pre></td></tr></table></figure>
-
-<p>多段代码用三个点包起来<br><strong>效果：</strong><br><code>hello world</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)sendUpdateEvaluateRequset &#123;</span><br><span class="line">	NSLog(@&quot;多段代码&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>好了，打开<code>https://xxxx.github.io</code>，就可以访问啦。</p>
 
       
 
@@ -355,11 +241,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -415,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/29/markdown/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/20/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -429,18 +315,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/05/synthesize/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          @synthesize
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/04/24/hello/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/12/20/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">配置多个git账号</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -467,7 +344,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">一、标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">二、字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">三、引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">四、分割线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">五、图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">六、超链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">七、列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">八、表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">九、代码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">本地服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">远程服务</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,7 +379,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'yezixcc',
   	admin: ['yezixcc'],
-  	id: 'Mon Apr 29 2019 14:09:47 GMT+0800',
+  	id: 'Fri Dec 20 2019 15:51:40 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
