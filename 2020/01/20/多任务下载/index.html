@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>yilia主题添加评论插件 | Sivan的博客</title>
+  <title>多任务下载 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通过github给博客添加gitalk评论插件，缺点是必须有github账号才可进行评论。">
+  <meta name="description" content="项目应该会比较常用到多任务下载的情况，特别是和tableView结合起来，考虑到tableViewCell的重用情况，处理起来要稍微注意下。 先看个整体的流程图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yilia主题添加评论插件">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;16&#x2F;gitalk&#x2F;index.html">
+<meta property="og:title" content="多任务下载">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;20&#x2F;%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="通过github给博客添加gitalk评论插件，缺点是必须有github账号才可进行评论。">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;gitalk&#x2F;image-20191219163300617.png">
-<meta property="article:published_time" content="2019-12-16T09:49:15.000Z">
-<meta property="article:modified_time" content="2019-12-20T07:42:01.704Z">
+<meta property="og:description" content="项目应该会比较常用到多任务下载的情况，特别是和tableView结合起来，考虑到tableViewCell的重用情况，处理起来要稍微注意下。 先看个整体的流程图。">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B&#x2F;%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD.jpg">
+<meta property="article:published_time" content="2020-01-20T06:03:50.000Z">
+<meta property="article:modified_time" content="2020-01-20T07:42:49.315Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="其他">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;gitalk&#x2F;image-20191219163300617.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B&#x2F;%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -171,20 +172,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-gitalk" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-多任务下载" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      yilia主题添加评论插件
+      多任务下载
     </h1>
   
 
         
-        <a href="/2019/12/16/gitalk/" class="archive-article-date">
-  	<time datetime="2019-12-16T09:49:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
+        <a href="/2020/01/20/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+  	<time datetime="2020-01-20T06:03:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
 </a>
         
         <!-- 添加代码 -->
@@ -197,32 +198,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通过github给博客添加gitalk评论插件，缺点是必须有github账号才可进行评论。</p>
+        <p>项目应该会比较常用到多任务下载的情况，特别是和tableView结合起来，考虑到tableViewCell的重用情况，处理起来要稍微注意下。</p>
+<p>先看个整体的流程图。</p>
 <a id="more"></a>
 
-<h3><span id="一-github准备工作">一、Github准备工作</span></h3><p>1、登录github官网，在settings里面选择OAuth Apps，选择New OAuth App，<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">打开注册页面</a>。</p>
-<p><img src="/images/gitalk/image-20191219163300617.png" alt="image-20191219163300617"></p>
-<p>注册页面：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application name：随便填</span><br><span class="line">Homepage URL：随便填</span><br><span class="line">Application description：随便填</span><br><span class="line">Authorization callback URL：需要使用gitalk的博客地址</span><br></pre></td></tr></table></figure>
+<p><img src="/images/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD.jpg" alt="多任务下载"></p>
+<p>从流程中看出肯定需要使用到多线程，这里使用NSOperation。需要2个NSDictionary成员变量来手动维护内存缓存，1个队列对象管理下载任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; 队列对象</span><br><span class="line">- (NSOperationQueue *)queue &#123;</span><br><span class="line">    if (!_queue) &#123;</span><br><span class="line">        _queue &#x3D; [[NSOperationQueue alloc] init];</span><br><span class="line">        &#x2F;&#x2F; 设置一个最大并发数，防止创建过多线程</span><br><span class="line">        _queue.maxConcurrentOperationCount &#x3D; 3;</span><br><span class="line">    &#125;</span><br><span class="line">    return _queue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F; 缓存所有下载任务-内存</span><br><span class="line">- (NSMutableDictionary *)operations &#123;</span><br><span class="line">    if (!_operations) &#123;</span><br><span class="line">        _operations &#x3D; [NSMutableDictionary dictionary];</span><br><span class="line">    &#125;</span><br><span class="line">    return _operations;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F; 缓存所有下载的图片-内存</span><br><span class="line">- (NSMutableDictionary *)images &#123;</span><br><span class="line">    if (!_images) &#123;</span><br><span class="line">        _images &#x3D; [NSMutableDictionary dictionary];</span><br><span class="line">    &#125;</span><br><span class="line">    return _images;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    static NSString *ID &#x3D; @&quot;UITableViewCell&quot;;</span><br><span class="line">    UITableViewCell *cell &#x3D; [tableView dequeueReusableCellWithIdentifier:ID];</span><br><span class="line">    </span><br><span class="line">    App *app &#x3D; self.apps[indexPath.row];</span><br><span class="line">    cell.textLabel.text &#x3D; app.name;</span><br><span class="line">    cell.detailTextLabel.text &#x3D; app.download;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 先从内存缓存中取出图片</span><br><span class="line">    UIImage *image &#x3D; self.images[app.icon];</span><br><span class="line">    if (image) &#123; &#x2F;&#x2F; 内存中有图片</span><br><span class="line">        cell.imageView.image &#x3D; image;</span><br><span class="line">    &#125; else &#123;  &#x2F;&#x2F; 内存中没有图片</span><br><span class="line">        &#x2F;&#x2F; 获得Library&#x2F;Caches文件夹</span><br><span class="line">        NSString *cachesPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">        &#x2F;&#x2F; 获得文件名</span><br><span class="line">        NSString *filename &#x3D; [app.icon lastPathComponent];</span><br><span class="line">        &#x2F;&#x2F; 计算出文件的全路径</span><br><span class="line">        NSString *file &#x3D; [cachesPath stringByAppendingPathComponent:filename];</span><br><span class="line">        &#x2F;&#x2F; 加载沙盒的文件数据</span><br><span class="line">        NSData *data &#x3D; [NSData dataWithContentsOfFile:file];</span><br><span class="line">        </span><br><span class="line">        if (data) &#123; &#x2F;&#x2F; 直接利用沙盒中图片</span><br><span class="line">            UIImage *image &#x3D; [UIImage imageWithData:data];</span><br><span class="line">            cell.imageView.image &#x3D; image;</span><br><span class="line">            &#x2F;&#x2F; 以icon名为key存到字典中</span><br><span class="line">            self.images[app.icon] &#x3D; image;</span><br><span class="line">        &#125; else &#123; &#x2F;&#x2F; 下载图片</span><br><span class="line">            cell.imageView.image &#x3D; [UIImage imageNamed:@&quot;placeholder&quot;];</span><br><span class="line">            </span><br><span class="line">            NSOperation *operation &#x3D; self.operations[app.icon];</span><br><span class="line">            if (operation &#x3D;&#x3D; nil) &#123; &#x2F;&#x2F; 这张图片暂时没有下载任务</span><br><span class="line">                operation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">                    &#x2F;&#x2F; 下载图片</span><br><span class="line">                    NSData *data &#x3D; [NSData dataWithContentsOfURL:[NSURL URLWithString:app.icon]];</span><br><span class="line">                    &#x2F;&#x2F; 数据加载失败</span><br><span class="line">                    if (data &#x3D;&#x3D; nil) &#123;</span><br><span class="line">                        &#x2F;&#x2F; 移除操作</span><br><span class="line">                        [self.operations removeObjectForKey:app.icon];</span><br><span class="line">                        return;</span><br><span class="line">                    &#125;</span><br><span class="line">                    </span><br><span class="line">                    UIImage *image &#x3D; [UIImage imageWithData:data];</span><br><span class="line">                    </span><br><span class="line">                    &#x2F;&#x2F; 存到字典中</span><br><span class="line">                    self.images[app.icon] &#x3D; image;</span><br><span class="line">                    </span><br><span class="line">                    &#x2F;&#x2F; 回到主线程显示图片</span><br><span class="line">                    [[NSOperationQueue mainQueue] addOperationWithBlock:^&#123;</span><br><span class="line">                        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];</span><br><span class="line">                    &#125;];</span><br><span class="line">                    </span><br><span class="line">                    &#x2F;&#x2F; 将图片文件数据写入沙盒中</span><br><span class="line">                    [data writeToFile:file atomically:YES];</span><br><span class="line">                    &#x2F;&#x2F; 移除操作</span><br><span class="line">                    [self.operations removeObjectForKey:app.icon];</span><br><span class="line">                &#125;];</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F; 添加到队列中</span><br><span class="line">                [self.queue addOperation:operation];</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F; 存放到字典中</span><br><span class="line">                self.operations[app.icon] &#x3D; operation;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F; 注意释放缓存</span><br><span class="line">- (void)didReceiveMemoryWarning &#123;</span><br><span class="line">    [self.queue cancelAllOperations];</span><br><span class="line">    self.images &#x3D; nil;</span><br><span class="line">    self.operations &#x3D; nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>注册完成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Client ID：保存备用</span><br><span class="line">Client Secret：保存备用</span><br></pre></td></tr></table></figure>
+<p>self.queue队列中任务移除是不需要手动维护的，创建一个字典self.operations来手动维护下载任务是否已经添加到队列中，如果已经在队列中等待执行就好，避免重复添加下载任务浪费资源，如果任务下载失败也必须将该任务从self.operations移除，待下次加载重新下载。</p>
+<p>注意点：<br>如果内存缓存过多，可能会触发内存警告，这样就需要在didReceiveMemoryWarning中释放内存缓存的数据，一般都写在AppDelegate中的applicationDidReceiveMemoryWarning方法中，整个应用的内存警告都会来到这里，比如使用SDWebImage框架的，一般都写在这里释放内存。当然，SDWebImage默认缓存的时间是一周，正在使用的图片是不会被清掉的，因为被imageView强引用到的，只会清理未在使用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application &#123;</span><br><span class="line">    &#x2F;&#x2F; 清除内存缓存</span><br><span class="line">    [[SDWebImageManager sharedManager].imageCache clearMemory];</span><br><span class="line">    &#x2F;&#x2F; 取消所有下载</span><br><span class="line">    [[SDWebImageManager sharedManager] cancelAll];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>2、新建一个名为gitalk仓库备用，用来专门存放评论。</p>
-<h3><span id="二-hexo文件修改">二、Hexo文件修改</span></h3><p>1、在<code>hexo/thems/yilia/layout/_partial/post/</code>目录下新增<code>gitalk.ejs</code>文件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitalk-container"</span> <span class="attr">style</span>=<span class="string">"padding: 0px 30px 0px 30px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">if</span>(<span class="xml"><span class="tag">&lt;<span class="name">%=theme.gitalk.enable%</span>&gt;</span>)&#123;</span></span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span></span><br><span class="line"><span class="actionscript">  	clientID: <span class="string">'&lt;%=theme.gitalk.ClientID%&gt;'</span>,</span></span><br><span class="line"><span class="actionscript">  	clientSecret: <span class="string">'&lt;%=theme.gitalk.ClientSecret%&gt;'</span>,</span></span><br><span class="line"><span class="actionscript">  	repo: <span class="string">'&lt;%=theme.gitalk.repo%&gt;'</span>,</span></span><br><span class="line"><span class="actionscript">  	owner: <span class="string">'&lt;%=theme.gitalk.githubID%&gt;'</span>,</span></span><br><span class="line"><span class="actionscript">  	admin: [<span class="string">'&lt;%=theme.gitalk.adminUser%&gt;'</span>],</span></span><br><span class="line"><span class="actionscript">  	id: <span class="string">'&lt;%= page.date %&gt;'</span>,</span></span><br><span class="line"><span class="actionscript">  	distractionFreeMode: <span class="string">'&lt;%=theme.gitalk.distractionFreeMode%&gt;'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript">gitalk.render(<span class="string">'gitalk-container'</span>) </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2、修改<code>hexo/themes/yilia/source-src/css/comment.scss</code>文件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn, #gitalk-container &#123;</span><br><span class="line">	padding: 0 30px !important;</span><br><span class="line">	min-height: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#SOHUCS &#123;</span><br><span class="line">	#SOHU_MAIN .module-cmt-list .block-cont-gw &#123;</span><br><span class="line">		border-bottom: 1px dashed #c8c8c8 !important;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3、修改<code>hexo/themes/yilia/layout/_partial/article.ejs</code>文件，新增gitalk相关配置代码。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span>(<span class="attr">theme.gitalk.enable</span>)&#123; %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">gitalk</span>', &#123;</span></span><br><span class="line"><span class="tag">      <span class="attr">key:</span> <span class="attr">post.slug</span>,</span></span><br><span class="line"><span class="tag">      <span class="attr">title:</span> <span class="attr">post.title</span>,</span></span><br><span class="line"><span class="tag">      <span class="attr">url:</span> <span class="attr">config.url</span>+<span class="attr">url_for</span>(<span class="attr">post.path</span>)</span></span><br><span class="line"><span class="tag">    &#125;) %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>4、在yilia主题配置文件中<code>hexo/themes/yilia/_config.yml</code>添加gitalk相关配置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#6、gitalk评论</span><br><span class="line">gitalk:</span><br><span class="line">  enable:  true</span><br><span class="line">  githubID:  &#39;&#39;      #你的 GitHub ID</span><br><span class="line">  repo:  &#39;gitalk&#39;    #用来存放评论的仓库名</span><br><span class="line">  ClientID:  &#39;&#39;			 #上面生成的ClientID</span><br><span class="line">  ClientSecret:  &#39;&#39;  #ClientSecret</span><br><span class="line">  adminUser:  &#39;&#39; 		 #你的 GitHub ID</span><br><span class="line">  distractionFreeMode: true #是否启用快捷键(cmd|ctrl + enter) 提交评论.</span><br></pre></td></tr></table></figure>
-
-<p>好了，保存更新一下，重启服务，评论已添加。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd hexo </span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
       
 
@@ -236,11 +223,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
         		</li>
       		
 		</ul>
@@ -296,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/16/gitalk/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/20/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +301,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/20/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          配置多个git账号
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/16/hexo-tips/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo yilia主题配置</div>
+    <a href="/2020/01/06/iOS13%E5%9D%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS13坑</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,7 +330,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">一、Github准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">二、Hexo文件修改</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -383,7 +365,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'yezixcc',
   	admin: ['yezixcc'],
-  	id: 'Mon Dec 16 2019 17:49:15 GMT+0800',
+  	id: 'Mon Jan 20 2020 14:03:50 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
