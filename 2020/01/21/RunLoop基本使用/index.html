@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>RunLoop基本使用 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随遇而安">
+  <meta name="description" content="应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了RunLoop基本介绍后，开发过程中可以利用RunLoop来干点什么呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RunLoop基本使用">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;21&#x2F;RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="随遇而安">
+<meta property="og:description" content="应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了RunLoop基本介绍后，开发过程中可以利用RunLoop来干点什么呢？">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200520150614278.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200605150255379.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200605181506009.png">
 <meta property="article:published_time" content="2020-01-21T08:28:51.000Z">
-<meta property="article:modified_time" content="2020-05-18T08:41:15.482Z">
+<meta property="article:modified_time" content="2020-06-05T11:02:36.389Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200520150614278.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -67,6 +71,8 @@
 				<li><a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
 	        
 				<li><a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></li>
+	        
+				<li><a href="/tags/%E7%94%9F%E6%B4%BB/">生活</a></li>
 	        
 				<li><a href="/tags/%E5%85%B6%E4%BB%96/">其他</a></li>
 	        
@@ -128,6 +134,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -146,15 +154,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/%E5%85%B6%E4%BB%96/">其他</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E7%94%9F%E6%B4%BB/">生活</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/tags/%E5%85%B6%E4%BB%96/">其他</a></li>
 		        
 				</ul>
 			</nav>
@@ -195,7 +205,120 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了<a href="[https://yezixcc.github.io/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/](https://yezixcc.github.io/2020/01/20/RunLoop基本介绍/)">RunLoop基本介绍</a>后，开发过程中可以利用RunLoop来干点什么呢？</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#一-定时器工作不受滑动事件影响">一、定时器工作不受滑动事件影响。</a></li>
+<li><a href="#二-图片延迟显示减缓tableview滑动卡顿">二、图片延迟显示减缓tableView滑动卡顿。</a></li>
+<li><a href="#三-常驻线程线程不死">三、常驻线程（线程不死）</a><ul>
+<li><a href="#1-强引用指向线程可行">1、强引用指向线程（可行？）</a></li>
+<li><a href="#2-自己写个while循环可行">2、自己写个while循环（可行？）</a></li>
+<li><a href="#3-开启线程的runloop正解">3、开启线程的RunLoop（正解）</a><ul>
+<li><a href="#1-runloop开启添加source">1、RunLoop开启（添加source）</a></li>
+<li><a href="#2-runloop开启添加timer">2、RunLoop开启（添加timer）</a></li>
+<li><a href="#3-whilerunloop">3、while+RunLoop</a></li>
+<li><a href="#4-runloop退出">4、RunLoop退出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#四-自动释放池">四、自动释放池</a><ul>
+<li><a href="#1-有什么用">1、有什么用？</a></li>
+<li><a href="#2-自动释放池什么时候释放">2、自动释放池什么时候释放？</a></li>
+<li><a href="#3-使用自动释放池">3、使用自动释放池</a></li>
+</ul>
+</li>
+<li><a href="#五-总结使用场景">五、总结使用场景</a><ul>
+<li><a href="#1-开启一个常驻线程">1、开启一个常驻线程</a><ul>
+<li><a href="#1-在子线程开启定时器">(1)、在子线程开启定时器</a></li>
+<li><a href="#2-在子线程长期监控一些数据变化">(2)、在子线程长期监控一些数据变化</a></li>
+</ul>
+</li>
+<li><a href="#2-控制定时器在特定模式下执行">2、控制定时器在特定模式下执行</a></li>
+<li><a href="#3-让某些任务在特定模式下执行">3、让某些任务在特定模式下执行</a></li>
+<li><a href="#4-添加observer监听runloop的状态">4、添加Observer监听RunLoop的状态</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h4><span id="一-定时器工作不受滑动事件影响">一、定时器工作不受滑动事件影响。</span></h4><p>如果不做处理，常常会发现，当UIScrollView滑动的时候，定时器不工作了，最常见的就是banner图的滚动，当滑动页面时banner不自动轮播了，因为当UIScrollView滑动时，当前RunLoop的Mode切换成了Tracking模式，解决这种问题的一种方案就是让自动轮播的定时器添加到当前RunLoop的Common模式下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 自动将定时器加入到当前RunLoop的Default模式下，自启动定时器</span><br><span class="line"> NSTimer *scheduledTimer &#x3D; [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(run) userInfo:nil repeats:YES];</span><br><span class="line"> &#x2F;&#x2F; 可以修改模式</span><br><span class="line"> [[NSRunLoop currentRunLoop] addTimer:scheduledTimer forMode:NSRunLoopCommonModes];</span><br></pre></td></tr></table></figure>
+
+<h4><span id="二-图片延迟显示减缓tableview滑动卡顿">二、图片延迟显示减缓tableView滑动卡顿。</span></h4><p>当UITableViewCell上有大图需要加载，滑动tableView时可能造成卡顿现象。可以考虑让加载图片的代码延迟在滑动事件结束后执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    UITableViewCell *cell &#x3D; [tableView dequeueReusableCellWithIdentifier:@&quot;cell&quot;];</span><br><span class="line">    [cell.imageView performSelector:@selector(setImage:) withObject:image afterDelay:1 inModes:@[NSDefaultRunLoopMode]];</span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="三-常驻线程线程不死">三、常驻线程（线程不死）</span></h4><h5><span id="1-强引用指向线程可行">1、强引用指向线程（可行？）</span></h5><p>正常来说，线程任务执行完后线程就会自动销毁，无法再使用。那么有人就会尝试用一个强引用把线程拿住，这样是否可行呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;MyThread.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">@property (nonatomic, strong) MyThread *thread;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    &#x2F;&#x2F; 测试--- start1次</span><br><span class="line">    MyThread *thread &#x3D; [[MyThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    [thread start];</span><br><span class="line">  </span><br><span class="line">    &#x2F;&#x2F; 测试2 - 1</span><br><span class="line">    self.thread &#x3D; [[MyThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">      &#x2F;&#x2F; 测试3</span><br><span class="line">&#x2F;&#x2F;    [self.thread start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试2 - 1</span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    [self.thread start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 测试3</span><br><span class="line">&#x2F;&#x2F;- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">&#x2F;&#x2F;    [self performSelector:@selector(run) onThread:self.thread withObject:nil waitUntilDone:NO];</span><br><span class="line">&#x2F;&#x2F;&#125;</span><br><span class="line"></span><br><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run &quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>测试1打印结果：<br>— run<br>MyThread dealloc</p>
+<p>测试2打印结果：<br>— run<br>再次点击，程序崩了。。。</p>
+<p>测试3打印结果：<br>— run<br>再次点击无打印输出，程序未崩溃</p>
+</blockquote>
+<p>测试1：说明线程任务执行完后，线程销毁了；</p>
+<p>测试2：说明无法通过强引用拿住线程，重复使用，线程在执行完没有执行dealloc，说明内存还在，但是线程已经处于消亡的状态，无法再次使用的，线程不能重复调用start方法；</p>
+<p>测试3：首先要启动线程，即调用start方法，线程才能执行任务，在点击后只执行了一次run任务，后续再点击无输出，说明这种方式下线程同样处于消亡状态，无法执行任务了；</p>
+<h5><span id="2-自己写个while循环可行">2、自己写个while循环（可行？）</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    while (1) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;--------&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上所示，达到了线程不死，但是也处理不了其他事情了。</p>
+<h5><span id="3-开启线程的runloop正解">3、开启线程的RunLoop（正解）</span></h5><h6><span id="1-runloop开启添加source">1、RunLoop开启（添加source）</span></h6><p>RunLoop内部是一个do-while循环，前面说过每个线程都有一个RunLoop与之对应，只有主线程的RunLoop是主动开启的，其他线程需要手动获取并开启，在线程任务中开启该线程的RunLoop，这个线程就一直处于一个do-while循环中，实现不死。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#x2F;&#x2F; 以下3种方法等价</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">&#x2F;&#x2F;    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</span><br><span class="line">&#x2F;&#x2F;    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];</span><br><span class="line">    NSLog(@&quot;RunLoop退出了&quot;);</span><br><span class="line">&#125;</span><br><span class="line">打印结果：</span><br><span class="line">--- run --- &lt;MyThread: 0x6000028d7e40&gt;&#123;number &#x3D; 6, name &#x3D; (null)&#125;</span><br><span class="line">runloop退出了</span><br></pre></td></tr></table></figure>
+
+<p>竟然打印了“RunLoop退出了”，正常来说RunLoop内部是个循环，不会走到这个打印的，现在打印了说明RunLoop退出了，进而线程也消亡从而达不到常驻线程的效果。RunLoop为什么会退出呢？</p>
+<p><strong>注意：RunLoop启动时(调用run)会先判断当前Mode是否为空（即Mode中Source，Timer，Observer三者一个都没有），如果为空则直接退出。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    &#x2F;&#x2F; 以下3种方法等价</span><br><span class="line">    &#x2F;&#x2F; 给RunLoop添加一个source，防止RunLoop退出</span><br><span class="line">    [[NSRunLoop currentRunLoop] addPort:[NSPort port] forMode:NSRunLoopCommonModes];</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">    </span><br><span class="line">&#x2F;&#x2F;    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</span><br><span class="line">&#x2F;&#x2F;    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];</span><br><span class="line">    NSLog(@&quot;runloop退出了&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>点击3次打印结果：<br>— run — &lt;MyThread: 0x6000009b7680&gt;{number = 5, name = (null)}<br>— run — &lt;MyThread: 0x6000009b7680&gt;{number = 5, name = (null)}<br>— run — &lt;MyThread: 0x6000009b7680&gt;{number = 5, name = (null)}</p>
+</blockquote>
+<p>给RunLoop添加一个source，修改后可以看到，RunLoop没有退出，线程也没有消亡，实现了线程不死，还能不断接收处理事件。</p>
+<p><strong>关系图：</strong><br><img src="/images/RunLoop/image-20200520150614278.png" alt="image-20200520150614278"></p>
+<h6><span id="2-runloop开启添加timer">2、RunLoop开启（添加timer）</span></h6><ul>
+<li><p><strong>timerWithTimeInterval方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    self.thread &#x3D; [[MyThread alloc] initWithTarget:self selector:@selector(run1) object:nil];</span><br><span class="line">    [self.thread start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)run1 &#123;</span><br><span class="line">    NSLog(@&quot; --- run1 --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    [NSTimer timerWithTimeInterval:2 target:self selector:@selector(timerFunction) userInfo:nil repeats:YES];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)timerFunction &#123;</span><br><span class="line">    NSLog(@&quot; --- timerFunction --- &quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    [self performSelector:@selector(run) onThread:self.thread withObject:nil waitUntilDone:NO];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">--- run1 --- &lt;MyThread: 0x600003818000&gt;&#123;number &#x3D; 7, name &#x3D; (null)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果可以看出，timer并没有生效，前面说过<code>timerWithTimeInterval</code>不会将timer自动加入到当前线程的RunLoop，并且需手动开启RunLoop，做下修改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)run1 &#123;</span><br><span class="line">    NSLog(@&quot; --- run1 --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    NSTimer *timer &#x3D; [NSTimer timerWithTimeInterval:2 target:self selector:@selector(timerFunction) userInfo:nil repeats:YES];</span><br><span class="line">    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改后RunLoop中已有timer，所有不会退出，timer开始工作，线程也实现了常驻，并且随时准备接收处理事件。</p>
+</li>
+<li><p><strong>scheduledTimerWithTimeInterval方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)run1 &#123;</span><br><span class="line">    NSLog(@&quot; --- run1 --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFunction) userInfo:nil repeats:YES];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面说过scheduledTimerWithTimeInterval方法会自动把timer添加到当前线程的RunLoop中，这个方法相当于已经给线程创建了RunLoop，并且也将RunLoop中也有了timer，那么既然都欧有了，timer会工作吗？线程能常驻吗？</p>
+<p>测试后发现，并没有timer并没有工作，线程也没能达到常驻效果，为什么？<strong>RunLoop没有启动</strong>，其后执行<code>[[NSRunLoop currentRunLoop] run];</code>就好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)run1 &#123;</span><br><span class="line">    NSLog(@&quot; --- run1 --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFunction) userInfo:nil repeats:YES];</span><br><span class="line">  	&#x2F;&#x2F;&#x2F; 需要启动RunLoop(子线程)</span><br><span class="line">    [[NSRunLoop currentRunLoop] run];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6><span id="3-whilerunloop">3、while+RunLoop</span></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (void)run &#123;</span><br><span class="line">    NSLog(@&quot; --- run --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">    while (1) &#123;</span><br><span class="line">        [[NSRunLoop currentRunLoop] run];</span><br><span class="line">        NSLog(@&quot;runloop退出了&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    NSLog(@&quot;--------&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打印结果:<br>— run — &lt;MyThread: 0x600001954740&gt;{number = 6, name = (null)}<br>runloop退出了<br>…(无限打印)</p>
+<p>再次点击<br>“runloop退出了”停止打印，输出：<br>— run — &lt;MyThread: 0x600001954740&gt;{number = 6, name = (null)}</p>
+</blockquote>
+<p>当第一次点击时，执行run，进入while(1)死循环，RunLoop不断的开启后退出，因为它的Mode是空的，再次点击，即调用<code>[self performSelector:@selector(run) onThread:self.thread withObject:nil waitUntilDone:NO];</code>方法，performSelector相当于自动给RunLoop添加了Source，此时RunLoop的Mode不为空，RunLoop开启后就不会退出（内部do-while循环），这样也实现了线程不死和RunLoop的开启。</p>
+<h6><span id="4-runloop退出">4、RunLoop退出</span></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1.线程退出</span><br><span class="line">[NSThread exit];</span><br><span class="line">&#x2F;&#x2F; 2.移除之前添加的port（如果只有port）</span><br><span class="line">[[NSRunLoop currentRunLoop] removePort:port forMode:NSRunLoopCommonModes];</span><br></pre></td></tr></table></figure>
+
+<h4><span id="四-自动释放池">四、自动释放池</span></h4><h5><span id="1-有什么用">1、有什么用？</span></h5><p>将一些调用autorelease的对象放到自动释放池中，当自动释放池被释放的时候，其中的所有对象都调用一次release方法。</p>
+<h5><span id="2-自动释放池什么时候释放">2、自动释放池什么时候释放？</span></h5><img src="/images/自制Pods/image-20200605150255379.png" alt="image-20200605150255379" style="zoom:50%;">
+
+<p>APP启动，主线程开始执行任务，默认开启它的RunLoop，RunLoop注册两个观察者。</p>
+<p>观察者1监听RunLoop的<strong>kCFRunLoopEntry（即将进入RunLoop）</strong>状态，此时<strong>创建自动释放池</strong>。</p>
+<p>观察者2监听RunLoop的<strong>kCFRunLoopBeforeWaiting（即将进入休眠）</strong>状态，此时<strong>释放旧的自动释放池，然后创建新的自动释放池</strong>，另外还监听RunLoop的<strong>kCFRunLoopExit（即将退出RunLoop）状态</strong>，此时<strong>释放自动释放池</strong>。</p>
+<h5><span id="3-使用自动释放池">3、使用自动释放池</span></h5><p>一般在开启RunLoop的时候可以使用自动释放池，让RunLoop里面的一些东西可以及时释放。注意看main函数开启RunLoop的时候也是用@autorelease包起来的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)run1 &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        NSLog(@&quot; --- run1 --- %@&quot;, [NSThread currentThread]);</span><br><span class="line">        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFunction) userInfo:nil repeats:YES];</span><br><span class="line">        [[NSRunLoop currentRunLoop] run];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/images/自制Pods/image-20200605181506009.png" alt="image-20200605181506009" style="zoom:50%;">
+
+<h4><span id="五-总结使用场景">五、总结使用场景</span></h4><h5><span id="1-开启一个常驻线程">1、开启一个常驻线程</span></h5><p>让一个子线程不死处于消亡状态，等待其他线程来发消息，处理其他事件。</p>
+<h6><span id="1-在子线程开启定时器">(1)、在子线程开启定时器</span></h6><p>​        子线程开启定时器，避免和主线程的RunLoop的模式切换影响到定时器工作。</p>
+<h6><span id="2-在子线程长期监控一些数据变化">(2)、在子线程长期监控一些数据变化</span></h6><h5><span id="2-控制定时器在特定模式下执行">2、控制定时器在特定模式下执行</span></h5><h5><span id="3-让某些任务在特定模式下执行">3、让某些任务在特定模式下执行</span></h5><h5><span id="4-添加observer监听runloop的状态">4、添加Observer监听RunLoop的状态</span></h5><p>比如监听卡顿，所有按钮点击事件之前等。</p>
+
       
 
       
@@ -282,6 +405,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/06/04/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CocoaPods-创建私有Pods
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">RunLoop基本介绍</div>
@@ -311,7 +443,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">一、定时器工作不受滑动事件影响。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">二、图片延迟显示减缓tableView滑动卡顿。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">三、常驻线程（线程不死）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">1、强引用指向线程（可行？）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">2、自己写个while循环（可行？）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.3.</span> <span class="toc-text">3、开启线程的RunLoop（正解）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.3.1.</span> <span class="toc-text">1、RunLoop开启（添加source）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.3.2.</span> <span class="toc-text">2、RunLoop开启（添加timer）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.3.3.</span> <span class="toc-text">3、while+RunLoop</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.3.4.</span> <span class="toc-text">4、RunLoop退出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">四、自动释放池</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">1、有什么用？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.2.</span> <span class="toc-text">2、自动释放池什么时候释放？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.3.</span> <span class="toc-text">3、使用自动释放池</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">五、总结使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.1.</span> <span class="toc-text">1、开启一个常驻线程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">5.1.1.</span> <span class="toc-text">(1)、在子线程开启定时器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">5.1.2.</span> <span class="toc-text">(2)、在子线程长期监控一些数据变化</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.2.</span> <span class="toc-text">2、控制定时器在特定模式下执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.3.</span> <span class="toc-text">3、让某些任务在特定模式下执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.4.</span> <span class="toc-text">4、添加Observer监听RunLoop的状态</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,6 +634,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
             
             <div class="clearfix"></div>
