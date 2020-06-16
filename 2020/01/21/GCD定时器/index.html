@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>‘六年免检’车辆手机上申请年检 | Sivan的博客</title>
+  <title>GCD的定时器 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从2011年9月1日起购买的新车（私家车，非营运）六年内可免除到检验机构进行安全技术检验，车主可以通过“交管12123”APP远程申请免检标志，无需再前往交警窗口办理，手机提交后，将有快递上门接送资料证件，让车主足不出户办理相关业务。虽然可以免除上线检测，但是还是需要每2年定期申请免检标志。">
+  <meta name="description" content="RunLoop中的CFRunLoopTimerRef是基于时间的触发器，基本上说的就是NSTimer，它受RunLoop的Mode影响，GCD中也有定时器，GCD中定时器的实现和RunLoop的定时器不同，它不受RunLoop的Mode影响，并且RunLoop的内部也是基于GCD实现的，相比NSTimer，GCD的定时器更加准确。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="‘六年免检’车辆手机上申请年检">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;05&#x2F;%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80&#x2F;index.html">
+<meta property="og:title" content="GCD的定时器">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;21&#x2F;GCD%E5%AE%9A%E6%97%B6%E5%99%A8&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="从2011年9月1日起购买的新车（私家车，非营运）六年内可免除到检验机构进行安全技术检验，车主可以通过“交管12123”APP远程申请免检标志，无需再前往交警窗口办理，手机提交后，将有快递上门接送资料证件，让车主足不出户办理相关业务。虽然可以免除上线检测，但是还是需要每2年定期申请免检标志。">
-<meta property="article:published_time" content="2020-06-05T02:15:17.000Z">
-<meta property="article:modified_time" content="2020-06-05T03:17:06.735Z">
+<meta property="og:description" content="RunLoop中的CFRunLoopTimerRef是基于时间的触发器，基本上说的就是NSTimer，它受RunLoop的Mode影响，GCD中也有定时器，GCD中定时器的实现和RunLoop的定时器不同，它不受RunLoop的Mode影响，并且RunLoop的内部也是基于GCD实现的，相比NSTimer，GCD的定时器更加准确。">
+<meta property="article:published_time" content="2020-01-21T12:52:05.000Z">
+<meta property="article:modified_time" content="2020-06-16T01:11:16.075Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="生活">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="定时器">
+<meta property="article:tag" content="GCD">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
@@ -174,20 +177,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-‘六年免检’车辆手机上申请年检" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-GCD定时器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ‘六年免检’车辆手机上申请年检
+      GCD的定时器
     </h1>
   
 
         
-        <a href="/2020/06/05/%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80/" class="archive-article-date">
-  	<time datetime="2020-06-05T02:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
+        <a href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-01-21T12:52:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
 </a>
         
         <!-- 添加代码 -->
@@ -200,22 +203,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>从2011年9月1日起购买的新车（私家车，非营运）六年内可免除到检验机构进行安全技术检验，车主可以通过“交管12123”APP远程申请免检标志，无需再前往交警窗口办理，手机提交后，将有快递上门接送资料证件，让车主足不出户办理相关业务。虽然可以免除上线检测，但是还是需要<strong>每2年</strong>定期申请免检标志。</p>
+        <p>RunLoop中的CFRunLoopTimerRef是基于时间的触发器，基本上说的就是NSTimer，它受RunLoop的Mode影响，GCD中也有定时器，GCD中定时器的实现和RunLoop的定时器不同，<strong>它不受RunLoop的Mode影响，并且RunLoop的内部也是基于GCD实现的，相比NSTimer，GCD的定时器更加准确。</strong></p>
 <a id="more"></a>
 
-<h5><span id="一-免检条件">一、免检条件</span></h5><ul>
-<li>2011年9月1日后登记的车，六年内；</li>
-<li>非营运轿车和其他小型、微型载客汽车（面包车、7座及7座以上车辆除外）；</li>
-<li>没有发生过交通事故中付主要责任的情况</li>
+<!-- toc -->
+
+<ul>
+<li><a href="#一-基本使用">一、基本使用</a><ul>
+<li><a href="#1-定时器不能为局部变量">1、定时器不能为局部变量</a></li>
+<li><a href="#2-延时执行定时器">2、延时执行定时器</a></li>
+<li><a href="#3-停止定时器">3、停止定时器</a></li>
 </ul>
-<h5><span id="二-准备资料">二、准备资料</span></h5><ul>
-<li>交强险凭证</li>
-<li>车船税凭证或免征证明</li>
-<li>身份证原件及复印件（如用户非车主，应携带用户本人及车主双方身份证原件及复印件、委托书）</li>
-<li>机动车行驶证原件及复印件</li>
-<li>没有待处理的交通违法和交通事故</li>
+</li>
 </ul>
-<h5><span id="三-申请方式">三、申请方式</span></h5><p>下载<strong>“交管1212”</strong>APP，选择 <strong>首页 - 更多，机动车业务 - 免检车申领检验标志</strong>。按照提示提交相关信息就好。完成后等待邮政人员上门验证和收取资料，办理完成后邮政人员会寄送检验标志到填写的地址。</p>
+<!-- tocstop -->
+
+<h5><span id="一-基本使用">一、基本使用</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    NSLog(@&quot;------touchBegan------&quot;);</span><br><span class="line">    [self testGCDTimer];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)testGCDTimer &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 全局队列</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(0, 0);</span><br><span class="line">    &#x2F;&#x2F;&#x2F; GCD定时器</span><br><span class="line">    &#x2F;**</span><br><span class="line">    参数1：源类型，定时器，DISPATCH_SOURCE_TYPE_TIMER</span><br><span class="line">    参数2，3：默认传0</span><br><span class="line">    参数4：定时器工作在哪个队列中</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_source_t timer &#x3D; dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);</span><br><span class="line">    NSLog(@&quot;%@&quot;, timer);</span><br><span class="line">  </span><br><span class="line">    &#x2F;**</span><br><span class="line">    参数1：创建的定时源</span><br><span class="line">    参数2：从什么时候开始工作，DISPATCH_TIME_NOW实质是数字0，即从当前时间加0开始执行定时器，即立即执行定时器</span><br><span class="line">    参数3：每隔多久执行一次。纳秒级别的，2秒&#x3D;2的9次方纳秒，NSEC_PER_SEC即10的9次方。</span><br><span class="line">    参数4：默认0</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 回调</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;-----定时器工作----&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 启动定时器</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打印结果：<br>——touchBegan——<br>&lt;OS_dispatch_source: 0x600003abd900&gt;</p>
+</blockquote>
+<h6><span id="1-定时器不能为局部变量">1、定时器不能为局部变量</span></h6><p>如上代码，未有输出<code>&quot;-----定时器工作----&quot;</code>，说明定时器并没有工作。原因在于dispatch_source_t本质也是一个oc对象，属于OS_dispatch_source这个类，timer在函数中是个局部变量，函数走完就释放掉了，所以需要强引用拿住它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">&#x2F;&#x2F;&#x2F; dispatch_source_t里面自带*号，所以不用*timer</span><br><span class="line">@property (nonatomic, strong) dispatch_source_t timer;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">- (void)testGCDTimer &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 全局队列</span><br><span class="line">    dispatch_queue_t queue &#x3D; dispatch_get_global_queue(0, 0);</span><br><span class="line">    &#x2F;&#x2F;&#x2F; GCD定时器</span><br><span class="line">    &#x2F;**</span><br><span class="line">    参数1：源类型，定时器，DISPATCH_SOURCE_TYPE_TIMER</span><br><span class="line">    参数2，3：默认传0</span><br><span class="line">    参数4：定时器工作在哪个队列中</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_source_t timer &#x3D; dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);</span><br><span class="line">    NSLog(@&quot;%@&quot;, timer);</span><br><span class="line">    </span><br><span class="line">    &#x2F;**</span><br><span class="line">    参数1：创建的定时源</span><br><span class="line">    参数2：从什么时候开始工作，DISPATCH_TIME_NOW实质是数字0，即从当前时间加0开始执行定时器，即立即执行定时器</span><br><span class="line">    参数3：每隔多久执行一次。纳秒级别的，2秒&#x3D;2的9次方纳秒，NSEC_PER_SEC即10的9次方。</span><br><span class="line">    参数4：默认0</span><br><span class="line">     *&#x2F;</span><br><span class="line">    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 回调</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;-----定时器工作----&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 启动定时器</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 拿住定时器</span><br><span class="line">    self.timer &#x3D; timer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经上修改，定时器正常工作。</p>
+<h6><span id="2-延时执行定时器">2、延时执行定时器</span></h6><p>上述代码是点击就立即执行定时器，那如果想要点击后5秒再执行定时器呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">参数1：什么时候  DISPATCH_TIME_NOW，现在</span><br><span class="line">参数2：时间增量  5 * NSEC_PER_SEC，5秒</span><br><span class="line"> *&#x2F;</span><br><span class="line">dispatch_time_t start &#x3D; dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);</span><br><span class="line">dispatch_source_set_timer(timer, start, 2 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);</span><br></pre></td></tr></table></figure>
+
+<h6><span id="3-停止定时器">3、停止定时器</span></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; 取消定时器</span><br><span class="line">dispatch_cancel(self.timer);</span><br><span class="line">self.timer &#x3D; nil;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -229,7 +245,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">定时器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GCD</a>
         		</li>
       		
 		</ul>
@@ -285,7 +313,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/05/%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +327,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/04/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构与算法-复杂度（斐波那契数）
+          CocoaPods-创建私有Pods
         
       </div>
     </a>
   
   
-    <a href="/2020/06/04/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CocoaPods-创建私有Pods</div>
+    <a href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RunLoop基本使用</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -337,7 +365,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">一、免检条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">二、准备资料</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">三、申请方式</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">一、基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">1、定时器不能为局部变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">2、延时执行定时器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">3、停止定时器</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -372,7 +400,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'yezixcc',
   	admin: ['yezixcc'],
-  	id: 'Fri Jun 05 2020 10:15:17 GMT+0800',
+  	id: 'Tue Jan 21 2020 20:52:05 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
