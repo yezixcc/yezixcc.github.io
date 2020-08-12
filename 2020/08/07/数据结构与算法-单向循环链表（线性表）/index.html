@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据结构与算法-单向循环链表（线性表） | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、单向循环链表 1、add(int index, E element)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候，需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size &#x3D;&#x3D; 0)">
+  <meta name="description" content="1、单向循环链表 1、add(int index, E element) 2、remove(int index)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-单向循环链表（线性表）">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="1、单向循环链表 1、add(int index, E element)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候，需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size &#x3D;&#x3D; 0)">
+<meta property="og:description" content="1、单向循环链表 1、add(int index, E element) 2、remove(int index)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200807204657808.png">
 <meta property="article:published_time" content="2020-08-07T12:44:21.000Z">
-<meta property="article:modified_time" content="2020-08-07T12:58:59.187Z">
+<meta property="article:modified_time" content="2020-08-12T12:09:31.489Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
@@ -210,6 +210,7 @@
 <ul>
 <li><a href="#1-单向循环链表">1、单向循环链表</a><ul>
 <li><a href="#1-addint-index-e-element">1、add(int index, E element)</a></li>
+<li><a href="#2-removeint-index">2、remove(int index)</a></li>
 </ul>
 </li>
 </ul>
@@ -218,8 +219,11 @@
 <h5><span id="1-单向循环链表">1、单向循环链表</span></h5><p>和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。</p>
 <img src="/images/数据结构与算法/image-20200807204657808.png" alt="image-20200807204657808" style="zoom:50%;">
 
-<h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><p>只有在向首节点添加元素的时候，需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">    first = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">    Node&lt;E&gt; last = (size == <span class="number">0</span>) ? firs : node(size - <span class="number">1</span>);	<span class="comment">// 最后一个节点</span></span><br><span class="line">    last.next = first;	<span class="comment">// 指向新的首节点</span></span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">      prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">  &#125;</span><br><span class="line">  size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><p>只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">        Node newFirst = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">        Node&lt;E&gt; last = (size == <span class="number">0</span>) ? newFirst : node(size - <span class="number">1</span>);	<span class="comment">// 最后一个节点</span></span><br><span class="line">        last.next = newFirst;	<span class="comment">// 指向新的首节点</span></span><br><span class="line">        <span class="comment">// 最后再修改first，因为node()方法里面有用到原始first</span></span><br><span class="line">        first = newFirst;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">        prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="2-removeint-index">2、remove(int index)</span></h6><p>只有在移除首节点的时候需要修改，因为首节点变了，需要将最后一个节点的next指向新的首节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">            first = <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            Node&lt;E&gt; last = node(size-<span class="number">1</span>);</span><br><span class="line">            first = first.next;</span><br><span class="line">            last.next = first;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">        node = prev.next;</span><br><span class="line">        prev.next = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -308,6 +312,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/08/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据结构与算法-双向循环链表（线性表）
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">数据结构与算法-双向链表（线性表）</div>
@@ -337,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、单向循环链表</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">1、add(int index, E element)</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、单向循环链表</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">1、add(int index, E element)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">2、remove(int index)</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

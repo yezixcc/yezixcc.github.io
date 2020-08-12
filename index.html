@@ -173,6 +173,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数据结构与算法-双向循环链表（线性表）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/">数据结构与算法-双向循环链表（线性表）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-08-12T12:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-12</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-双向循环链表">1、双向循环链表</a><ul>
+<li><a href="#1-addint-index-e-element">1、add(int index, E element)</a></li>
+<li><a href="#2-removeint-index">2、remove(int index)</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h5><span id="1-双向循环链表">1、双向循环链表</span></h5><p>和单向链表相比，多了下面打勾的两根线，首节点prev指向尾节点，尾节点的next指向首节点。那么从设计上需要改动的地方是如下几个方法。</p>
+<img src="/Users/jqq/Library/Application Support/typora-user-images/image-20200812201652806.png" alt="image-20200812201652806" style="zoom:50%;">
+
+<h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(index == size) &#123;<span class="comment">// 往最后一个位置添加</span></span><br><span class="line">        Node&lt;E&gt; oldLast = last;</span><br><span class="line">        last = <span class="keyword">new</span> Node&lt;&gt;(element, first, oldLast);</span><br><span class="line">        <span class="keyword">if</span> (oldLast == <span class="keyword">null</span>) &#123;<span class="comment">// 链表为空，添加第一个元素时</span></span><br><span class="line">            first = last;</span><br><span class="line">            first.prev = first;</span><br><span class="line">            first.last = first;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            oldLast.next = last;</span><br><span class="line">            first.prev = last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;	<span class="comment">// 往其他位置插入</span></span><br><span class="line">        Node&lt;E&gt; next = node(index);<span class="comment">// 2</span></span><br><span class="line">        Node&lt;E&gt; prev = next.prev; <span class="comment">// 1 当index==0, next.prev == null</span></span><br><span class="line">        Node&lt;E&gt; node = <span class="keyword">new</span> Node&lt;&gt;(element, next, prev); <span class="comment">// 待添加</span></span><br><span class="line">        next.prev = node;</span><br><span class="line">      	prev.next = node;	<span class="comment">/// prev不可能为空</span></span><br><span class="line">      </span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">0</span>) &#123;<span class="comment">// 第一个位置添加 || next == first</span></span><br><span class="line">            first = node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当size == 0的时候就是下面这种情况。</p>
+<img src="/Users/jqq/Library/Application Support/typora-user-images/image-20200812203124902.png" alt="image-20200812203124902" style="zoom:50%;">
+
+<h6><span id="2-removeint-index">2、remove(int index)</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">1</span>) &#123; <span class="comment">// 只有一个节点的时候需要特殊处理</span></span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">        last = <span class="keyword">null</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        node = node&lt;index&gt;;</span><br><span class="line">        Node&lt;E&gt; prev = node.prev;</span><br><span class="line">        Node&lt;E&gt; next = node.next;</span><br><span class="line">        prev.next = next;	<span class="comment">// 双向循环链表 - prev一定不为空，所以可以prev.next</span></span><br><span class="line">        next.prev = prev	<span class="comment">// 双向循环链表 - next一定不为空，所以可以next.prev</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">0</span>) &#123;	<span class="comment">// 删除首节点</span></span><br><span class="line">            first = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index == size - <span class="number">1</span>) &#123;	<span class="comment">// 删除尾节点</span></span><br><span class="line">            last = prev;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">return</span> node.element;	<span class="comment">// 返回已经删除的节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据结构与算法-单向循环链表（线性表）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -202,6 +304,7 @@
 <ul>
 <li><a href="#1-单向循环链表">1、单向循环链表</a><ul>
 <li><a href="#1-addint-index-e-element">1、add(int index, E element)</a></li>
+<li><a href="#2-removeint-index">2、remove(int index)</a></li>
 </ul>
 </li>
 </ul>
@@ -210,8 +313,11 @@
 <h5><span id="1-单向循环链表">1、单向循环链表</span></h5><p>和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。</p>
 <img src="/images/数据结构与算法/image-20200807204657808.png" alt="image-20200807204657808" style="zoom:50%;">
 
-<h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><p>只有在向首节点添加元素的时候，需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">    first = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">    Node&lt;E&gt; last = (size == <span class="number">0</span>) ? firs : node(size - <span class="number">1</span>);	<span class="comment">// 最后一个节点</span></span><br><span class="line">    last.next = first;	<span class="comment">// 指向新的首节点</span></span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">      prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">  &#125;</span><br><span class="line">  size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><p>只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">        Node newFirst = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">        Node&lt;E&gt; last = (size == <span class="number">0</span>) ? newFirst : node(size - <span class="number">1</span>);	<span class="comment">// 最后一个节点</span></span><br><span class="line">        last.next = newFirst;	<span class="comment">// 指向新的首节点</span></span><br><span class="line">        <span class="comment">// 最后再修改first，因为node()方法里面有用到原始first</span></span><br><span class="line">        first = newFirst;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">        prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="2-removeint-index">2、remove(int index)</span></h6><p>只有在移除首节点的时候需要修改，因为首节点变了，需要将最后一个节点的next指向新的首节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">            first = <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            Node&lt;E&gt; last = node(size-<span class="number">1</span>);</span><br><span class="line">            first = first.next;</span><br><span class="line">            last.next = first;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">        node = prev.next;</span><br><span class="line">        prev.next = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -889,86 +995,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RunLoop基本介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">RunLoop基本介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
-  	<time datetime="2020-01-20T08:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>都知道iOS程序中都有且仅有一条主线程，并且主线程不死，才能有应用的持续运行，为什么呢？这就和iOS中的RunLoop有关系了。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">展开全文 >></a>
         </p>
       
 
