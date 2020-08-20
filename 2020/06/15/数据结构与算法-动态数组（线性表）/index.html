@@ -18,7 +18,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;Users&#x2F;sivan&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20200616223103704.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;Users&#x2F;sivan&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20200621215012963.png">
 <meta property="article:published_time" content="2020-06-15T14:46:03.000Z">
-<meta property="article:modified_time" content="2020-08-07T12:05:01.057Z">
+<meta property="article:modified_time" content="2020-08-20T12:18:11.440Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
@@ -214,6 +214,7 @@
 <li><a href="#1-数组">1、数组</a></li>
 <li><a href="#2-复杂度">2、复杂度</a></li>
 <li><a href="#3-动态数组缩容">3、动态数组缩容</a></li>
+<li><a href="#4-优化">4、优化</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -258,6 +259,8 @@
 <li>平均情况复杂度：删除中间任一位置元素，和添加一样，即<strong>O(n)</strong>。</li>
 </ul>
 <h5><span id="3-动态数组缩容">3、动态数组缩容</span></h5><p>如果内存紧张，动态数组有比较多的剩余空间，可以考虑对动态数组缩容，释放掉未使用的内存空间，和扩容一样，都是申请一块新的内存空间，只不过这个内存空间比原来的小很多，然后把数组元素赋值到新的内存空间中。缩容肯定是在remove操作中进行，还有clear中，可以自行定义一个规则，size和数组容量进行比较，达到一定的条件后就进行缩容操作，扩容倍数和缩容倍数相乘不等于1就好，否则可能引起复杂度震荡。</p>
+<h5><span id="4-优化">4、优化</span></h5><p>往最前面和最后面插入删除元素不挪动元素；往中间插入删除元素最多挪动size/2次；</p>
+<p>定义一个int变量first，用来记录数组首元素的位置，一开始first = 0，若删除首元素的时候，无需挪动元素，只需要把first = 1，清空原首元素内容就好，遍历数组的时候就从索引1开始了。</p>
 
       
 
@@ -383,7 +386,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、动态数组缩容</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、动态数组缩容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">4、优化</span></a></li></ol>
                     </div>
                 </span>
             </div>

@@ -173,6 +173,174 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-GCD定时器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/">GCD的定时器</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-01-21T12:52:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RunLoop中的CFRunLoopTimerRef是基于时间的触发器，基本上说的就是NSTimer，它受RunLoop的Mode影响，GCD中也有定时器，GCD中定时器的实现和RunLoop的定时器不同，<strong>它不受RunLoop的Mode影响，并且RunLoop的内部也是基于GCD实现的，相比NSTimer，GCD的定时器更加准确。</strong></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">定时器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GCD</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RunLoop基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">RunLoop基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-01-21T08:28:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了<a href="[https://yezixcc.github.io/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/](https://yezixcc.github.io/2020/01/20/RunLoop基本介绍/)">RunLoop基本介绍</a>后，开发过程中可以利用RunLoop来干点什么呢？</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-RunLoop基本介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -813,181 +981,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%94-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程-二-NSThread" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%8C-NSThread/">多线程(二)-NSThread</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%8C-NSThread/" class="archive-article-date">
-  	<time datetime="2019-12-25T05:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="NSThread开线程3种方式"><a href="#NSThread开线程3种方式" class="headerlink" title="NSThread开线程3种方式"></a>NSThread开线程3种方式</h3><p><strong>1、alloc init</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建线程</span><br><span class="line">NSThread *thread &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(run:) object:@&quot;params&quot;];</span><br><span class="line">thread.name &#x3D; @&quot;thread1&quot;;</span><br><span class="line">&#x2F;&#x2F; 启动线程</span><br><span class="line">[thread start];</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以直接拿到这个线程，对其命名，设置其他参数等；</li>
-<li>需要手动创建，手动启动。</li>
-<li>尽管thread是一个局部变量，但其销毁是在run：方法执行完毕后。</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%8C-NSThread/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/">多线程(一)-简介</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-12-24T08:51:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这里对平常iOS中的多线程进行下简单的总结吧。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/">展开全文 >></a>
         </p>
       
 

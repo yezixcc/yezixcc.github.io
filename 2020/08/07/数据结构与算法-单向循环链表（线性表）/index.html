@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据结构与算法-单向循环链表（线性表） | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、单向循环链表 1、add(int index, E element) 2、remove(int index)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要">
+  <meta name="description" content="和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-单向循环链表（线性表）">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="1、单向循环链表 1、add(int index, E element) 2、remove(int index)      1、单向循环链表和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。   1、add(int index, E element)只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要">
+<meta property="og:description" content="和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200807204657808.png">
 <meta property="article:published_time" content="2020-08-07T12:44:21.000Z">
-<meta property="article:modified_time" content="2020-08-12T12:09:31.489Z">
+<meta property="article:modified_time" content="2020-08-13T11:19:49.667Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
@@ -203,7 +203,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。</p>
+<a id="more"></a>
 
 <!-- toc -->
 
@@ -216,8 +217,7 @@
 </ul>
 <!-- tocstop -->
 
-<h5><span id="1-单向循环链表">1、单向循环链表</span></h5><p>和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。</p>
-<img src="/images/数据结构与算法/image-20200807204657808.png" alt="image-20200807204657808" style="zoom:50%;">
+<h5><span id="1-单向循环链表">1、单向循环链表</span></h5><img src="/images/数据结构与算法/image-20200807204657808.png" alt="image-20200807204657808" style="zoom:50%;">
 
 <h6><span id="1-addint-index-e-element">1、add(int index, E element)</span></h6><p>只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">        Node newFirst = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">        Node&lt;E&gt; last = (size == <span class="number">0</span>) ? newFirst : node(size - <span class="number">1</span>);	<span class="comment">// 最后一个节点</span></span><br><span class="line">        last.next = newFirst;	<span class="comment">// 指向新的首节点</span></span><br><span class="line">        <span class="comment">// 最后再修改first，因为node()方法里面有用到原始first</span></span><br><span class="line">        first = newFirst;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">        prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
