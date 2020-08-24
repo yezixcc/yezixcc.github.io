@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据结构与算法-队列（线性表） | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随遇而安">
+  <meta name="description" content="队列是一种特殊的线性表，只能在头尾两端进行操作。先进先出原则，只能从队尾添加元素，只能从队头删除元素。主要有两个操作：添加元素enQueue，称为入队，删除元素deQueue，称为出队。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-队列（线性表）">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;21&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E9%98%9F%E5%88%97%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="随遇而安">
+<meta property="og:description" content="队列是一种特殊的线性表，只能在头尾两端进行操作。先进先出原则，只能从队尾添加元素，只能从队头删除元素。主要有两个操作：添加元素enQueue，称为入队，删除元素deQueue，称为出队。">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824202922046.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824201129885.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824203050202.png">
 <meta property="article:published_time" content="2020-08-21T12:41:05.000Z">
-<meta property="article:modified_time" content="2020-08-21T12:42:22.995Z">
+<meta property="article:modified_time" content="2020-08-24T12:49:36.937Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824202922046.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -201,7 +205,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>队列是一种特殊的线性表，只能在头尾两端进行操作。<strong>先进先出</strong>原则，只能从<strong>队尾添加</strong>元素，只能从<strong>队头删除</strong>元素。主要有两个操作：添加元素enQueue，称为入队，删除元素deQueue，称为出队。</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-队列的实现">1、队列的实现</a></li>
+<li><a href="#2-队列练习">2、队列练习</a><ul>
+<li><a href="#1-利用栈来实现队列">1、利用栈来实现队列</a></li>
+</ul>
+</li>
+<li><a href="#3-双端队列deque">3、双端队列(Deque)</a></li>
+</ul>
+<!-- tocstop -->
+
+<h5><span id="1-队列的实现">1、队列的实现</span></h5> <img src="/images/数据结构与算法/image-20200824202922046.png" alt="image-20200824202922046" style="zoom:50%;">
+
+<p>可以利用<strong>双向链表</strong>来实现队列的功能，因为队列主要是往头和尾操作元素，正好双向链表有首结点和尾结点，操作起来复杂度都是O(1)。设计一个队列，里面包含一个双向链表，利用双向链表来存放所有元素。利用这种组合的设计方式，而不是继承自一个双向链表，如果采用继承的方式，使用队列时，双向链表的一些方法也能被调用，这违背队列的特性，所以采用组合的方式更合理。</p>
+<p>入队(enQueue)：即链表的尾部添加元素。list.add(element)；</p>
+<p>出队(deQueue)：即删除链表的头部元素。list.remove(0)；</p>
+<h5><span id="2-队列练习">2、队列练习</span></h5><h6><span id="1-利用栈来实现队列">1、利用栈来实现队列</span></h6><img src="/images/数据结构与算法/image-20200824201129885.png" alt="image-20200824201129885" style="zoom:50%;">
+
+<p>利用两个栈inStack，outStack。入队时push到inStack，出队时，(1)如果outStack为空，将inStack所有元素pop出，push到outStack，然后outStack弹出pop出顶部元素。(2)如果outStack不为空，直接pop出outStack的顶部元素。</p>
+<h5><span id="3-双端队列deque">3、双端队列(Deque)</span></h5><p>普通队列只能从队尾添加元素，队头删除元素，<strong>双端队列</strong>能在<strong>头尾</strong>两端<strong>添加，删除</strong>元素。比普通队列多了两个方法。队尾出队和队头入队。</p>
+<img src="/images/数据结构与算法/image-20200824203050202.png" alt="image-20200824203050202" style="zoom:50%;">
+
+<p>队尾入队(enQueueRear)：即链表的尾部添加元素。list.add(element)；</p>
+<p>队头出队(deQueueFront)：即删除链表的头部元素。list.remove(0)；</p>
+<p>队头入队(enQueueFront)：即链表头部添加元素。list.add(0, element);</p>
+<p>队尾出队(deQueueRear)：即删除链表尾部元素。list.remove(list.size()-1)。</p>
+
       
 
       
@@ -317,7 +351,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、队列的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、队列练习</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1、利用栈来实现队列</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、双端队列(Deque)</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -515,15 +549,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,6 +562,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
