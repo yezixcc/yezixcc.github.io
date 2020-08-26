@@ -17,8 +17,11 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824202922046.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824201129885.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200824203050202.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200825201152787.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200826191043957.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200826194608103.png">
 <meta property="article:published_time" content="2020-08-21T12:41:05.000Z">
-<meta property="article:modified_time" content="2020-08-24T12:49:36.937Z">
+<meta property="article:modified_time" content="2020-08-26T12:22:41.322Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
@@ -217,24 +220,43 @@
 </ul>
 </li>
 <li><a href="#3-双端队列deque">3、双端队列(Deque)</a></li>
+<li><a href="#4-循环队列circle-queue">4、循环队列(Circle Queue)</a></li>
+<li><a href="#5-循环双端队列">5、循环双端队列</a></li>
 </ul>
 <!-- tocstop -->
 
 <h5><span id="1-队列的实现">1、队列的实现</span></h5> <img src="/images/数据结构与算法/image-20200824202922046.png" alt="image-20200824202922046" style="zoom:50%;">
 
 <p>可以利用<strong>双向链表</strong>来实现队列的功能，因为队列主要是往头和尾操作元素，正好双向链表有首结点和尾结点，操作起来复杂度都是O(1)。设计一个队列，里面包含一个双向链表，利用双向链表来存放所有元素。利用这种组合的设计方式，而不是继承自一个双向链表，如果采用继承的方式，使用队列时，双向链表的一些方法也能被调用，这违背队列的特性，所以采用组合的方式更合理。</p>
-<p>入队(enQueue)：即链表的尾部添加元素。list.add(element)；</p>
-<p>出队(deQueue)：即删除链表的头部元素。list.remove(0)；</p>
+<p><strong>入队(enQueue)</strong>：即链表的尾部添加元素。list.add(element)；</p>
+<p><strong>出队(deQueue)</strong>：即删除链表的头部元素。list.remove(0)；</p>
 <h5><span id="2-队列练习">2、队列练习</span></h5><h6><span id="1-利用栈来实现队列">1、利用栈来实现队列</span></h6><img src="/images/数据结构与算法/image-20200824201129885.png" alt="image-20200824201129885" style="zoom:50%;">
 
 <p>利用两个栈inStack，outStack。入队时push到inStack，出队时，(1)如果outStack为空，将inStack所有元素pop出，push到outStack，然后outStack弹出pop出顶部元素。(2)如果outStack不为空，直接pop出outStack的顶部元素。</p>
 <h5><span id="3-双端队列deque">3、双端队列(Deque)</span></h5><p>普通队列只能从队尾添加元素，队头删除元素，<strong>双端队列</strong>能在<strong>头尾</strong>两端<strong>添加，删除</strong>元素。比普通队列多了两个方法。队尾出队和队头入队。</p>
 <img src="/images/数据结构与算法/image-20200824203050202.png" alt="image-20200824203050202" style="zoom:50%;">
 
-<p>队尾入队(enQueueRear)：即链表的尾部添加元素。list.add(element)；</p>
-<p>队头出队(deQueueFront)：即删除链表的头部元素。list.remove(0)；</p>
-<p>队头入队(enQueueFront)：即链表头部添加元素。list.add(0, element);</p>
-<p>队尾出队(deQueueRear)：即删除链表尾部元素。list.remove(list.size()-1)。</p>
+<p><strong>队尾入队(enQueueRear)</strong>：即链表的尾部添加元素。list.add(element)；</p>
+<p><strong>队头出队(deQueueFront)</strong>：即删除链表的头部元素。list.remove(0)；</p>
+<p><strong>队头入队(enQueueFront)</strong>：即链表头部添加元素。list.add(0, element);</p>
+<p><strong>队尾出队(deQueueRear)</strong>：即删除链表尾部元素。list.remove(list.size()-1)。</p>
+<h5><span id="4-循环队列circle-queue">4、循环队列(Circle Queue)</span></h5><p>队列底层也可以使用<strong>动态数组</strong>实现，并且各项接口也可以优化到O(1)的复杂度，这个用数组实现并且优化之后的队列也叫做<strong>循环队列</strong>。</p>
+<img src="/images/数据结构与算法/image-20200825201152787.png" alt="image-20200825201152787" style="zoom:50%;">
+
+<p>标记队头的位置，往尾部添加元素，数组容量不够时进行扩容。</p>
+<img src="/images/数据结构与算法/image-20200826191043957.png" alt="image-20200826191043957" style="zoom:50%;">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 循环队列 - 获取数组的真实索引</span></span><br><span class="line"><span class="comment">/// front - 队头位置 - 在数组中的索引</span></span><br><span class="line"><span class="comment">/// index - 距离队头的长度</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">index</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (front + index) % element.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5><span id="5-循环双端队列">5、循环双端队列</span></h5><p>和循环队列对比，多了从<strong>队头入队</strong>，<strong>队尾出队</strong>。</p>
+<img src="/images/数据结构与算法/image-20200826194608103.png" alt="image-20200826194608103" style="zoom:50%;">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 循环队列 - 获取数组的真实索引</span></span><br><span class="line"><span class="comment">/// front - 队头位置 - 在数组中的索引</span></span><br><span class="line"><span class="comment">/// index - 距离队头的长度</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">index</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    index += front;</span><br><span class="line">    <span class="comment">/// 当从头部添加元素的时候。front = 0；front-1 = -1，对于循环队列来说，此时元素应该放在数组的最后一个位置，而不是-1的位置。</span></span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> index + element.length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index % element.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优化：尽量避免使 *，/，%，浮点数运算，效率低下。</p>
+<p>已知n &gt; =0，m&gt;0，且n &lt; 2m，n%m等价于n - (m &gt; n ? 0 : m)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">index</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    index += front;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> index + element.length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index - (index &gt;= element.length ? element.length : <span class="number">0</span>) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -351,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、队列的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、队列练习</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1、利用栈来实现队列</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、双端队列(Deque)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、队列的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、队列练习</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1、利用栈来实现队列</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、双端队列(Deque)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">4、循环队列(Circle Queue)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">5、循环双端队列</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -509,7 +531,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,15 +543,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +567,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
