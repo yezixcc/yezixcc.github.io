@@ -173,6 +173,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多线程-六-线程通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">多线程(六)-线程通信</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" class="archive-article-date">
+  	<time datetime="2019-12-25T08:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+
+
+
+<!-- tocstop -->
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-多线程-五-线程安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,11 +297,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -279,14 +367,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="NSThread开线程3种方式"><a href="#NSThread开线程3种方式" class="headerlink" title="NSThread开线程3种方式"></a>NSThread开线程3种方式</h3><p><strong>1、alloc init</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建线程</span><br><span class="line">NSThread *thread &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(run:) object:@&quot;params&quot;];</span><br><span class="line">thread.name &#x3D; @&quot;thread1&quot;;</span><br><span class="line">&#x2F;&#x2F; 启动线程</span><br><span class="line">[thread start];</span><br></pre></td></tr></table></figure>
+        <!-- toc -->
 
 <ul>
-<li>可以直接拿到这个线程，对其命名，设置其他参数等；</li>
-<li>需要手动创建，手动启动。</li>
-<li>尽管thread是一个局部变量，但其销毁是在run：方法执行完毕后。</li>
+<li><a href="#nsthread开线程3种方式">NSThread开线程3种方式</a></li>
+<li><a href="#线程退出">线程退出</a></li>
+<li><a href="#线程睡眠">线程睡眠</a></li>
+<li><a href="#线程的状态">线程的状态</a></li>
 </ul>
+<!-- tocstop -->
         
       
 
@@ -300,11 +389,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -370,7 +459,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里对平常iOS中的多线程进行下简单的总结吧。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#进程">进程</a></li>
+<li><a href="#线程">线程</a></li>
+<li><a href="#多线程">多线程</a></li>
+<li><a href="#ios几种多线程方案">iOS几种多线程方案</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -384,11 +481,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -455,6 +552,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>个人博客搭建也比较简单，网上也有很多方案，我这里选择yilia主题，感觉这个比较喜欢。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#本地服务">本地服务</a></li>
+<li><a href="#远程服务">远程服务</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -614,7 +718,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通过github给博客添加gitalk评论插件，缺点是必须有github账号才可进行评论。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#一-github准备工作">一、Github准备工作</a></li>
+<li><a href="#二-hexo文件修改">二、Hexo文件修改</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -694,7 +804,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>yilia这个主题比较简洁，比较喜欢。有一些需要配置的地方，以下做个记录，方便日后查找。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-配置tag">1、配置tag</a></li>
+<li><a href="#2-文章太长截断显示">2、文章太长截断显示</a></li>
+<li><a href="#3-添加标题索引">3、添加标题索引</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -774,7 +891,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>整理了下常用的算法。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#一-排序">一、排序</a><ul>
+<li><a href="#1-插入排序">1. 插入排序</a></li>
+<li><a href="#2-选择排序">2. 选择排序</a></li>
+<li><a href="#3-冒泡排序">3. 冒泡排序</a></li>
+</ul>
+</li>
+<li><a href="#二-找出两个数组中相同的元素">二、找出两个数组中相同的元素</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -854,7 +982,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于@synthesize这个关键字，是不是相对有些陌生，它到底有什么作用，我们什么时候要使用到它呢？</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-synthesize示例">1、@synthesize示例</a></li>
+<li><a href="#2-synthesize作用">2、@synthesize作用</a></li>
+<li><a href="#3-synthesize使用">3、@synthesize使用</a></li>
+<li><a href="#4-dynamic区别">4、@dynamic区别</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -868,11 +1004,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		
 		</ul>
@@ -883,86 +1019,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/05/synthesize/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/29/markdown/">Markdown基本语法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/29/markdown/" class="archive-article-date">
-  	<time datetime="2019-04-29T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-29</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习一下Markdown的基本语法，以下作为记录，方便日后查找。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/29/markdown/">展开全文 >></a>
         </p>
       
 
@@ -1113,11 +1169,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1125,19 +1177,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1149,11 +1197,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据结构与算法-单向链表（线性表） | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。">
+  <meta name="description" content="1、单向链表 1、链表设计 2、clear() 3、add(int index, E element) 4、remove(int index) 5、int indexOf(E element)   2、练习 1、删除链表中的节点 2、反转链表 3、环形链表   3、虚拟头结点 4、复杂度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法-单向链表（线性表）">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;22&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。">
+<meta property="og:description" content="1、单向链表 1、链表设计 2、clear() 3、add(int index, E element) 4、remove(int index) 5、int indexOf(E element)   2、练习 1、删除链表中的节点 2、反转链表 3、环形链表   3、虚拟头结点 4、复杂度">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200623215058024.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200623223954845.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200628221007429.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200706221809375.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;数据结构与算法&#x2F;image-20200804181338727.png">
 <meta property="article:published_time" content="2020-06-22T14:53:43.000Z">
-<meta property="article:modified_time" content="2020-08-25T11:25:58.465Z">
+<meta property="article:modified_time" content="2020-11-18T13:07:23.504Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="数据结构与算法">
@@ -214,10 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。</p>
-<a id="more"></a>
-
-<!-- toc -->
+        <!-- toc -->
 
 <ul>
 <li><a href="#1-单向链表">1、单向链表</a><ul>
@@ -239,6 +236,9 @@
 </ul>
 <!-- tocstop -->
 
+<a id="more"></a>
+
+<p>动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。</p>
 <h5><span id="1-单向链表">1、单向链表</span></h5><p>链表是一种<strong>链式存储</strong>的线性表，所有元素的内存地址不一定是连续的。节点对象包含了<strong>数据</strong>和<strong>下一个节点地址</strong>两个元素。前一个节点对象里面有一个指针指向下一个节点对象，这样就串起来了。如果没有指向了就指向null。</p>
 <img src="/images/数据结构与算法/image-20200623215058024.png" alt="image-20200623215058024" style="zoom:50%;">
 
@@ -594,11 +594,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,19 +602,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,11 +622,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

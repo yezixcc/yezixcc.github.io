@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>RunLoop基本介绍 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="都知道iOS程序中都有且仅有一条主线程，并且主线程不死，才能有应用的持续运行，为什么呢？这就和iOS中的RunLoop有关系了。">
+  <meta name="description" content="什么是RunLoop？ RunLoop对象 RunLoop和线程 RunLoop相关类 1、CFRunLoopRef 2、CFRunLoopModeRef： 3、CFRunLoopTimerRef 4、CFRunLoopSourceRef 5、CFRunLoopObserverRef">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RunLoop基本介绍">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;20&#x2F;RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="都知道iOS程序中都有且仅有一条主线程，并且主线程不死，才能有应用的持续运行，为什么呢？这就和iOS中的RunLoop有关系了。">
+<meta property="og:description" content="什么是RunLoop？ RunLoop对象 RunLoop和线程 RunLoop相关类 1、CFRunLoopRef 2、CFRunLoopModeRef： 3、CFRunLoopTimerRef 4、CFRunLoopSourceRef 5、CFRunLoopObserverRef">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200211104727675.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;按钮点击响应.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;Runloop官方逻辑运行图.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;RunLoop%E7%BD%91%E5%8F%8B%E6%95%B4%E7%90%86%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E8%A1%8C%E5%9B%BE.png">
 <meta property="article:published_time" content="2020-01-20T08:46:02.000Z">
-<meta property="article:modified_time" content="2020-06-05T10:46:32.045Z">
+<meta property="article:modified_time" content="2020-11-18T13:05:28.901Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200211104727675.png">
   
@@ -206,10 +206,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>都知道iOS程序中都有且仅有一条主线程，并且主线程不死，才能有应用的持续运行，为什么呢？这就和iOS中的RunLoop有关系了。</p>
-<a id="more"></a>
-
-<!-- toc -->
+        <!-- toc -->
 
 <ul>
 <li><a href="#什么是runloop">什么是RunLoop？</a></li>
@@ -226,6 +223,9 @@
 </ul>
 <!-- tocstop -->
 
+<a id="more"></a>
+
+<p>都知道iOS程序中都有且仅有一条主线程，并且主线程不死，才能有应用的持续运行，为什么呢？这就和iOS中的RunLoop有关系了。</p>
 <h5><span id="什么是runloop">什么是RunLoop？</span></h5><ul>
 <li>1.Run：运行，Loop：循环，意思就是不停的跑圈；</li>
 <li>2.是一个对象，内部是一个do-while循环；</li>
@@ -370,11 +370,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		
 		</ul>
@@ -640,11 +640,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,19 +648,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,11 +668,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

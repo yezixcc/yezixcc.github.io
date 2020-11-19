@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多线程(四)-NSOperation | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NSOperation也是iOS中比较常见的多线程实现方式，GCD的基础上面向对象的一层封装，更加的面向对象，使用起来也很方便，也是任务和队列的概念。">
+  <meta name="description" content="简介 NSOperation NSInvocationOperation： NSBlockOperation：   NSOperationQueue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程(四)-NSOperation">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;02&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%9B%9B-NSOperation&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="NSOperation也是iOS中比较常见的多线程实现方式，GCD的基础上面向对象的一层封装，更加的面向对象，使用起来也很方便，也是任务和队列的概念。">
+<meta property="og:description" content="简介 NSOperation NSInvocationOperation： NSBlockOperation：   NSOperationQueue">
 <meta property="article:published_time" content="2020-01-02T07:39:40.000Z">
-<meta property="article:modified_time" content="2020-01-17T08:02:21.200Z">
+<meta property="article:modified_time" content="2020-11-18T13:08:36.675Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
   
@@ -202,10 +202,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>NSOperation也是iOS中比较常见的多线程实现方式，GCD的基础上面向对象的一层封装，更加的面向对象，使用起来也很方便，也是任务和队列的概念。</p>
-<a id="more"></a>
-
-<!-- toc -->
+        <!-- toc -->
 
 <ul>
 <li><a href="#简介">简介</a></li>
@@ -218,6 +215,9 @@
 </ul>
 <!-- tocstop -->
 
+<a id="more"></a>
+
+<p>NSOperation也是iOS中比较常见的多线程实现方式，GCD的基础上面向对象的一层封装，更加的面向对象，使用起来也很方便，也是任务和队列的概念。</p>
 <h5><span id="简介">简介</span></h5><ul>
 <li><strong>作用</strong><ul>
 <li>配合使用NSOperation（任务）和NSOperationQueue（队列）实现多线程编程。</li>
@@ -346,11 +346,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -620,11 +620,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,19 +628,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,11 +648,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

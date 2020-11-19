@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CocoaPods-创建私有Pods | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="公司的项目可能有好几个，然而有一些底层的代码是可以共用的，如果不集中统一管理，那必然会产生重复造轮子或者复制代码的情况，为了避免这种情况出现，很多公司都采用了使用CocoaPods来集中管理底层代码，如有修改，各方项目只要更新Pod就好，集中管理，省事省心。">
+  <meta name="description" content="一、创建Pod项目工程 1、创建示例项目工程 2、添加想要放入Pod中的代码文件 3、编辑.podspec文件 4、验证.podspec文件 5、测试Pod库代码 6、推送Pod库至远程仓库   二、创建spec repos 1、创建存放.podspec的远程仓库 2、podSpecs添加至cocoapods&#x2F;repos目录 3、推送.podspec文件至远程仓库   三、通过CocoaPo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CocoaPods-创建私有Pods">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;04&#x2F;Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="公司的项目可能有好几个，然而有一些底层的代码是可以共用的，如果不集中统一管理，那必然会产生重复造轮子或者复制代码的情况，为了避免这种情况出现，很多公司都采用了使用CocoaPods来集中管理底层代码，如有修改，各方项目只要更新Pod就好，集中管理，省事省心。">
+<meta property="og:description" content="一、创建Pod项目工程 1、创建示例项目工程 2、添加想要放入Pod中的代码文件 3、编辑.podspec文件 4、验证.podspec文件 5、测试Pod库代码 6、推送Pod库至远程仓库   二、创建spec repos 1、创建存放.podspec的远程仓库 2、podSpecs添加至cocoapods&#x2F;repos目录 3、推送.podspec文件至远程仓库   三、通过CocoaPo">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200604134536162.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E8%87%AA%E5%88%B6Pods&#x2F;image-20200604134630786.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E8%87%AA%E5%88%B6Pods&#x2F;image-20200604141400035.png">
@@ -36,10 +36,10 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E8%87%AA%E5%88%B6Pods&#x2F;image-20200604161622070.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200604161906736.png">
 <meta property="article:published_time" content="2020-06-04T08:43:13.000Z">
-<meta property="article:modified_time" content="2020-06-04T08:32:29.238Z">
+<meta property="article:modified_time" content="2020-11-18T13:01:25.756Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="Cocoapods">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200604134536162.png">
@@ -224,10 +224,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>公司的项目可能有好几个，然而有一些底层的代码是可以共用的，如果不集中统一管理，那必然会产生重复造轮子或者复制代码的情况，为了避免这种情况出现，很多公司都采用了使用CocoaPods来集中管理底层代码，如有修改，各方项目只要更新Pod就好，集中管理，省事省心。</p>
-<a id="more"></a>
-
-<!-- toc -->
+        <!-- toc -->
 
 <ul>
 <li><a href="#一-创建pod项目工程">一、创建Pod项目工程</a><ul>
@@ -249,6 +246,9 @@
 </ul>
 <!-- tocstop -->
 
+<a id="more"></a>
+
+<p>公司的项目可能有好几个，然而有一些底层的代码是可以共用的，如果不集中统一管理，那必然会产生重复造轮子或者复制代码的情况，为了避免这种情况出现，很多公司都采用了使用CocoaPods来集中管理底层代码，如有修改，各方项目只要更新Pod就好，集中管理，省事省心。</p>
 <h5><span id="一-创建pod项目工程">一、创建Pod项目工程</span></h5><h6><span id="1-创建示例项目工程">1、创建示例项目工程</span></h6><p>进入到即将创建工程项目的文件夹，比如桌面文件夹，然后再终端执行下面命令创建项目。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;Users&#x2F;yourUserName&#x2F;Desktop</span><br><span class="line">#ZLiOSKit是你的工程名称</span><br><span class="line">pod lib create ZLiOSKit</span><br></pre></td></tr></table></figure>
 
@@ -323,11 +323,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -597,11 +597,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,19 +605,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +625,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

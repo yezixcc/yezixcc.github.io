@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>RunLoop基本使用 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了RunLoop基本介绍后，开发过程中可以利用RunLoop来干点什么呢？">
+  <meta name="description" content="一、定时器工作不受滑动事件影响。 二、图片延迟显示减缓tableView滑动卡顿。 三、常驻线程（线程不死） 1、强引用指向线程（可行？） 2、自己写个while循环（可行？） 3、开启线程的RunLoop（正解） 1、RunLoop开启（添加source） 2、RunLoop开启（添加timer） 3、while+RunLoop 4、RunLoop退出     四、自动释放池 1、有什么用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RunLoop基本使用">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;21&#x2F;RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了RunLoop基本介绍后，开发过程中可以利用RunLoop来干点什么呢？">
+<meta property="og:description" content="一、定时器工作不受滑动事件影响。 二、图片延迟显示减缓tableView滑动卡顿。 三、常驻线程（线程不死） 1、强引用指向线程（可行？） 2、自己写个while循环（可行？） 3、开启线程的RunLoop（正解） 1、RunLoop开启（添加source） 2、RunLoop开启（添加timer） 3、while+RunLoop 4、RunLoop退出     四、自动释放池 1、有什么用">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200520150614278.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200605150255379.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;自制Pods&#x2F;image-20200605181506009.png">
 <meta property="article:published_time" content="2020-01-21T08:28:51.000Z">
-<meta property="article:modified_time" content="2020-06-05T11:02:36.389Z">
+<meta property="article:modified_time" content="2020-11-18T13:05:20.822Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;RunLoop&#x2F;image-20200520150614278.png">
   
@@ -205,10 +205,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了<a href="[https://yezixcc.github.io/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/](https://yezixcc.github.io/2020/01/20/RunLoop基本介绍/)">RunLoop基本介绍</a>后，开发过程中可以利用RunLoop来干点什么呢？</p>
-<a id="more"></a>
-
-<!-- toc -->
+        <!-- toc -->
 
 <ul>
 <li><a href="#一-定时器工作不受滑动事件影响">一、定时器工作不受滑动事件影响。</a></li>
@@ -245,6 +242,9 @@
 </ul>
 <!-- tocstop -->
 
+<a id="more"></a>
+
+<p>应用能够持续运行，并且及时处理各种事件，全归功于RunLoop的存在，这些都是系统层面的，在了解了<a href="[https://yezixcc.github.io/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/](https://yezixcc.github.io/2020/01/20/RunLoop基本介绍/)">RunLoop基本介绍</a>后，开发过程中可以利用RunLoop来干点什么呢？</p>
 <h4><span id="一-定时器工作不受滑动事件影响">一、定时器工作不受滑动事件影响。</span></h4><p>如果不做处理，常常会发现，当UIScrollView滑动的时候，定时器不工作了，最常见的就是banner图的滚动，当滑动页面时banner不自动轮播了，因为当UIScrollView滑动时，当前RunLoop的Mode切换成了Tracking模式，解决这种问题的一种方案就是让自动轮播的定时器添加到当前RunLoop的Common模式下。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 自动将定时器加入到当前RunLoop的Default模式下，自启动定时器</span><br><span class="line"> NSTimer *scheduledTimer &#x3D; [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(run) userInfo:nil repeats:YES];</span><br><span class="line"> &#x2F;&#x2F; 可以修改模式</span><br><span class="line"> [[NSRunLoop currentRunLoop] addTimer:scheduledTimer forMode:NSRunLoopCommonModes];</span><br></pre></td></tr></table></figure>
 
@@ -331,11 +331,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		
 		</ul>
@@ -601,11 +601,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,19 +609,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,11 +629,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">

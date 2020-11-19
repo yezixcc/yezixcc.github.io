@@ -173,6 +173,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数据结构与算法-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91/">数据结构与算法-二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2020-08-28T11:58:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-28</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+
+<ul>
+<li><a href="#一-树的基本概念">一、树的基本概念</a><ul>
+<li><a href="#1-节点-根节点-父节点-子节点-兄弟节点">1、节点、根节点、父节点、子节点、兄弟节点</a></li>
+<li><a href="#2-子树-左子树-右子树">2、子树、左子树、右子树</a></li>
+<li><a href="#3-节点的度">3、节点的度</a></li>
+<li><a href="#4-树的度">4、树的度</a></li>
+<li><a href="#5-叶子节点">5、叶子节点</a></li>
+<li><a href="#6-层数">6、层数</a></li>
+<li><a href="#7-节点的深度">7、节点的深度</a></li>
+<li><a href="#8-节点的高度">8、节点的高度</a></li>
+<li><a href="#9-树的高度和深度">9、树的高度和深度</a></li>
+<li><a href="#10-有序树-无序树-森林">10、有序树、无序树、森林</a></li>
+</ul>
+</li>
+<li><a href="#二-二叉树binary-tree">二、二叉树（Binary Tree）</a></li>
+<li><a href="#三-真二叉树proper-binary-tree">三、真二叉树（Proper Binary Tree）</a></li>
+<li><a href="#四-满二叉树full-binary-tree">四、满二叉树（Full Binary Tree）</a></li>
+<li><a href="#五-完全二叉树complete-binary-tree">五、完全二叉树（Complete Binary Tree）</a></li>
+</ul>
+<!-- tocstop -->
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据结构与算法-队列（线性表）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,7 +296,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>队列是一种特殊的线性表，只能在头尾两端进行操作。<strong>先进先出</strong>原则，只能从<strong>队尾添加</strong>元素，只能从<strong>队头删除</strong>元素。主要有两个操作：添加元素enQueue，称为入队，删除元素deQueue，称为出队。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-队列的实现">1、队列的实现</a></li>
+<li><a href="#2-队列练习">2、队列练习</a><ul>
+<li><a href="#1-利用栈来实现队列">1、利用栈来实现队列</a></li>
+</ul>
+</li>
+<li><a href="#3-双端队列deque">3、双端队列(Deque)</a></li>
+<li><a href="#4-循环队列circle-queue">4、循环队列(Circle Queue)</a></li>
+<li><a href="#5-循环双端队列">5、循环双端队列</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -275,7 +388,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>栈</strong>是一种特殊的线性表，只能在一端进行操作。<strong>后进先出</strong>原则，只能移除栈顶元素。主要有两个操作：添加元素push，删除元素pop。这个<strong>栈</strong>和<strong>栈空间</strong>不是同一个概念，这个是一种数据结构，栈空间是指一种内存空间。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-栈的实现">1、栈的实现</a></li>
+<li><a href="#2-栈的应用">2、栈的应用</a><ul>
+<li><a href="#1-浏览器的前进和后退">1、浏览器的前进和后退</a></li>
+<li><a href="#2-软件的撤销与恢复功能">2、软件的撤销与恢复功能</a></li>
+</ul>
+</li>
+<li><a href="#3-练习">3、练习</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -435,7 +559,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>和双向链表相比，多了下面打勾的两根线，首节点prev指向尾节点，尾节点的next指向首节点。那么从设计上需要改动的地方是如下几个方法。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-双向循环链表">1、双向循环链表</a><ul>
+<li><a href="#1-addint-index-e-element">1、add(int index, E element)</a></li>
+<li><a href="#2-removeint-index">2、remove(int index)</a></li>
+</ul>
+</li>
+<li><a href="#2-约瑟夫问题">2、约瑟夫问题</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -515,7 +649,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>和单向链表相比，多了一点，最后一个节点的next指向了首节点。那么从设计上需要改动的地方是如下几个方法。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-单向循环链表">1、单向循环链表</a><ul>
+<li><a href="#1-addint-index-e-element">1、add(int index, E element)</a></li>
+<li><a href="#2-removeint-index">2、remove(int index)</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -595,7 +738,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>单向链表只有首节点，查找某个节点只能从首节点挨个next去查找，如果要查找最后一个节点也只能从首节点开始，性能低，所以就出现了双向链表，如果是查找比较靠后的节点，就可以从尾节点开始找，综合性能得到提升。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-双向链表">1、双向链表</a><ul>
+<li><a href="#1-链表设计">1、链表设计</a></li>
+<li><a href="#2-clear">2、clear()</a></li>
+<li><a href="#3-addint-index-e-element">3、add(int index, E element)</a></li>
+<li><a href="#4-removeint-index">4、remove(int index)</a></li>
+</ul>
+</li>
+<li><a href="#2-双向链表-vs-单向链表">2、双向链表 vs 单向链表</a></li>
+<li><a href="#3-双向链表-vs-动态数组">3、双向链表 vs 动态数组</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -675,7 +831,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-单向链表">1、单向链表</a><ul>
+<li><a href="#1-链表设计">1、链表设计</a></li>
+<li><a href="#2-clear">2、clear()</a></li>
+<li><a href="#3-addint-index-e-element">3、add(int index, E element)</a></li>
+<li><a href="#4-removeint-index">4、remove(int index)</a></li>
+<li><a href="#5-int-indexofe-element">5、int indexOf(E element)</a></li>
+</ul>
+</li>
+<li><a href="#2-练习">2、练习</a><ul>
+<li><a href="#1-删除链表中的节点">1、删除链表中的节点</a></li>
+<li><a href="#2-反转链表">2、反转链表</a></li>
+<li><a href="#3-环形链表">3、环形链表</a></li>
+</ul>
+</li>
+<li><a href="#3-虚拟头结点">3、虚拟头结点</a></li>
+<li><a href="#4-复杂度">4、复杂度</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -755,7 +931,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>数据结构是计算机存储，组织数据的方式。主要三大结构：<strong>（1）线性结构</strong>：线性表（数组，链表，栈，队列，哈希表（散列表））。<strong>（2）树形结构</strong>：二叉树，AVL树，红黑树，B树，堆，Trie，哈夫曼树，并查集。<strong>（3）图形结构</strong>：邻接矩阵，邻接表。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-数组">1、数组</a></li>
+<li><a href="#2-复杂度">2、复杂度</a></li>
+<li><a href="#3-动态数组缩容">3、动态数组缩容</a></li>
+<li><a href="#4-优化">4、优化</a></li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -835,7 +1019,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>算法是用于解决特定问题的执行步骤，解决同一个问题使用不同的算法，效率可能相差很大，比如求第n个斐波那契数。下面的两个算法，当n稍大些时，执行效率差距非常明显。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#一-斐波拉契数举例">一、斐波拉契数举例</a><ul>
+<li><a href="#1-递归实现">1、递归实现</a></li>
+<li><a href="#2-for循环实现">2、for循环实现</a></li>
+</ul>
+</li>
+<li><a href="#二-如何评判算法好坏">二、如何评判算法好坏？</a><ul>
+<li><a href="#1-时间复杂度">1、时间复杂度</a><ul>
+<li><a href="#1-大o表示法">1、大O表示法</a></li>
+<li><a href="#2-斐波拉契数上面两个算法时间复杂度">2、斐波拉契数上面两个算法时间复杂度</a></li>
+<li><a href="#3-多个数据规模的时间复杂度">3、多个数据规模的时间复杂度</a></li>
+</ul>
+</li>
+<li><a href="#2-空间复杂度">2、空间复杂度</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
         
       
 
@@ -864,82 +1067,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-‘六年免检’车辆手机上申请年检" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/05/%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80/">‘六年免检’车辆手机上申请年检</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/05/%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80/" class="archive-article-date">
-  	<time datetime="2020-06-05T02:15:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从2011年9月1日起购买的新车（私家车，非营运）六年内可免除到检验机构进行安全技术检验，车主可以通过“交管12123”APP远程申请免检标志，无需再前往交警窗口办理，手机提交后，将有快递上门接送资料证件，让车主足不出户办理相关业务。虽然可以免除上线检测，但是还是需要<strong>每2年</strong>定期申请免检标志。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/05/%E2%80%98%E5%85%AD%E5%B9%B4%E5%85%8D%E6%A3%80%E2%80%99%E8%BD%A6%E8%BE%86%E6%89%8B%E6%9C%BA%E4%B8%8A%E7%94%B3%E8%AF%B7%E5%B9%B4%E6%A3%80/">展开全文 >></a>
         </p>
       
 
@@ -1090,11 +1217,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,19 +1225,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1126,11 +1245,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
