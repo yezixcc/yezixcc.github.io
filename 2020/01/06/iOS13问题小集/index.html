@@ -6,20 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>iOS13坑 | Sivan的博客</title>
+  <title>iOS问题小集 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设置tabbaritem选中字体颜色无效。 关闭暗黑模式">
+  <meta name="description" content="6、圆角与阴影 5、正确设置状态栏颜色姿势 4、xib和代码互用 1、xib中使用纯代码编写的View 2、xib中使用xib定制的View   3、UITableView 1、contentView   2、translatesAutoresizingMaskIntoConstraints 1、iOS13系统 设置tabbaritem选中字体颜色无效。 关闭暗黑模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS13坑">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;06&#x2F;iOS13%E5%9D%91&#x2F;index.html">
+<meta property="og:title" content="iOS问题小集">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;06&#x2F;iOS13%E9%97%AE%E9%A2%98%E5%B0%8F%E9%9B%86&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="设置tabbaritem选中字体颜色无效。 关闭暗黑模式">
+<meta property="og:description" content="6、圆角与阴影 5、正确设置状态栏颜色姿势 4、xib和代码互用 1、xib中使用纯代码编写的View 2、xib中使用xib定制的View   3、UITableView 1、contentView   2、translatesAutoresizingMaskIntoConstraints 1、iOS13系统 设置tabbaritem选中字体颜色无效。 关闭暗黑模式">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201203163330162.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201203145028118.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201203150447003.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201202181645920.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201202181125258.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201202182414061.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201202182855008.png">
 <meta property="article:published_time" content="2020-01-06T01:41:13.000Z">
-<meta property="article:modified_time" content="2020-11-18T13:06:42.346Z">
+<meta property="article:modified_time" content="2020-12-03T08:50:25.798Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;iOS问题小集&#x2F;image-20201203163330162.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -175,19 +183,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-iOS13坑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iOS13问题小集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      iOS13坑
+      iOS问题小集
     </h1>
   
 
         
-        <a href="/2020/01/06/iOS13%E5%9D%91/" class="archive-article-date">
+        <a href="/2020/01/06/iOS13%E9%97%AE%E9%A2%98%E5%B0%8F%E9%9B%86/" class="archive-article-date">
   	<time datetime="2020-01-06T01:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
 </a>
         
@@ -204,21 +212,75 @@
         <!-- toc -->
 
 <ul>
+<li><a href="#6-圆角与阴影">6、圆角与阴影</a></li>
+<li><a href="#5-正确设置状态栏颜色姿势">5、正确设置状态栏颜色姿势</a></li>
+<li><a href="#4-xib和代码互用">4、xib和代码互用</a><ul>
+<li><a href="#1-xib中使用纯代码编写的view">1、xib中使用纯代码编写的View</a></li>
+<li><a href="#2-xib中使用xib定制的view">2、xib中使用xib定制的View</a></li>
+</ul>
+</li>
+<li><a href="#3-uitableview">3、UITableView</a><ul>
+<li><a href="#1-contentview">1、contentView</a></li>
+</ul>
+</li>
+<li><a href="#2-translatesautoresizingmaskintoconstraints">2、translatesAutoresizingMaskIntoConstraints</a></li>
+<li><a href="#1-ios13系统">1、iOS13系统</a><ul>
 <li><a href="#设置tabbaritem选中字体颜色无效">设置tabbaritem选中字体颜色无效。</a></li>
 <li><a href="#关闭暗黑模式">关闭暗黑模式</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
 <a id="more"></a>
 
-<p>iOS 13更新之后产生了一些问题，下面我们来做一下总结。</p>
-<h5><span id="设置tabbaritem选中字体颜色无效">设置tabbaritem选中字体颜色无效。</span></h5><p>通过API<code>- (void)setTitleTextAttributes:(nullable NSDictionary&lt;NSAttributedStringKey,id&gt; *)attributes forState:(UIControlState)state API_AVAILABLE(ios(5.0)) UI_APPEARANCE_SELECTOR;</code>设置了tabbaritem选中字体的颜色，点击push任意界面进入二级再返回到一级页面时，tabbaritem的字体颜色变成了默认的蓝色字体。</p>
+<h5><span id="6-圆角与阴影">6、圆角与阴影</span></h5><p>众所周知，在设置圆角并且<code>masksToBounds = YES</code>的情况下，阴影效果无法实现，以下三种View设置圆角无需设置<code>masksToBounds = YES</code>即可实现圆角，对于<code>UILabel</code>而言，需要设置其<code>layer</code>的背景色，圆角才会显现。另外，对于<code>UIImageView</code>，如果设置了image，圆角效果无法实现，必须设置<code>masksToBounds = YES</code>才行。</p>
+<img src="/images/iOS问题小集/image-20201203163330162.png" alt="image-20201203163330162" style="zoom:50%;">
+
+<p>通过Core Graphics重新绘制带圆角的视图，通过CPU重新绘制一份带圆角的视图，避免离屏渲染，减轻GPU的负担，且绘制过程交给子线程操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)drawCircleImage &#123;</span><br><span class="line">    CGFloat side &#x3D; MIN(self.size.width, self.size.height);</span><br><span class="line">    UIGraphicsBeginImageContextWithOptions(CGSizeMake(side, side), false, [UIScreen mainScreen].scale);</span><br><span class="line">    CGContextAddPath(UIGraphicsGetCurrentContext(),</span><br><span class="line">                    [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, side, side)].CGPath);</span><br><span class="line">    CGContextClip(UIGraphicsGetCurrentContext());</span><br><span class="line">    CGFloat marginX &#x3D; -(self.size.width - side) &#x2F; 2.f;</span><br><span class="line">    CGFloat marginY &#x3D; -(self.size.height - side) &#x2F; 2.f;</span><br><span class="line">    [self drawInRect:CGRectMake(marginX, marginY, self.size.width, self.size.height)];</span><br><span class="line">    CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);</span><br><span class="line">    UIImage *output &#x3D; UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">    UIGraphicsEndImageContext();</span><br><span class="line">    return output;</span><br><span class="line">&#125;   </span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;在需要圆角时调用如下</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">    UIImage *img &#x3D; [[UIImage imageNamed:@&quot;image.png&quot;] drawCircleImage];</span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        view.image &#x3D; img;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="5-正确设置状态栏颜色姿势">5、正确设置状态栏颜色姿势</span></h5><p>在iOS9之前可以使用一下API全局设置状态栏颜色，iOS9.0之后不推荐使用该API，推荐在各ViewController中单独设置preferredStatusBarStyle。</p>
+<img src="/images/iOS问题小集/image-20201203145028118.png" alt="image-20201203145028118" style="zoom:50%;">
+
+<p><strong>如何正确设置状态栏颜色？</strong></p>
+<ul>
+<li>在项目<strong>info.plist</strong>文件中<strong>View controller-based status bar appearance</strong>设置为<strong>NO</strong>。</li>
+<li>在自定义的<code>UINavigationController</code>中重写<code>childForStatusBarHidden</code>和<code>childForStatusBarStyle</code>两个方法。</li>
+</ul>
+<p>一般都是使用UINavigationController或者UITabBarController作为容器控制器，调用setNeedsStatusBarAppearanceUpdate时，调用的是容器控制器的preferredStatusBarStyle方法，并未调用其中子控制器的preferredStatusBarStyle方法，此时就需要在自定义的UINavigationController中重写<code>childForStatusBarHidden</code>和<code>childForStatusBarStyle</code>这两个方法。</p>
+<img src="/images/iOS问题小集/image-20201203150447003.png" alt="image-20201203150447003" style="zoom:50%;">
+
+
+
+<h5><span id="4-xib和代码互用">4、xib和代码互用</span></h5><h6><span id="1-xib中使用纯代码编写的view">1、xib中使用纯代码编写的View</span></h6><p>纯代码编写的View中必须实现initWithCoder方法，</p>
+<img src="/images/iOS问题小集/image-20201202181645920.png" alt="image-20201202181645920" style="zoom:50%;">
+
+<p>xib文件中，Custom Class改为纯代码的类名，如此即可使用纯代码编写的View了。</p>
+<img src="/images/iOS问题小集/image-20201202181125258.png" alt="image-20201202181125258" style="zoom:50%;">
+
+<h6><span id="2-xib中使用xib定制的view">2、xib中使用xib定制的View</span></h6><p>xib创建好的view不能同上一样直接在xib中修改Custom Class使用，还需要再创建一个containreView将自身add上去使用，如下所示</p>
+<img src="/images/iOS问题小集/image-20201202182414061.png" alt="image-20201202182414061" style="zoom:50%;">
+
+<p>另外需要注意的是创建的xib文件的Custom Class不能修改成自身的类名，保持原有的UIView</p>
+<img src="/images/iOS问题小集/image-20201202182855008.png" alt="image-20201202182855008" style="zoom:50%;">
+
+<p>然后再同1一样，在待使用的xib文件中，Custom Class改为xib文件的类名。</p>
+<h5><span id="3-uitableview">3、UITableView</span></h5><h6><span id="1-contentview">1、contentView</span></h6><ul>
+<li>UITableViewCell只有作为tableView的cell时，其contentView才会被add到cell上，如果作为普通的view进行实例化，contentView不会被add，此时如果subView是add在contentView上的话将不会显示，需要手动[self addSubView:self.contentView]，并且设置其约束。</li>
+<li>UITableViewCell上的subView只有加在contentView上，使用自动布局才会动cell高度自适应，此时estimatedRowHeight和rowHeight = UITableViewAutomaticDimension才会生效。</li>
+<li>UITableViewCell上的subView如果没有add到contentView上，其层级在contentView下面，最上面一层为contentView。</li>
+</ul>
+<h5><span id="2-translatesautoresizingmaskintoconstraints">2、translatesAutoresizingMaskIntoConstraints</span></h5><p>translatesAutoresizingMaskIntoConstraints 的本意是将 frame 布局 自动转化为 约束布局，转化的结果是为这个视图自动添加所有需要的约束，如果我们这时给视图添加自己创建的约束就一定会约束冲突。为了避免上面说的约束冲突，我们在代码创建 约束布局 的控件时 直接指定这个视图不能用frame 布局（即translatesAutoresizingMaskIntoConstraints=NO），可以放心的去使用约束了。</p>
+<h5><span id="1-ios13系统">1、iOS13系统</span></h5><h6><span id="设置tabbaritem选中字体颜色无效">设置tabbaritem选中字体颜色无效。</span></h6><p>通过API<code>- (void)setTitleTextAttributes:(nullable NSDictionary&lt;NSAttributedStringKey,id&gt; *)attributes forState:(UIControlState)state API_AVAILABLE(ios(5.0)) UI_APPEARANCE_SELECTOR;</code>设置了tabbaritem选中字体的颜色，点击push任意界面进入二级再返回到一级页面时，tabbaritem的字体颜色变成了默认的蓝色字体。</p>
 <p>解决办法：</p>
 <p>1.重设standardAppearance。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *norTitleDict &#x3D; @&#123;NSForegroundColorAttributeName:[UIColor colorWithRed:153&#x2F;255.f green:153&#x2F;255.f blue:153&#x2F;255.f alpha:1.f]&#125;;</span><br><span class="line">    NSDictionary *selectTitleDict &#x3D; @&#123;NSForegroundColorAttributeName:[UIColor colorWithRed:51&#x2F;255.f green:51&#x2F;255.f blue:51&#x2F;255.f alpha:1.f]&#125;;</span><br><span class="line">    if (@available(iOS 13.0, *)) &#123;</span><br><span class="line">        UITabBarAppearance *appearance &#x3D; [[UITabBarAppearance alloc] init];</span><br><span class="line">        &#x2F;&#x2F;&#x2F;item未选中</span><br><span class="line">        UITabBarItemStateAppearance *normal &#x3D; appearance.stackedLayoutAppearance.normal;</span><br><span class="line">        if (normal) &#123;</span><br><span class="line">            normal.titleTextAttributes &#x3D; norTitleDict;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;&#x2F;item选中</span><br><span class="line">        UITabBarItemStateAppearance *selected &#x3D; appearance.stackedLayoutAppearance.selected;</span><br><span class="line">        if (selected) &#123;</span><br><span class="line">            selected.titleTextAttributes &#x3D; selectTitleDict;</span><br><span class="line">        &#125;</span><br><span class="line">        self.tabBar.standardAppearance &#x3D; appearance;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F;item未选中的颜色</span><br><span class="line">        [[UITabBarItem appearance] setTitleTextAttributes:norTitleDict forState:UIControlStateNormal];</span><br><span class="line">        &#x2F;&#x2F;&#x2F;item选中的颜色</span><br><span class="line">        [[UITabBarItem appearance] setTitleTextAttributes:selectTitleDict forState:UIControlStateSelected];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>2.自定义tabbar</p>
-<h5><span id="关闭暗黑模式">关闭暗黑模式</span></h5><p>还没有适配完暗黑模式的，可以选择关闭暗黑模式。</p>
+<h6><span id="关闭暗黑模式">关闭暗黑模式</span></h6><p>还没有适配完暗黑模式的，可以选择关闭暗黑模式。</p>
 <p>1.全局关闭</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在info.plist文件中添加User Interface Style，值类型为string，值设为Light。这样就全局关闭了暗黑模式。</span><br></pre></td></tr></table></figure>
 
@@ -298,7 +360,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/06/iOS13%E5%9D%91/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/06/iOS13%E9%97%AE%E9%A2%98%E5%B0%8F%E9%9B%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -350,7 +412,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">设置tabbaritem选中字体颜色无效。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">关闭暗黑模式</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">6、圆角与阴影</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">5、正确设置状态栏颜色姿势</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">4、xib和代码互用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">1、xib中使用纯代码编写的View</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">2、xib中使用xib定制的View</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">3、UITableView</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">1、contentView</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">2、translatesAutoresizingMaskIntoConstraints</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">1、iOS13系统</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">6.1.</span> <span class="toc-text">设置tabbaritem选中字体颜色无效。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">6.2.</span> <span class="toc-text">关闭暗黑模式</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -524,10 +586,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
@@ -544,7 +602,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +622,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
