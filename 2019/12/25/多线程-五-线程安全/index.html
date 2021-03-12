@@ -8,19 +8,26 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多线程(五)-线程安全 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="资源共享，多条线程可以同时访问同一个内存，这样就会产生线程安全问题。">
+  <meta name="description" content="1、互斥量（synchronized&#x2F;lock） 2、同步执行 3、信号量（dispatch_semaphore_t）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程(五)-线程安全">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;25&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%94-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8&#x2F;index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="资源共享，多条线程可以同时访问同一个内存，这样就会产生线程安全问题。">
+<meta property="og:description" content="1、互斥量（synchronized&#x2F;lock） 2、同步执行 3、信号量（dispatch_semaphore_t）">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312110955914.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312111408987.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312142440900.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312143319363.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312202938807.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312203941810.png">
 <meta property="article:published_time" content="2019-12-25T08:06:03.000Z">
-<meta property="article:modified_time" content="2020-01-02T07:18:11.744Z">
+<meta property="article:modified_time" content="2021-03-12T12:56:56.481Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;多线程&#x2F;image-20210312110955914.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -202,12 +209,48 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>资源共享，多条线程可以同时访问同一个内存，这样就会产生线程安全问题。</p>
+        <!-- toc -->
+
+<ul>
+<li><a href="#1-互斥量synchronizedlock">1、互斥量（synchronized/lock）</a></li>
+<li><a href="#2-同步执行">2、同步执行</a></li>
+<li><a href="#3-信号量dispatch_semaphore_t">3、信号量（dispatch_semaphore_t）</a></li>
+</ul>
+<!-- tocstop -->
+
 <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line"></span><br><span class="line">@property (nonatomic, assign) NSInteger count;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    self.count &#x3D; 1000;</span><br><span class="line"> </span><br><span class="line">    NSThread *thread01 &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    thread01.name &#x3D; @&quot;thread01&quot;;</span><br><span class="line">    [thread01 start];</span><br><span class="line">  </span><br><span class="line">    NSThread *thread02 &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    thread02.name &#x3D; @&quot;thread02&quot;;</span><br><span class="line">    [thread02 start];</span><br><span class="line">  </span><br><span class="line">    NSThread *thread03 &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];</span><br><span class="line">    thread03.name &#x3D; @&quot;thread03&quot;;</span><br><span class="line">  	[thread03 start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)run &#123;</span><br><span class="line">    @synchronized(self) &#123;</span><br><span class="line">        NSInteger count &#x3D; self.count;</span><br><span class="line">        self.ticketCount &#x3D; count - 1;</span><br><span class="line">        NSLog(@&quot;%@，%zd张&quot;, [NSThread currentThread].name, self.count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>资源共享，多条线程可以同时访问同一个内存，这样就会产生线程安全问题，防止多个线程抢夺同一个资源而造成的数据安全问题，这就需要<strong>线程同步</strong>操作了。</p>
+<h5><span id="1-互斥量synchronizedlock">1、互斥量（synchronized/lock）</span></h5><p>保证公共资源不会被多个线程同时访问，给需要同步的代码块加一个互斥锁。<code>@synchronized(self) {// 需要同步的代码 }</code>，在取资源之前加一把锁，这里<code>@synchronized(self){}</code>就是解决了这个资源共享的问题，锁必须是同一把锁，所以锁对象必须不能是局部变量，常用self，不过不推荐使用这种方式，因为极耗性能。</p>
+<img src="/images/多线程/image-20210312110955914.png" alt="image-20210312110955914" style="zoom:50%;">
 
-<p>在取资源之前就加一把锁，这里<code>@synchronized(self){}</code>就是解决了这个资源共享的问题，锁必须是通一把锁，所以(锁对象 )必须不能是局部变量，常用self，后面我们再讨论@synchronized( )这种锁，不过不推荐使用这种方式，因为极耗性能。</p>
+<h5><span id="2-同步执行">2、同步执行</span></h5><p>把多个线程都需要执行任务添加到<strong>同一个串行队列</strong>中。</p>
+<img src="/images/多线程/image-20210312111408987.png" alt="image-20210312111408987" style="zoom:50%;">
+
+<p>同步或异步都可以，只要各线程执行的同一任务都添加到同一串行队列当中，这样也能实现任务的同步执行，避免各线程抢夺公共资源。(如上面的self.count)。</p>
+<p>同一线程同一队列串行执行任务导致线程卡死问题：</p>
+<img src="/images/多线程/image-20210312142440900.png" alt="image-20210312142440900" style="zoom:50%;">
+
+<p>从这个子线程卡死的例子可以直观的看出，任务1添加到了子线程4下的self.serial串行队列中，紧接着任务2也添加到了子线程4下的self.serial串行队列中，也就是两个任务需要在同一个线程串行执行，那么任务2需要等任务1执行完成后方可执行，但是，任务1中又包含了任务2，就造成了两个任务互相等待完成的情况，导致所在线程卡死。</p>
+<img src="/images/多线程/image-20210312143319363.png" alt="image-20210312143319363" style="zoom:50%;">
+
+<p>11111有时可以打印出来，有时打印不出来，这个是随机的（主线程卡死，程序崩了），3333333一定打印不出来，主线程卡死的原理同上。<code>dispatch_get_main_queue()</code>是获取主线程下的主队列，主队列是一个串行队列。</p>
+<h5><span id="3-信号量dispatch_semaphore_t">3、信号量（dispatch_semaphore_t）</span></h5><p>同一时刻允许多个线程访问同一资源，可以控制同一时刻访问资源的线程数。</p>
+<ul>
+<li>是一个计数器；</li>
+<li>特殊的锁机制；</li>
+<li>保证同一时间只有不超过n个线程执行；</li>
+<li>信号值为0就阻塞线程</li>
+</ul>
+<p><code>dispatch_semaphore_signal</code>和<code>dispatch_semaphore_wait</code>必须成对出现，<code>dispatch_semaphore_signal</code>信号值加1，<code>dispatch_semaphore_wait</code>判断信号值大于0就往下走，值减1，等于0就阻塞当前线程。</p>
+<p>（1）保持线程同步</p>
+<img src="/images/多线程/image-20210312202938807.png" alt="image-20210312202938807" style="zoom:50%;">
+
+<p>可以看出str变成了ffffff才进行输出，说明主线程在等子线程中的任务完成，发出<code>dispatch_semaphore_signal</code>后开始往下执行。</p>
+<p>（2）为线程加锁</p>
+<img src="/images/多线程/image-20210312203941810.png" alt="image-20210312203941810" style="zoom:50%;">
+
+<p>信号量初始值为1，第一个for循环执行时，遇到<code>dispatch_semaphore_wait</code>，此时值为1&gt;0，所以继续往下执行，信号量值减1，变成了0，当下一个for循环执行时，此时信号量值为0，所以线程处于等待状态，待上一个线程执行完<code>NSLog(@&quot;i = %d&quot;, i); sleep(1);</code>后执行<code>dispatch_semaphore_signal</code>，信号量值加1，当前线程才结束等待状态往下执行任务。由此可以看出，这和加锁、解锁效果一样，这样也可控制当前允许多少个线程同时执行，传入初始信号量值即可。</p>
 
       
 
@@ -299,11 +342,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%89-GCD/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          多线程(六)-线程通信
+          多线程(三)-GCD
         
       </div>
     </a>
@@ -337,7 +380,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">1、互斥量（synchronized&#x2F;lock）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">2、同步执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">3、信号量（dispatch_semaphore_t）</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -503,11 +546,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,6 +567,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,15 +586,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -173,6 +173,138 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-OpenGL ES浅尝" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/04/OpenGL%20ES%E6%B5%85%E5%B0%9D/">OpenGL ES浅尝</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/04/OpenGL%20ES%E6%B5%85%E5%B0%9D/" class="archive-article-date">
+  	<time datetime="2021-03-04T12:08:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-04</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、业务场景</p>
+<ul>
+<li><p>游戏引擎</p>
+</li>
+<li><p>苹果底层</p>
+</li>
+<li><p>iOS业务：地图，直播（用户美颜，视频渲染处理），小视频（直播会议，任何需要针对图片，视频进行滤镜，美颜处理）</p>
+</li>
+</ul>
+<p>2、项目中用什么方案- 美颜滤镜需求？</p>
+<ul>
+<li><p>OpenGL ES</p>
+</li>
+<li><p>开发者自行完成</p>
+<ul>
+<li>OpenGL ES</li>
+<li>Metal</li>
+<li>GPUImage 源码（滤镜处理，1.2版本）</li>
+<li>CoreImage（用的非常少）</li>
+</ul>
+</li>
+</ul>
+<p>3、了解OpenGL ES基本知识点（顶点/片元着色器）</p>
+<ul>
+<li><p>顶点着色器</p>
+<ul>
+<li>顶点函数</li>
+<li>CoreAnimation旋转，缩放，平移… 计算依赖OpenGL ES</li>
+<li>手机屏幕2D - &gt; 屏幕3D图片图形，计算也是顶点着色器</li>
+<li>游戏模型1000w顶点组成 移动10个像素点，顶点着色器来完成1000w次计算，基于GPU来计算</li>
+</ul>
+</li>
+<li><p>片元着色器</p>
+<ul>
+<li>片元 - 像素点</li>
+<li>计算像素点对应颜色值 代码段</li>
+<li>简单功能：图片灰度处理 – 1000w个像素点都进行灰度计算，RGBA - &gt; 灰度计算 -&gt; 新的RGBA颜色值</li>
+</ul>
+</li>
+</ul>
+<p>4、腿部拉伸原理</p>
+<img src="/images/OpenGL ES浅尝/image-20210304203446691.png" alt="image-20210304203446691" style="zoom:50%;">
+
+<p>顶点坐标系，一个矩形图片需要2个三角形组成，OpenGL ES里面没有矩形，正方形，只有三个基本的图元：点，线，三角形。</p>
+<img src="/images/OpenGL ES浅尝/image-20210304204019550.png" alt="image-20210304204019550" style="zoom:50%;">
+
+<img src="/images/OpenGL ES浅尝/image-20210304204201982.png" alt="image-20210304204201982" style="zoom:50%;">
+
+<p>UIImageView的底层原理，图片加载的原理</p>
+<ul>
+<li>图片解码</li>
+<li>图片渲染</li>
+</ul>
+<p>压缩图片(jpg/png) -&gt; 位图 -&gt; 纹理</p>
+<ul>
+<li>CoreGraphic -&gt; 图片重绘 -&gt; 图片解码</li>
+<li>GLK</li>
+</ul>
+<p>问题之前要学的东西</p>
+<ul>
+<li>3D数学</li>
+<li>OpenGL</li>
+<li>GLSL</li>
+<li>OpenGL ES</li>
+<li>Metal语言</li>
+<li>Metal编程标准</li>
+<li>GPUImage</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/04/OpenGL%20ES%E6%B5%85%E5%B0%9D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-iOS事件传递及响应" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -963,99 +1095,6 @@
 
 
   
-    <article id="post-数据结构与算法-双向链表（线性表）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/">数据结构与算法-双向链表（线性表）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-08-05T12:57:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- toc -->
-
-<ul>
-<li><a href="#1-双向链表">1、双向链表</a><ul>
-<li><a href="#1-链表设计">1、链表设计</a></li>
-<li><a href="#2-clear">2、clear()</a></li>
-<li><a href="#3-addint-index-e-element">3、add(int index, E element)</a></li>
-<li><a href="#4-removeint-index">4、remove(int index)</a></li>
-</ul>
-</li>
-<li><a href="#2-双向链表-vs-单向链表">2、双向链表 vs 单向链表</a></li>
-<li><a href="#3-双向链表-vs-动态数组">3、双向链表 vs 动态数组</a></li>
-</ul>
-<!-- tocstop -->
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%EF%BC%88%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next</a>
@@ -1185,11 +1224,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1198,6 +1245,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1213,15 +1264,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,11 +16,12 @@
 <meta property="og:description" content="进程 线程 多线程 iOS几种多线程方案">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B&#x2F;image-20191224173237834.png">
 <meta property="article:published_time" content="2019-12-24T08:51:27.000Z">
-<meta property="article:modified_time" content="2020-11-18T13:08:18.299Z">
+<meta property="article:modified_time" content="2021-03-10T13:13:01.460Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="多线程">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;%E5%A4%9A%E7%BA%BF%E7%A8%8B&#x2F;image-20191224173237834.png">
   
@@ -221,22 +222,41 @@
 <ul>
 <li><p><strong>什么是进程?</strong></p>
 <ul>
-<li>系统中正在运行的一个应用程序；</li>
-<li>每个进程之间相互独立，有独立受保护的内存空间。 </li>
+<li>系统资源调度和分配的基本单位，实现系统的并发。</li>
 </ul>
+</li>
+<li><p>系统中正在运行的一个应用程序。</p>
+<ul>
+<li><p>每个进程之间相互独立，有独立受保护的内存空间。 </p>
 <p>举个例子：同时打开了QQ和微信，那么系统就会分别启动两个进程。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>进程间的几种通信方式</strong></p>
+<ul>
+<li>管道（pipe）及命名管道（named pipe）:管道可用于具有亲缘关系的父子进程间的通信，有名管道除了具有管道所具有的功能外，它还允许无亲缘关系进程间的通信；</li>
+<li>信号（signal）：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生;</li>
+<li>消息队列：消息队列是消息的链接表，它克服了上两种通信方式中信号量有限的缺点，具有写权限使得进程可以按照一定得规则向消息队列中添加新信息；对消息队列有读权限使得进程则可以从消息队列中读取信息；</li>
+<li>共享内存：最有用的进程间通信方式。它使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据得更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等；</li>
+<li>信号量：主要作为进程之间及同一种进程的不同线程之间得同步和互斥手段；</li>
+<li>套接字：一种更为一般得进程间通信机制，它可用于网络中不同机器之间的进程间通信，应用非常广泛。</li>
+</ul>
 </li>
 </ul>
 <h3><span id="线程">线程</span></h3><ul>
 <li><p><strong>什么是线程？</strong></p>
 <ul>
-<li>用来执行任务的，1个进程开启执行任务必须至少有1条线程。</li>
-<li>1个进程的所有任务都是通过线程执行的。</li>
+<li><p>进程的子任务，CPU调度和分配的基本单位，实现进程内部的并发。</p>
+</li>
+<li><p>用来执行任务的，1个进程开启执行任务必须至少有1条线程。</p>
+</li>
+<li><p>1个进程的所有任务都是通过线程执行的。</p>
+</li>
 </ul>
 </li>
 <li><p><strong>串行</strong></p>
 <ul>
-<li><p>1个线程中任务的执行时串行的；</p>
+<li><p>1个线程中任务的执行是串行的；</p>
 </li>
 <li><p>同一时间，1个线程只能执行一个任务，如需执行多个任务，只能一个个来。</p>
 <p>举个例子：在1个线程中需要执行下载任务，下载A，B两个文件，那么只能下载完A后再执行下载B任务。</p>
@@ -245,6 +265,7 @@
 </li>
 </ul>
 <p>线程和进程的关系就如图所示：<br><img src="/images/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20191224173237834.png" alt="image-20191224173237834"></p>
+<p>一个进程至少有一个线程，线程依赖于进程而存在，进程在执行过程中有独立的内存单元，多个线程之间共享进程的内存。</p>
 <h3><span id="多线程">多线程</span></h3><ul>
 <li><p><strong>什么是多线程?</strong></p>
 <ul>
@@ -268,7 +289,7 @@
 <li><p><strong>缺点</strong></p>
 <ul>
 <li>创建线程是有开销的，iOS主线程1M，子线程512KB，创建一个线程也需要耗时；</li>
-<li>开启大量的线程，CPU要在线程间频繁的调度，消耗大量CPU资源，降低程序的性能；</li>
+<li>开启大量的线程，CPU要在线程间频繁的调度，消耗大量CPU资源，降低程序的性能，一般只开3-5条线程；</li>
 <li>程序设计更加复杂，必须线程之间的通信，数据共享等。</li>
 </ul>
 </li>
@@ -285,18 +306,21 @@
 </ul>
 </li>
 <li><strong>NSThread</strong><ul>
-<li><strong>面向对象</strong>；</li>
+<li><strong>经过苹果封装的，面向对象</strong>；</li>
 <li>使用简单；</li>
 <li>看NS开头，肯定是<strong>OC语言</strong>；</li>
 <li><strong>线程生命周期，程序员手动管理创建，销毁系统会管理，是面向线程开发，可以实实在在操作线程</strong>；</li>
-<li>偶尔使用。</li>
+<li>偶尔使用；</li>
+<li><strong>有取消线程的方法</strong>。</li>
 </ul>
 </li>
 <li><strong>GCD</strong><ul>
 <li>充分利用设备多核，用于取代上面的多线程方案；</li>
 <li><strong>C语言</strong>；</li>
 <li><strong>线程生命周期系统管理，非面向线程开发，看不到线程的创建和销毁</strong>；</li>
-<li>经常使用。</li>
+<li>经常使用；</li>
+<li><strong>没有取消某个任务的方法，如有需要需自行打标记实现</strong>。</li>
+<li>其实没有线程的概念，只有任务和队列，任务即为想要干什么，代码中的block代码块，队列有用存放任务，任务添加的队列中方可执行。队列又分为了串行队列和并行队列。</li>
 </ul>
 </li>
 <li><strong>NSOperation</strong><ul>
@@ -330,6 +354,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
         		</li>
       		
 		</ul>
@@ -603,11 +631,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,6 +652,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,15 +671,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
