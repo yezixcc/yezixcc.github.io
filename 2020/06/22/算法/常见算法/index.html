@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>常见算法 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、冒泡排序(稳定) 1、算法 1、代码 2、复杂度 3、优化   二、选择排序(不稳定) 1、算法 1、代码 2、复杂度   三、插入排序(稳定) 1、算法 1、代码 3、复杂度 3、优化   四、归并排序(稳定) 1、算法 2、代码 3、复杂度   五、快速排序(不稳定) 1、算法 2、代码 3、复杂度   六、堆排序(不稳定) 1、算法 2、代码 3、复杂度   七、希尔排序(不稳">
+  <meta name="description" content="一、冒泡排序(稳定) 1、算法 2、代码 2、复杂度 3、优化   二、选择排序(不稳定) 1、算法 2、代码 3、复杂度   三、插入排序(稳定) 1、算法 1、代码 3、复杂度 3、优化   四、归并排序(稳定) 1、算法 2、代码 3、复杂度   五、快速排序(不稳定) 1、算法 2、代码 3、复杂度   六、堆排序(不稳定) 1、算法 2、代码 3、复杂度   七、希尔排序(不稳">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见算法">
 <meta property="og:url" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="一、冒泡排序(稳定) 1、算法 1、代码 2、复杂度 3、优化   二、选择排序(不稳定) 1、算法 1、代码 2、复杂度   三、插入排序(稳定) 1、算法 1、代码 3、复杂度 3、优化   四、归并排序(稳定) 1、算法 2、代码 3、复杂度   五、快速排序(不稳定) 1、算法 2、代码 3、复杂度   六、堆排序(不稳定) 1、算法 2、代码 3、复杂度   七、希尔排序(不稳">
+<meta property="og:description" content="一、冒泡排序(稳定) 1、算法 2、代码 2、复杂度 3、优化   二、选择排序(不稳定) 1、算法 2、代码 3、复杂度   三、插入排序(稳定) 1、算法 1、代码 3、复杂度 3、优化   四、归并排序(稳定) 1、算法 2、代码 3、复杂度   五、快速排序(不稳定) 1、算法 2、代码 3、复杂度   六、堆排序(不稳定) 1、算法 2、代码 3、复杂度   七、希尔排序(不稳">
 <meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/image-20230517131707616.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/image-20230517135932076-3286650.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/image-20230517172317691-3289738.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png">
 <meta property="article:published_time" content="2020-06-22T13:04:00.000Z">
-<meta property="article:modified_time" content="2023-08-29T10:13:08.045Z">
+<meta property="article:modified_time" content="2023-08-29T10:23:22.508Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -212,63 +212,63 @@
 <ul>
 <li><a href="#一-冒泡排序稳定">一、冒泡排序(稳定)</a><ul>
 <li><a href="#1-算法">1、算法</a></li>
-<li><a href="#1-代码">1、代码</a></li>
+<li><a href="#2-代码">2、代码</a></li>
 <li><a href="#2-复杂度">2、复杂度</a></li>
 <li><a href="#3-优化">3、优化</a></li>
 </ul>
 </li>
 <li><a href="#二-选择排序不稳定">二、选择排序(不稳定)</a><ul>
 <li><a href="#1-算法-1">1、算法</a></li>
-<li><a href="#1-代码-1">1、代码</a></li>
-<li><a href="#2-复杂度-1">2、复杂度</a></li>
+<li><a href="#2-代码-1">2、代码</a></li>
+<li><a href="#3-复杂度">3、复杂度</a></li>
 </ul>
 </li>
 <li><a href="#三-插入排序稳定">三、插入排序(稳定)</a><ul>
 <li><a href="#1-算法-2">1、算法</a></li>
-<li><a href="#1-代码-2">1、代码</a></li>
-<li><a href="#3-复杂度">3、复杂度</a></li>
+<li><a href="#1-代码">1、代码</a></li>
+<li><a href="#3-复杂度-1">3、复杂度</a></li>
 <li><a href="#3-优化-1">3、优化</a></li>
 </ul>
 </li>
 <li><a href="#四-归并排序稳定">四、归并排序(稳定)</a><ul>
 <li><a href="#1-算法-3">1、算法</a></li>
-<li><a href="#2-代码">2、代码</a></li>
-<li><a href="#3-复杂度-1">3、复杂度</a></li>
+<li><a href="#2-代码-2">2、代码</a></li>
+<li><a href="#3-复杂度-2">3、复杂度</a></li>
 </ul>
 </li>
 <li><a href="#五-快速排序不稳定">五、快速排序(不稳定)</a><ul>
 <li><a href="#1-算法-4">1、算法</a></li>
-<li><a href="#2-代码-1">2、代码</a></li>
-<li><a href="#3-复杂度-2">3、复杂度</a></li>
+<li><a href="#2-代码-3">2、代码</a></li>
+<li><a href="#3-复杂度-3">3、复杂度</a></li>
 </ul>
 </li>
 <li><a href="#六-堆排序不稳定">六、堆排序(不稳定)</a><ul>
 <li><a href="#1-算法-5">1、算法</a></li>
-<li><a href="#2-代码-2">2、代码</a></li>
-<li><a href="#3-复杂度-3">3、复杂度</a></li>
+<li><a href="#2-代码-4">2、代码</a></li>
+<li><a href="#3-复杂度-4">3、复杂度</a></li>
 </ul>
 </li>
 <li><a href="#七-希尔排序不稳定">七、希尔排序(不稳定)</a><ul>
 <li><a href="#1-算法-6">1、算法</a></li>
-<li><a href="#2-代码-3">2、代码</a></li>
-<li><a href="#3-复杂度-4">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#八-基数排序稳定">八、基数排序(稳定)</a><ul>
-<li><a href="#1-算法-7">1、算法</a></li>
-<li><a href="#2-代码-4">2、代码</a></li>
-</ul>
-</li>
-<li><a href="#九-桶排序稳定">九、桶排序(稳定)</a><ul>
-<li><a href="#1-算法-8">1、算法</a></li>
 <li><a href="#2-代码-5">2、代码</a></li>
 <li><a href="#3-复杂度-5">3、复杂度</a></li>
 </ul>
 </li>
+<li><a href="#八-基数排序稳定">八、基数排序(稳定)</a><ul>
+<li><a href="#1-算法-7">1、算法</a></li>
+<li><a href="#2-代码-6">2、代码</a></li>
+</ul>
+</li>
+<li><a href="#九-桶排序稳定">九、桶排序(稳定)</a><ul>
+<li><a href="#1-算法-8">1、算法</a></li>
+<li><a href="#2-代码-7">2、代码</a></li>
+<li><a href="#3-复杂度-6">3、复杂度</a></li>
+</ul>
+</li>
 <li><a href="#十-计数排序稳定">十、计数排序(稳定)</a><ul>
 <li><a href="#1-算法-9">1、算法</a></li>
-<li><a href="#2-代码-6">2、代码</a></li>
-<li><a href="#3-复杂度-6">3、复杂度</a></li>
+<li><a href="#2-代码-8">2、代码</a></li>
+<li><a href="#3-复杂度-7">3、复杂度</a></li>
 </ul>
 </li>
 <li><a href="#十一-递归">十一、递归</a></li>
@@ -282,7 +282,7 @@
 <li>后面小的就进行交换，一个循环之后，最后的一个数一定是最大的；</li>
 <li>以此往复，再从头开始循环，一共n-1次，即可完成。</li>
 </ul>
-<h5><span id="1-代码">1、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">optimizedBubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">boolean</span> swapped = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> lastSwapIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="comment">// swap arr[j] and arr[j+1]</span></span><br><span class="line">                <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">                swapped = <span class="keyword">true</span>;</span><br><span class="line">                lastSwapIndex = j + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果在某一趟排序中没有发生交换，说明数组已经有序，可以直接退出循环</span></span><br><span class="line">        <span class="keyword">if</span> (!swapped) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 跳过下一轮排序中已经排好序的元素</span></span><br><span class="line">        n = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="2-代码">2、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">optimizedBubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">boolean</span> swapped = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> lastSwapIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="comment">// swap arr[j] and arr[j+1]</span></span><br><span class="line">                <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">                swapped = <span class="keyword">true</span>;</span><br><span class="line">                lastSwapIndex = j + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果在某一趟排序中没有发生交换，说明数组已经有序，可以直接退出循环</span></span><br><span class="line">        <span class="keyword">if</span> (!swapped) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 跳过下一轮排序中已经排好序的元素</span></span><br><span class="line">        n = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5><span id="2-复杂度">2、复杂度</span></h5><ol>
 <li><p>最坏：O(n^2)；</p>
@@ -302,9 +302,9 @@
 <li>以此循环。</li>
 </ul>
 <p><img src=".assets/image-20230517131707616.png" alt="image-20230517131707616"></p>
-<h5><span id="1-代码">1、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="comment">// 循环 n - 1 次，每次选择当前最大值并交换到末尾</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> maxIndex = i;</span><br><span class="line">        <span class="comment">// 在剩余未排序的数列中找出最大值的下标</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[maxIndex]) &#123;</span><br><span class="line">                maxIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将最大值交换到有序区域的末尾</span></span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[maxIndex];</span><br><span class="line">        arr[maxIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="2-代码">2、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="comment">// 循环 n - 1 次，每次选择当前最大值并交换到末尾</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> maxIndex = i;</span><br><span class="line">        <span class="comment">// 在剩余未排序的数列中找出最大值的下标</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[maxIndex]) &#123;</span><br><span class="line">                maxIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将最大值交换到有序区域的末尾</span></span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[maxIndex];</span><br><span class="line">        arr[maxIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5><span id="2-复杂度">2、复杂度</span></h5><ol>
+<h5><span id="3-复杂度">3、复杂度</span></h5><ol>
 <li><p>最坏：O(n^2)；</p>
 </li>
 <li><p>选择排序的交换次数远远少于冒泡排序，平均性能优于冒泡；</p>
@@ -595,7 +595,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、冒泡排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.</span> <span class="toc-text">1、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.3.</span> <span class="toc-text">2、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.4.</span> <span class="toc-text">3、优化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、选择排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.2.</span> <span class="toc-text">1、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.3.</span> <span class="toc-text">2、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、插入排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.2.</span> <span class="toc-text">1、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.3.</span> <span class="toc-text">3、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.4.</span> <span class="toc-text">3、优化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、归并排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、快速排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">6.</span> <span class="toc-text">六、堆排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">7.</span> <span class="toc-text">七、希尔排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">8.</span> <span class="toc-text">八、基数排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">8.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">8.2.</span> <span class="toc-text">2、代码</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">9.</span> <span class="toc-text">九、桶排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">10.</span> <span class="toc-text">十、计数排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">11.</span> <span class="toc-text">十一、递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">12.</span> <span class="toc-text">十二、分治法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">13.</span> <span class="toc-text">十三、动态规划</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、冒泡排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.3.</span> <span class="toc-text">2、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.4.</span> <span class="toc-text">3、优化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、选择排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、插入排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.2.</span> <span class="toc-text">1、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.3.</span> <span class="toc-text">3、复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">3.4.</span> <span class="toc-text">3、优化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、归并排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">4.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、快速排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">6.</span> <span class="toc-text">六、堆排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">6.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">7.</span> <span class="toc-text">七、希尔排序(不稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">7.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">8.</span> <span class="toc-text">八、基数排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">8.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">8.2.</span> <span class="toc-text">2、代码</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">9.</span> <span class="toc-text">九、桶排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">9.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">10.</span> <span class="toc-text">十、计数排序(稳定)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.1.</span> <span class="toc-text">1、算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.2.</span> <span class="toc-text">2、代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">10.3.</span> <span class="toc-text">3、复杂度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">11.</span> <span class="toc-text">十一、递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">12.</span> <span class="toc-text">十二、分治法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">13.</span> <span class="toc-text">十三、动态规划</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -753,18 +753,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -773,11 +761,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,6 +778,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
