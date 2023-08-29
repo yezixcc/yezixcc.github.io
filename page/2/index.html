@@ -173,322 +173,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构/单向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">单向链表</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-22T14:53:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#1-单向链表">1、单向链表</a><ul>
-<li><a href="#1-链表设计">1、链表设计</a></li>
-<li><a href="#2-clear">2、clear()</a></li>
-<li><a href="#3-addint-index-e-element">3、add(int index, E element)</a></li>
-<li><a href="#4-removeint-index">4、remove(int index)</a></li>
-<li><a href="#5-int-indexofe-element">5、int indexOf(E element)</a></li>
-</ul>
-</li>
-<li><a href="#2-练习">2、练习</a><ul>
-<li><a href="#1-删除链表中的节点">1、删除链表中的节点</a></li>
-<li><a href="#2-反转链表">2、反转链表</a></li>
-<li><a href="#3-环形链表">3、环形链表</a></li>
-</ul>
-</li>
-<li><a href="#3-虚拟头结点">3、虚拟头结点</a></li>
-<li><a href="#4-复杂度">4、复杂度</a></li>
-</ul>
-<!-- tocstop -->
-
-<p>动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。</p>
-<h5><span id="1-单向链表">1、单向链表</span></h5><p>链表是一种<strong>链式存储</strong>的线性表，所有元素的内存地址不一定是连续的。节点对象包含了<strong>数据</strong>和<strong>下一个节点地址</strong>两个元素。前一个节点对象里面有一个指针指向下一个节点对象，这样就串起来了。如果没有指向了就指向null。</p>
-<img src="/images/数据结构与算法/image-20200623215058024.png" alt="image-20200623215058024" style="zoom:50%;">
-
-<h6><span id="1-链表设计">1、链表设计</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">一个链表的设计</span></span><br><span class="line"><span class="comment">E：泛型</span></span><br><span class="line"><span class="comment">extends：继承</span></span><br><span class="line"><span class="comment">AbstractList：抽象类（不允许new）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 1.指向的节点对象</span></span><br><span class="line">  <span class="keyword">private</span> Node&lt;E&gt; first;</span><br><span class="line">  <span class="comment">// 2.大小</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 节点类</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 1.数据</span></span><br><span class="line">    E element;</span><br><span class="line">    <span class="comment">// 2.指向的节点对象</span></span><br><span class="line">    Node&lt;E&gt; next;</span><br><span class="line">    <span class="comment">// 节点构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E element, Node&lt;E&gt; next)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.element = element;</span><br><span class="line">      <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 查找节点</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">        node = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6><span id="2-clear">2、clear()</span></h6><img src="/images/数据结构与算法/image-20200623223954845.png" alt="image-20200623223954845" style="zoom:50%;">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size = <span class="number">0</span>;</span><br><span class="line">  first = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>first = null，0节点就释放了，没有再引用后面的节点，后面就都自动释放了。</p>
-<h6><span id="3-addint-index-e-element">3、add(int index, E element)</span></h6><p>添加元素首先要找到添加位置的前一个节点，将新添加的节点的next指向前一个节点的next，然后将前一个节点的next指向添加的节点即可。</p>
-<p><strong>想要获取index的节点，只能根据首节点依次查找。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 根据索引取节点</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">  rangeCheck(index);</span><br><span class="line"></span><br><span class="line">  Node&lt;E&gt; node = first;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">    node = node.next;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>添加节点</strong></p>
-<img src="/images/数据结构与算法/image-20200628221007429.png" alt="image-20200628221007429" style="zoom:50%;">
-
-<img src="/images/数据结构与算法/image-20200628221356458.png" alt="image-20200628221356458" style="zoom:50%;">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加节点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">  rangeCheck(index);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (index == <span class="number">0</span>) &#123; <span class="comment">// 0节点添加单独处理</span></span><br><span class="line">    first = <span class="keyword">new</span> Node&lt;&gt;(element, first);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">      prev.next = <span class="keyword">new</span> Node&lt;&gt;(element, prev.next);</span><br><span class="line">  &#125;</span><br><span class="line">  size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6><span id="4-removeint-index">4、remove(int index)</span></h6><img src="/images/数据结构与算法/image-20200628223432585.png" alt="image-20200628223432585" style="zoom:50%;">
-
-<img src="/images/数据结构与算法/image-20200628223630573.png" alt="image-20200628223630573" style="zoom:50%;">
-
-<p>获取到前面的节点(prev)，prev.next指向prev.next.next就好</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">  rangeCheck(index);</span><br><span class="line">  </span><br><span class="line">  Node&lt;E&gt; node = first;</span><br><span class="line">  <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">    first = first.next;</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    Node&lt;E&gt; prev = node(index - <span class="number">1</span>);</span><br><span class="line">    node = prev.next;</span><br><span class="line">    prev.next = node.next;</span><br><span class="line">  &#125;</span><br><span class="line">  size--;</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6><span id="5-int-indexofe-element">5、int indexOf(E element)</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 空特殊处理</span></span><br><span class="line">  <span class="keyword">if</span> (element == <span class="keyword">null</span>) &#123;</span><br><span class="line">    Node&lt;E&gt; node =first;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i ++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(node.element == <span class="keyword">null</span>) <span class="keyword">return</span> i;</span><br><span class="line">      node = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    Node&lt;E&gt; node =first;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i ++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(element.equals(node.element)) <span class="keyword">return</span> i;</span><br><span class="line">      node = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ELEMENT_NOT_FOUND;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>网站推荐，可以动画看数据结构原理（数据结构和算法动态可视化）：<a href="https://visualgo.net/zh。" target="_blank" rel="noopener">https://visualgo.net/zh。</a></p>
-<h5><span id="2-练习">2、练习</span></h5><h6><span id="1-删除链表中的节点">1、删除链表中的节点</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*输入: head = [4,5,1,9], node = 5</span></span><br><span class="line"><span class="comment">  输出: [4,1,9]</span></span><br><span class="line"><span class="comment">  解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*一般来说是拿到待删除结点的前一个结点，然后将前一个结点的next指向待删除结点的next</span></span><br><span class="line"><span class="comment"> * 但是现在拿不到前一个结点，然而可以拿到待删除结点的next</span></span><br><span class="line"><span class="comment"> * 换一种思路，将待删除结点的next的值赋给待删除的结点，然后待删除的结点next指向他的next的next</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode node)</span> </span>&#123;</span><br><span class="line">    node.val = node.next.val;</span><br><span class="line">    node.next = node.next.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6><span id="2-反转链表">2、反转链表</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">5</span>-&gt;<span class="number">4</span>-&gt;<span class="number">3</span>-&gt;<span class="number">2</span>-&gt;<span class="number">1</span>-&gt;NULL</span><br><span class="line">输出: <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;NULL</span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/数据结构与算法/image-20200701215822583.png" alt="image-20200701215822583" style="zoom:50%;"><strong>（1）递归实现</strong></p>
-<p>要实现上面的效果，可以先考虑下图的情况，假设<code>reverseList</code>函数的功能正常，那么如果反转4节点链表，那么应该是<code>ListNode newHead = reverseList(head.next)</code>，此时只要考虑将4节点的next指向5，5节点的next指向null就可以了。递归主要的思想是弄清楚方法实现的功能是什么，默认方法已经实现，然后处理好边界，结束循环调用即可。<img src="/images/数据结构与算法/image-20200701215931636.png" alt="image-20200701215931636" style="zoom:50%;"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 处理边界退出循环调用</span></span><br><span class="line">    <span class="comment">// 1.空节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2.只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = reverseList(head.next);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>（2）迭代实现</strong></p>
-<img src="/images/数据结构与算法/image-20200701224830389.png" alt="image-20200701224830389" style="zoom:50%;">
-
-<p>执行上图中的步骤，以此循环，直到head == null为止，即实现链表反转。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2、迭代实现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 处理边界退出循环调用</span></span><br><span class="line">    <span class="comment">// 1.空节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2.只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">      ListNode tmp = head.next;</span><br><span class="line">      head.next = newHead;</span><br><span class="line">      newHead = head;</span><br><span class="line">      head = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6><span id="3-环形链表">3、环形链表</span></h6><p>给定一个链表，判断链表中是否有环。</p>
-<img src="/images/数据结构与算法/image-20200804142700222.png" alt="image-20200804142700222" style="zoom:50%;">
-
-<p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">4</span>], pos = <span class="number">1</span></span><br><span class="line">输出: <span class="keyword">true</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>快慢指针思想：定义两个指针，slow指针一次走一步，fast指针一次走两步，如果有环，那么slow和fast指针到最后一定会重合，即指向同一个节点；如果没有环，那么fast指针一定先达到NULL，结束查找。</p>
-<img src="/images/数据结构与算法/image-20200706221809375.png" alt="image-20200706221809375" style="zoom:50%;">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 快慢指针解法</span></span><br><span class="line"><span class="comment">/// 定义两个指针，1个一次只走一步，另1个一次走两步，最后两个指针执行同一个元素即为环形</span></span><br><span class="line"><span class="comment">/// 快指针指向head，慢指针指向head.next</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5><span id="3-虚拟头结点">3、虚拟头结点</span></h5><p>有时候为了让代码更加精简，统一所有节点的处理逻辑，可以在最前面增加一个虚拟的头结点（不存储数据）。</p>
-<img src="/images/数据结构与算法/image-20200804181338727.png" alt="image-20200804181338727" style="zoom:50%;">
-
-<h5><span id="4-复杂度">4、复杂度</span></h5><p><strong>查</strong> <code>E get(int index)</code>：</p>
-<ul>
-<li>最好情况复杂度：获取首节点。即<strong>O(1)</strong>；</li>
-<li>最坏情况复杂度：获取最后一个节点。即<strong>O(n)</strong>；</li>
-<li>平均情况复杂度：查找中间节点，取最好和最坏的平均，即(1+2+..+n)/n，即O(n/2)，即<strong>O(n)</strong>。</li>
-</ul>
-<p><strong>改</strong> <code>E set(int index, E element)</code>：</p>
-<p>修改节点需要先查找到对应的节点才能进行修改，所以复杂度和<strong>查</strong>一样。</p>
-<p><strong>增</strong> <code>add(int index, E element)</code>：</p>
-<p>增加一个节点，需要首先找到index前面的那个节点，所以复杂度和<strong>查</strong>一样。</p>
-<p><strong>删</strong> <code>E remove(int index)</code>：</p>
-<p>删除一个节点，也需要首先找到index前面的那个节点，所以复杂度和<strong>查</strong>一样。</p>
-<p>注意：有些资料说链表的优势是添加和删除的复杂度是O(1)，其实是指添加，删除的那一刻复杂度是O(1)，具体就是指改变next的指向这个操作，链表的添加和删除操作只需要改变next的指向就好，不像数组需要一个个挪动元素，而实际上完成整个插入删除操作的复杂度是O(n)。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法/常见算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">常见算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-06-22T13:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
-</a>
-        
-        <!-- 添加代码 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- toc -->
-
-<ul>
-<li><a href="#一-冒泡排序稳定">一、冒泡排序(稳定)</a><ul>
-<li><a href="#1-算法">1、算法</a></li>
-<li><a href="#1-代码">1、代码</a></li>
-<li><a href="#2-复杂度">2、复杂度</a></li>
-<li><a href="#3-优化">3、优化</a></li>
-</ul>
-</li>
-<li><a href="#二-选择排序不稳定">二、选择排序(不稳定)</a><ul>
-<li><a href="#1-算法-1">1、算法</a></li>
-<li><a href="#1-代码-1">1、代码</a></li>
-<li><a href="#2-复杂度-1">2、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#三-插入排序稳定">三、插入排序(稳定)</a><ul>
-<li><a href="#1-算法-2">1、算法</a></li>
-<li><a href="#1-代码-2">1、代码</a></li>
-<li><a href="#3-复杂度">3、复杂度</a></li>
-<li><a href="#3-优化-1">3、优化</a></li>
-</ul>
-</li>
-<li><a href="#四-归并排序稳定">四、归并排序(稳定)</a><ul>
-<li><a href="#1-算法-3">1、算法</a></li>
-<li><a href="#2-代码">2、代码</a></li>
-<li><a href="#3-复杂度-1">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#五-快速排序不稳定">五、快速排序(不稳定)</a><ul>
-<li><a href="#1-算法-4">1、算法</a></li>
-<li><a href="#2-代码-1">2、代码</a></li>
-<li><a href="#3-复杂度-2">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#六-堆排序不稳定">六、堆排序(不稳定)</a><ul>
-<li><a href="#1-算法-5">1、算法</a></li>
-<li><a href="#2-代码-2">2、代码</a></li>
-<li><a href="#3-复杂度-3">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#七-希尔排序不稳定">七、希尔排序(不稳定)</a><ul>
-<li><a href="#1-算法-6">1、算法</a></li>
-<li><a href="#2-代码-3">2、代码</a></li>
-<li><a href="#3-复杂度-4">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#八-基数排序稳定">八、基数排序(稳定)</a><ul>
-<li><a href="#1-算法-7">1、算法</a></li>
-<li><a href="#2-代码-4">2、代码</a></li>
-</ul>
-</li>
-<li><a href="#九-桶排序稳定">九、桶排序(稳定)</a><ul>
-<li><a href="#1-算法-8">1、算法</a></li>
-<li><a href="#2-代码-5">2、代码</a></li>
-<li><a href="#3-复杂度-5">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#十-计数排序稳定">十、计数排序(稳定)</a><ul>
-<li><a href="#1-算法-9">1、算法</a></li>
-<li><a href="#2-代码-6">2、代码</a></li>
-<li><a href="#3-复杂度-6">3、复杂度</a></li>
-</ul>
-</li>
-<li><a href="#十一-递归">十一、递归</a></li>
-<li><a href="#十二-分治法">十二、分治法</a></li>
-<li><a href="#十三-动态规划">十三、动态规划</a></li>
-</ul>
-<!-- tocstop -->
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-数据结构/线性+树形结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1617,7 +1301,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- toc -->
+        <a id="more"></a>
+
+<!-- toc -->
 
 <ul>
 <li><a href="#一-斐波拉契数举例">一、斐波拉契数举例</a><ul>
@@ -1637,7 +1323,72 @@
 </li>
 </ul>
 <!-- tocstop -->
-        
+
+<p>算法是用于解决特定问题的<strong>执行步骤</strong>，解决同一个问题使用不同的算法，效率可能相差很大，比如求第n个斐波那契数。下面的两个算法，当n稍大些时，执行效率差距非常明显。</p>
+<h4><span id="一-斐波拉契数举例">一、斐波拉契数举例</span></h4><p>前两个数的和组成第三个数，0，1，1，2，3，5，8，13…，即第n项等于第n-1项和第n-2项的和。</p>
+<h6><span id="1-递归实现">1、递归实现</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法一</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fib1(n - <span class="number">2</span>) + fib1(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  System.out.println(fib1(<span class="number">3</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">4</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">5</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">45</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出结果：<br>2<br>3<br>5<br>1134903170</p>
+<p>说明算法正确，但是2，3，5快速输出，而1134903170则等好几秒后才会输出，说明这个算法存在效率问题。</p>
+</blockquote>
+<h6><span id="2-for循环实现">2、for循环实现</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法二</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> num0 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> num1 = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 一共加n-1次</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n-<span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 后者是前两者的和</span></span><br><span class="line">    <span class="keyword">int</span> sum = num0 + num1;</span><br><span class="line">    <span class="comment">// 后者变成前者</span></span><br><span class="line">    num0 = num1;</span><br><span class="line">    <span class="comment">// 和变成后者</span></span><br><span class="line">    num1 = sum;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回后者</span></span><br><span class="line">  <span class="keyword">return</span> num1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  System.out.println(fib2(<span class="number">3</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">4</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">5</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">45</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出结果：<br>2<br>3<br>5<br>1134903170<br>说明算法正确，并且几乎同时输出，没有等待，说明这个算法执行效率要比递归算法高很多</p>
+</blockquote>
+<h4><span id="二-如何评判算法好坏">二、如何评判算法好坏？</span></h4><ul>
+<li>正确性，可读性，健壮性</li>
+<li><strong>时间复杂度：估算程序指令执行的次数，即决定了执行时间的长短。</strong></li>
+<li><strong>空间复杂度：估算所需占用的内存空间（比如变量比较多等）。</strong></li>
+</ul>
+<p>第一要位的肯定是算法的正确性，要确保算法能够实现需求，其次是算法的时间复杂度，至于空间复杂度在现如今硬件越来越强大的条件显得不是特别紧要，所以在算法正确的情况下，对算法进行优化重点就在于<strong>时间复杂度</strong>的优化，不同的算法解决同样的问题，执行时间可能存在巨大的差距，如上求斐波拉契数的两个算法。</p>
+<h5><span id="1-时间复杂度">1、时间复杂度</span></h5><p>如何来计算算法的时间复杂度？既然它是指程序指令执行的次数，那么就可以大概计算下算法中指令次数之和，下面计算下些算法的时间复杂度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 以下3个判断中的打印只会执行一次</span></span><br><span class="line">  <span class="comment">// 所以执行次数</span></span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 10"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 5"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &lt;= 5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; 4：	  4次</span></span><br><span class="line">  <span class="comment">// i ++：	  4次</span></span><br><span class="line">  <span class="comment">// System.out.println：1 * 4 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + 4 + 4 + 4 * 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：14</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test2</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; n：	  n次</span></span><br><span class="line">  <span class="comment">// i ++：	  n次</span></span><br><span class="line">  <span class="comment">// System.out.println：1 * n 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + n + n + n * 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test2"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：3n+1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test3</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; n：	  n次</span></span><br><span class="line">  <span class="comment">// i ++：	  n次</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="comment">// 先单看这里面，不算外面的循环</span></span><br><span class="line">    <span class="comment">// j = 0：1次</span></span><br><span class="line">    <span class="comment">// j &lt; n：n次</span></span><br><span class="line">    <span class="comment">// j ++：n次</span></span><br><span class="line">    <span class="comment">// System.out.println：1 * n</span></span><br><span class="line">    <span class="comment">// 合计：3n + 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：1 + n + n + n * (3n + 1)</span></span><br><span class="line">  <span class="comment">// 合计：1 + 2n + 3n^2 + n</span></span><br><span class="line">  <span class="comment">// 合计：3n^2 + 3n + 1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 1 + n + n + n * (1 + 15 + 15 + 15 * 1)</span></span><br><span class="line">  <span class="comment">// 48n + 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// (n = n / 2) &gt; 0 等价于 n 能被 2 除多少次</span></span><br><span class="line">  <span class="comment">// 即 2 的 x次方 等于 n</span></span><br><span class="line">  <span class="comment">// 即 执行 x 次</span></span><br><span class="line">  <span class="comment">// 即 log2(n)</span></span><br><span class="line">  <span class="keyword">while</span> ((n = n / <span class="number">2</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test6</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 即 log5(n)</span></span><br><span class="line">  <span class="keyword">while</span> ((n = n / <span class="number">5</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test6"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test7</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// i += i 等价于 i = 2i;</span></span><br><span class="line">  <span class="comment">// 看i的变化</span></span><br><span class="line">  <span class="comment">// 1，2，4，8，16...</span></span><br><span class="line">  <span class="comment">// 2^0, 2^1, 2^2, 2^3, 2^4...</span></span><br><span class="line">  <span class="comment">// 2^x &lt; n, 即x = log2(n)</span></span><br><span class="line">  <span class="comment">// 即外层循环执行 log2(n) 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + 2 * log2(n) + log2(n) * (1+2n+n)</span></span><br><span class="line">  <span class="comment">// 合计：3n * log2(n) + 3 * log2(n) + 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i += i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test7"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="1-大o表示法">1、大O表示法</span></h6><p>由上引申出<strong>大O表示法</strong>，用来描述时间复杂度，有以下几个原则。</p>
+<ul>
+<li>忽略常数<ul>
+<li>5 =&gt; O(1) – 常数阶</li>
+</ul>
+</li>
+<li>忽略系数<ul>
+<li>2n + 5 =&gt; O(n) – 线性阶</li>
+</ul>
+</li>
+<li>忽略低阶<ul>
+<li>2n^2 + 2n + 5 =&gt; O(n^2) – 平方阶</li>
+<li>2n^3 + n^2 + 2n + 5 =&gt; O(n^3) – 立方阶</li>
+</ul>
+</li>
+<li>对数阶一般省略底数<ul>
+<li>log2(n) = log2(5) * log5(n) ，统一叫log(n) =&gt; O(logn) – 对数阶</li>
+<li>2nlog2(n) + 2log2(n) + 1 =&gt; O(nlogn) – nlogn阶</li>
+</ul>
+</li>
+<li>复杂度大小<ul>
+<li>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!) &lt; O(n^n)</li>
+</ul>
+</li>
+</ul>
+<p>再来看上面的算法用大O表示法来标示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合计：14</span></span><br><span class="line"><span class="comment">// O(1)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n+1</span></span><br><span class="line"><span class="comment">// O(n)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test2"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n^2 + 3n + 1;</span></span><br><span class="line"><span class="comment">// O(n^2)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test3"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 48n + 1</span></span><br><span class="line"><span class="comment">// O(n)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test4"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 即 log2(n)</span></span><br><span class="line"><span class="comment">// O(logn)</span></span><br><span class="line"><span class="keyword">while</span> ((n = n / <span class="number">2</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test5"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 即 log5(n)</span></span><br><span class="line"><span class="comment">// O(logn)</span></span><br><span class="line"><span class="keyword">while</span> ((n = n / <span class="number">5</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test6"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n * log2(n) + 3 * log2(n) + 1</span></span><br><span class="line"><span class="comment">// O(nlogn)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i += i) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test7"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="2-斐波拉契数上面两个算法时间复杂度">2、斐波拉契数上面两个算法时间复杂度</span></h6><p>递归算法分析：</p>
+<p>计算时间复杂度主要看fib1函数执行多少次，假设fib1(5)，需要调用下面这么多少次fib1算法，即1 + 2 + 4 + 8 = 2^0 + 2^1 + 2^2 + 2^3 = 2^4 - 1，fib1(n)调用2^(n-1) - 1 = 0.5 * 2^n - 1；用大O表示法，即O(2^n)，时间复杂度很大，所以这个算法就很不可取。</p>
+<p><img src=".assets/image-20200614220613602.png" alt="image-20200614220613602"></p>
+<p>for循环算法：很明显时间复杂度是O(n)，所以这个算法相对很优了。</p>
+<h6><span id="3-多个数据规模的时间复杂度">3、多个数据规模的时间复杂度</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test9</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 有两个变量控制，n,j</span></span><br><span class="line">  <span class="comment">// 时间复杂度O(n+j)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="2-空间复杂度">2、空间复杂度</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 10"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 5"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &lt;= 5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 只定义了一个int i，可以认为空间复杂度是O(1)。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test8</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">20</span>; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> c = a + b; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> [] array = <span class="keyword">new</span> <span class="keyword">int</span>[n];  <span class="comment">// n是多少，就向堆空间申请多少个int类型。</span></span><br><span class="line">  <span class="comment">// 所以可以任务空间复杂度是O(n)</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test8"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
       
 
       
@@ -1946,6 +1697,216 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RunLoop基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">RunLoop基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-01-21T08:28:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+
+<ul>
+<li><a href="#一-定时器工作不受滑动事件影响">一、定时器工作不受滑动事件影响。</a></li>
+<li><a href="#二-图片延迟显示减缓tableview滑动卡顿">二、图片延迟显示减缓tableView滑动卡顿。</a></li>
+<li><a href="#三-常驻线程线程不死">三、常驻线程（线程不死）</a><ul>
+<li><a href="#1-强引用指向线程可行">1、强引用指向线程（可行？）</a></li>
+<li><a href="#2-自己写个while循环可行">2、自己写个while循环（可行？）</a></li>
+<li><a href="#3-开启线程的runloop正解">3、开启线程的RunLoop（正解）</a><ul>
+<li><a href="#1-runloop开启添加source">1、RunLoop开启（添加source）</a></li>
+<li><a href="#2-runloop开启添加timer">2、RunLoop开启（添加timer）</a></li>
+<li><a href="#3-whilerunloop">3、while+RunLoop</a></li>
+<li><a href="#4-runloop退出">4、RunLoop退出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#四-自动释放池">四、自动释放池</a><ul>
+<li><a href="#1-有什么用">1、有什么用？</a></li>
+<li><a href="#2-自动释放池什么时候释放">2、自动释放池什么时候释放？</a></li>
+<li><a href="#3-使用自动释放池">3、使用自动释放池</a></li>
+</ul>
+</li>
+<li><a href="#五-总结使用场景">五、总结使用场景</a><ul>
+<li><a href="#1-开启一个常驻线程">1、开启一个常驻线程</a><ul>
+<li><a href="#1-在子线程开启定时器">(1)、在子线程开启定时器</a></li>
+<li><a href="#2-在子线程长期监控一些数据变化">(2)、在子线程长期监控一些数据变化</a></li>
+</ul>
+</li>
+<li><a href="#2-控制定时器在特定模式下执行">2、控制定时器在特定模式下执行</a></li>
+<li><a href="#3-让某些任务在特定模式下执行">3、让某些任务在特定模式下执行</a></li>
+<li><a href="#4-添加observer监听runloop的状态">4、添加Observer监听RunLoop的状态</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RunLoop基本介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">RunLoop基本介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
+  	<time datetime="2020-01-20T08:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+
+<ul>
+<li><a href="#什么是runloop">什么是RunLoop？</a></li>
+<li><a href="#runloop对象">RunLoop对象</a></li>
+<li><a href="#runloop和线程">RunLoop和线程</a></li>
+<li><a href="#runloop相关类">RunLoop相关类</a><ul>
+<li><a href="#1-cfrunloopref">1、CFRunLoopRef</a></li>
+<li><a href="#2-cfrunloopmoderef">2、CFRunLoopModeRef：</a></li>
+<li><a href="#3-cfrunlooptimerref">3、CFRunLoopTimerRef</a></li>
+<li><a href="#4-cfrunloopsourceref">4、CFRunLoopSourceRef</a></li>
+<li><a href="#5-cfrunloopobserverref">5、CFRunLoopObserverRef</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">展开全文 >></a>
         </p>
       
 
