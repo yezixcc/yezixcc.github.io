@@ -8,32 +8,32 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>线性结构 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、数组 1、简介 2、复杂度 3、扩容 4、优化   二、链表 1、单向链表 1、链表设计 2、clear 3、add(int index, E element) 4、remove(int index) 5、int indexOf(E element) 6、复杂度   2、双向链表 1、链表设计 2、clear 3、add(int index, E element) 4、remove(">
+  <meta name="description" content="线性结构是一种数据结构，它是由若干个数据元素按照顺序组成的结构，其中每个数据元素都有唯一的前驱和后继（除了第一个元素没有前驱，最后一个元素没有后继）。在线性结构中，数据元素之间存在一对一的关系。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性结构">
 <meta property="og:url" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="一、数组 1、简介 2、复杂度 3、扩容 4、优化   二、链表 1、单向链表 1、链表设计 2、clear 3、add(int index, E element) 4、remove(int index) 5、int indexOf(E element) 6、复杂度   2、双向链表 1、链表设计 2、clear 3、add(int index, E element) 4、remove(">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/v2-617b90bb9f9ffb748c189e459f306776_r.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200806202348682.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200806204804970.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200807193228143.png">
-<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/v2-4604b12b675d5fd502e11102d900bc0f_r.jpg?lastModify=1692868277">
-<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/v2-38bad74c7157a80e0815994fd38a9e94_r.jpg?lastModify=1692868277">
-<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/image-20200812203124902.png?lastModify=1692868277">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200820195940509.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200820210039722.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200821193743306.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200824202922046.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20200824203050202.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/image-20230825104455980.png">
+<meta property="og:description" content="线性结构是一种数据结构，它是由若干个数据元素按照顺序组成的结构，其中每个数据元素都有唯一的前驱和后继（除了第一个元素没有前驱，最后一个元素没有后继）。在线性结构中，数据元素之间存在一对一的关系。">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-617b90bb9f9ffb748c189e459f306776_r.jpg">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200806202348682.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200806204804970.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200807193228143.png">
+<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-4604b12b675d5fd502e11102d900bc0f_r.jpg?lastModify=1692868277">
+<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-38bad74c7157a80e0815994fd38a9e94_r.jpg?lastModify=1692868277">
+<meta property="og:image" content="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200812203124902.png?lastModify=1692868277">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200820195940509.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200820210039722.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200821193743306.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200824202922046.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200824203050202.png">
+<meta property="og:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20230825104455980.png">
 <meta property="article:published_time" content="2020-06-15T14:46:03.000Z">
-<meta property="article:modified_time" content="2023-08-25T07:07:28.754Z">
+<meta property="article:modified_time" content="2023-08-30T02:55:35.176Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/.assets/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg">
+<meta name="twitter:image" content="http://yoursite.com/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -215,7 +215,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>线性结构是一种数据结构，它是由若干个数据元素按照顺序组成的结构，其中每个数据元素都有唯一的前驱和后继（除了第一个元素没有前驱，最后一个元素没有后继）。在线性结构中，数据元素之间存在一对一的关系。</p>
+<a id="more"></a>
 
 <!-- toc -->
 
@@ -342,7 +343,7 @@
 <p>定义一个int变量first，用来记录数组首元素的位置，一开始first = 0，若删除首元素的时候，无需挪动元素，只需要把first = 1，清空原首元素内容就好，遍历数组的时候就从索引1开始了。</p>
 <h4><span id="二-链表">二、链表</span></h4><p>动态数组有个明显的缺点：可能造成内存空间的浪费，能否用到多少内存就申请多少内存？这就需要用到链表结构了，用到时再开辟内存。</p>
 <h5><span id="1-单向链表">1、单向链表</span></h5><p>由若干个节点（Node）按照线性顺序组成，所有元素的内存地址不一定是连续的。每个节点包含两部分：<strong>数据域</strong>和<strong>指针域</strong>（指向下一个节点）。</p>
-<img src=".assets/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg" alt="v2-d2f9939264c8409141b412b408a5f4ff_r" style="zoom:50%;">
+<img src="/images/数据结构/v2-d2f9939264c8409141b412b408a5f4ff_r.jpg" alt="v2-d2f9939264c8409141b412b408a5f4ff_r" style="zoom:50%;">
 
 <h6><span id="1-链表设计">1、链表设计</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 头结点</span></span><br><span class="line">  <span class="keyword">private</span> Node&lt;E&gt; first;</span><br><span class="line">  <span class="comment">// 大小</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 节点</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">      E element;</span><br><span class="line">      Node&lt;E&gt; next;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E element, Node&lt;E&gt; next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找节点</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    Node&lt;E&gt; node = first;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">        node = node.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -383,23 +384,23 @@
 <p>注意：有些资料说链表的优势是添加和删除的复杂度是O(1)，其实是指添加，删除的那一刻复杂度是O(1)，具体就是指改变next的指向这个操作，链表的添加和删除操作只需要改变next的指向就好，不像数组需要一个个挪动元素，而实际上完成整个插入删除操作的复杂度是O(n)。</p>
 <h5><span id="2-双向链表">2、双向链表</span></h5><p>单向链表只有首节点，查找某个节点只能从首节点挨个next去查找，如果要查找最后一个节点也只能从首节点开始，性能低，所以就出现了双向链表，如果是查找比较靠后的节点，就可以从尾节点开始找，综合性能得到提升。</p>
 <p>双向列表就是在单向链表的基础上<strong>增加了一个尾节点指针</strong>，指向上一个节点，这样进行查找的时候，既可以从首节点开始，也可以从尾节点开始，具体依据index而定，从而提升链表综合性能。</p>
-<img src=".assets/v2-617b90bb9f9ffb748c189e459f306776_r.jpg" alt="v2-617b90bb9f9ffb748c189e459f306776_r" style="zoom:50%;">
+<img src="/images/数据结构/v2-617b90bb9f9ffb748c189e459f306776_r.jpg" alt="v2-617b90bb9f9ffb748c189e459f306776_r" style="zoom:50%;">
 
 <h6><span id="1-链表设计">1、链表设计</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 首节点</span></span><br><span class="line">  <span class="keyword">private</span> Node&lt;E&gt; first;</span><br><span class="line">  <span class="comment">// 尾节点 -- 比单向链表多一个尾节点</span></span><br><span class="line">  <span class="keyword">private</span> Node&lt;E&gt; last;</span><br><span class="line">  <span class="comment">// 大小</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 节点类</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">      E element;</span><br><span class="line">      Node&lt;E&gt; next;</span><br><span class="line">      Node&lt;E&gt; prev;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E element, Node&lt;E&gt; next, Node&lt;E&gt; prev)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.element = element;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">        <span class="keyword">this</span>.prev = prev;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h6><span id="2-clear">2、clear</span></h6><img src=".assets/image-20200806202348682.png" alt="image-20200806202348682" style="zoom:50%;">
+<h6><span id="2-clear">2、clear</span></h6><img src="/images/数据结构/image-20200806202348682.png" alt="image-20200806202348682" style="zoom:50%;">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">    first = <span class="keyword">null</span>;</span><br><span class="line">    last = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如上图左右的两根线断掉了，就清空的整个链表。</p>
 <p>这引申出一个疑问，下面的节点类似于循环引用，按照理解他们都不会释放，但是在JAVA的内存管理中是不会有这个问题的，在JAVA中，如果是被gc root对象引用，那么会被释放。</p>
 <p>被栈指针（局部变量）指向的对象就是gc root对象。如<code>List list = new ArrayList&lt;&gt;();</code>，list指针在栈上，new出来的对象在堆上，list是局部变量指向后面的<code>new ArrayList&lt;&gt;()</code>对象，所有<code>new ArrayList&lt;&gt;()</code>就是gc root对象。</p>
-<h6><span id="3-addint-index-e-element">3、add(int index, E element)</span></h6><img src=".assets/image-20200806204804970.png" alt="image-20200806204804970" style="zoom:50%;">
+<h6><span id="3-addint-index-e-element">3、add(int index, E element)</span></h6><img src="/images/数据结构/image-20200806204804970.png" alt="image-20200806204804970" style="zoom:50%;">
 
 <p>找到节点，添加节点。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(index == size) &#123;<span class="comment">// 往最后一个位置添加</span></span><br><span class="line">        Node&lt;E&gt; oldLast = last;</span><br><span class="line">        last = <span class="keyword">new</span> Node&lt;&gt;(element, <span class="keyword">null</span>, oldLast);</span><br><span class="line">        <span class="keyword">if</span> (oldLast == <span class="keyword">null</span>) &#123;<span class="comment">// 链表为空，添加第一个元素时</span></span><br><span class="line">            first = last;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            oldLast.next = last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; next = node(index);<span class="comment">// 2</span></span><br><span class="line">        Node&lt;E&gt; prev = next.prev; <span class="comment">// 1 当index==0, next.prev == null</span></span><br><span class="line">        Node&lt;E&gt; node = <span class="keyword">new</span> Node&lt;&gt;(element, next, prev); <span class="comment">// 待添加</span></span><br><span class="line">        next.prev = node;</span><br><span class="line">        <span class="keyword">if</span>(prev == <span class="keyword">null</span>) &#123;<span class="comment">// 第一添加</span></span><br><span class="line">            first = node;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            prev.next = node;<span class="comment">// prev == null, 不能有这个操作</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h6><span id="4-removeint-index">4、remove(int index)</span></h6><img src=".assets/image-20200807193228143.png" alt="image-20200807193228143" style="zoom:50%;">
+<h6><span id="4-removeint-index">4、remove(int index)</span></h6><img src="/images/数据结构/image-20200807193228143.png" alt="image-20200807193228143" style="zoom:50%;">
 
 <p>如图找出待删除的prev和next，没有对象指向2，2节点就自动删除了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    Node&lt;E&gt; node = node&lt;index&gt;;</span><br><span class="line">    Node&lt;E&gt; prev = node.prev;</span><br><span class="line">    Node&lt;E&gt; next = node.next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(prev == <span class="keyword">null</span>) &#123;  <span class="comment">// index == 0</span></span><br><span class="line">        first = next;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        prev.next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(next == <span class="keyword">null</span>) &#123;  <span class="comment">// index == size - 1</span></span><br><span class="line">        last = prev;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        next.prev = prev</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">return</span> node.element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -418,7 +419,7 @@
 <p>如果有频繁的<strong>在任意位置</strong>进行<strong>添加、删除</strong>操作，建议使用<strong>双向链表</strong>；</p>
 <p>如果有频繁的<strong>查询</strong>操作（随机访问），建议使用<strong>动态数组</strong>；</p>
 <p>有了双向链表，单向链表是否就没有任何用处了？并不是，在<strong>哈希表</strong>的设计中就用到了单链表。</p>
-<h5><span id="3-循环链表">3、循环链表</span></h5><h6><span id="1-单向循环链表">1、单向循环链表</span></h6><p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/v2-4604b12b675d5fd502e11102d900bc0f_r.jpg?lastModify=1692868277" alt="v2-4604b12b675d5fd502e11102d900bc0f_r"></p>
+<h5><span id="3-循环链表">3、循环链表</span></h5><h6><span id="1-单向循环链表">1、单向循环链表</span></h6><p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-4604b12b675d5fd502e11102d900bc0f_r.jpg?lastModify=1692868277" alt="v2-4604b12b675d5fd502e11102d900bc0f_r"></p>
 <ol>
 <li><p><code>add(int index, E element)</code></p>
 <p>只有在向首节点添加元素的时候需要修改，因为首节点变了，最后一个节点的指向也要变化，需要注意的是空链表(即size == 0)首次添加元素情况。</p>
@@ -430,13 +431,13 @@
 
 </li>
 </ol>
-<h6><span id="2-双向循环链表">2、双向循环链表</span></h6><p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/v2-38bad74c7157a80e0815994fd38a9e94_r.jpg?lastModify=1692868277" alt="v2-38bad74c7157a80e0815994fd38a9e94_r"></p>
+<h6><span id="2-双向循环链表">2、双向循环链表</span></h6><p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/v2-38bad74c7157a80e0815994fd38a9e94_r.jpg?lastModify=1692868277" alt="v2-38bad74c7157a80e0815994fd38a9e94_r"></p>
 <ol>
 <li><p><code>add(int index, E element)</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public void add(int index, E element) &#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line"></span><br><span class="line">    if(index &#x3D;&#x3D; size) &#123;&#x2F;&#x2F; 往最后一个位置添加</span><br><span class="line">        Node&lt;E&gt; oldLast &#x3D; last;</span><br><span class="line">        last &#x3D; new Node&lt;&gt;(element, first, oldLast);</span><br><span class="line">        if (oldLast &#x3D;&#x3D; null) &#123;&#x2F;&#x2F; 链表为空，添加第一个元素时</span><br><span class="line">            first &#x3D; last;</span><br><span class="line">            first.prev &#x3D; first;</span><br><span class="line">            first.last &#x3D; first;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            oldLast.next &#x3D; last;</span><br><span class="line">            first.prev &#x3D; last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else &#123; &#x2F;&#x2F; 往其他位置插入</span><br><span class="line">        Node&lt;E&gt; next &#x3D; node(index);&#x2F;&#x2F; 2</span><br><span class="line">        Node&lt;E&gt; prev &#x3D; next.prev; &#x2F;&#x2F; 1 当index&#x3D;&#x3D;0, next.prev &#x3D;&#x3D; null</span><br><span class="line">        Node&lt;E&gt; node &#x3D; new Node&lt;&gt;(element, next, prev); &#x2F;&#x2F; 待添加</span><br><span class="line">        next.prev &#x3D; node;</span><br><span class="line">        prev.next &#x3D; node; &#x2F;&#x2F;&#x2F; prev不可能为空</span><br><span class="line">      </span><br><span class="line">        if(index &#x3D;&#x3D; 0) &#123;&#x2F;&#x2F; 第一个位置添加 || next &#x3D;&#x3D; first</span><br><span class="line">            first &#x3D; node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>当size == 0的时候就是下面这种情况。</p>
-<p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/.assets/image-20200812203124902.png?lastModify=1692868277" alt="image-20200812203124902"></p>
+<p><img src="file:///Users/jqq/Desktop/Blog/hexo/source/_posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84//images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20200812203124902.png?lastModify=1692868277" alt="image-20200812203124902"></p>
 </li>
 <li><p><code>remove(int index)</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    Node&lt;E&gt; node &#x3D; first;</span><br><span class="line">    if (size &#x3D;&#x3D; 1) &#123; &#x2F;&#x2F; 只有一个节点的时候需要特殊处理</span><br><span class="line">        first &#x3D; null;</span><br><span class="line">        last &#x3D; null;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        node &#x3D; node&lt;index&gt;;</span><br><span class="line">        Node&lt;E&gt; prev &#x3D; node.prev;</span><br><span class="line">        Node&lt;E&gt; next &#x3D; node.next;</span><br><span class="line">        prev.next &#x3D; next; &#x2F;&#x2F; 双向循环链表 - prev一定不为空，所以可以prev.next</span><br><span class="line">        next.prev &#x3D; prev  &#x2F;&#x2F; 双向循环链表 - next一定不为空，所以可以next.prev</span><br><span class="line"></span><br><span class="line">        if(index &#x3D;&#x3D; 0) &#123;  &#x2F;&#x2F; 删除首节点</span><br><span class="line">            first &#x3D; next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(index &#x3D;&#x3D; size - 1) &#123; &#x2F;&#x2F; 删除尾节点</span><br><span class="line">            last &#x3D; prev;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    size--;</span><br><span class="line">    return node.element;  &#x2F;&#x2F; 返回已经删除的节点</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -451,7 +452,7 @@
 <li>使用一个数组：数组每个元素存储2个数据，一个放值，一个放下个元素的索引；</li>
 <li>使用两个数组：数组1存值，数组2存索引；</li>
 </ul>
-<img src=".assets/image-20200820195940509.png" alt="image-20200820195940509" style="zoom:50%;">
+<img src="/images/数据结构/image-20200820195940509.png" alt="image-20200820195940509" style="zoom:50%;">
 
 <p>平时开发中没有必要使用静态链表。</p>
 <h4><span id="三-栈">三、栈</span></h4><p><strong>栈</strong>是一种特殊的线性表，只能在一端进行操作。<strong>先进后出</strong>原则，只能移除栈顶元素。</p>
@@ -463,7 +464,7 @@
 <li><p>链表</p>
 </li>
 </ul>
-<h5><span id="1-栈的实现">1、栈的实现</span></h5><img src=".assets/image-20200820210039722.png" alt="image-20200820210039722" style="zoom:50%;">
+<h5><span id="1-栈的实现">1、栈的实现</span></h5><img src="/images/数据结构/image-20200820210039722.png" alt="image-20200820210039722" style="zoom:50%;">
 
 <p>可以利用数组来实现，实际就是操作数组的最后一个元素，push就相当于add(size-1, element)，pop就相当于remove(size-1)。</p>
 <h5><span id="2-栈的应用">2、栈的应用</span></h5><ol>
@@ -472,13 +473,13 @@
 <p>输入jd.com，输入qq.com，输入baidu.com;<br>后退 回到qq.com;<br>再后 退回到jd.com;<br>前进 进入qq.com;<br>输入 taobao.com;<br>此时无法前进了 — 说明baidu.com已经删除了<br>后退 回到qq.com。</p>
 </blockquote>
 <p>利用两个栈可以实现以上功能，A栈存输入的网址，B栈存后退出的网址，输入新的网址时清空B栈数据。</p>
-<img src=".assets/image-20200821193743306.png" alt="image-20200821193743306" style="zoom:50%;">
+<img src="/images/数据结构/image-20200821193743306.png" alt="image-20200821193743306" style="zoom:50%;">
 </li>
 <li><p>软件的撤销与恢复功能</p>
 </li>
 </ol>
 <h4><span id="四-队列">四、队列</span></h4><h5><span id="1-普通队列">1、普通队列</span></h5><p>队列是一种特殊的线性表，只能在头尾两端进行操作。<strong>先进先出</strong>原则，只能从<strong>队尾添加</strong>元素，只能从<strong>队头删除</strong>元素。</p>
-<img src=".assets/image-20200824202922046.png" alt="image-20200824202922046" style="zoom:50%;">
+<img src="/images/数据结构/image-20200824202922046.png" alt="image-20200824202922046" style="zoom:50%;">
 
 <p>可以用以下来实现：</p>
 <ul>
@@ -495,7 +496,7 @@
 </ul>
 <h5><span id="2-双端队列">2、双端队列</span></h5><p>普通队列只能从队尾添加元素，队头删除元素，<strong>双端队列</strong>能在<strong>头尾</strong>两端<strong>添加，删除</strong>元素。比普通队列多了两个方法。<strong>队尾出队</strong>和<strong>队头入队</strong>。</p>
 <p>可以被用来解决某些限制条件下的问题，例如<strong>滑动窗口问题和求最大值最小值</strong>等等。</p>
-<img src=".assets/image-20200824203050202.png" alt="image-20200824203050202" style="zoom:50%;">
+<img src="/images/数据结构/image-20200824203050202.png" alt="image-20200824203050202" style="zoom:50%;">
 
 <ul>
 <li><p>队尾入队（enQueueRear）：即链表的尾部添加元素。list.add(element)；</p>
@@ -507,7 +508,7 @@
 <li><p>队尾出队（deQueueRear）：即删除链表尾部元素。list.remove(list.size()-1)。</p>
 </li>
 </ul>
-<h5><span id="3-循环队列">3、循环队列</span></h5><p><img src=".assets/image-20230825104455980.png" alt="image-20230825104455980"></p>
+<h5><span id="3-循环队列">3、循环队列</span></h5><p><img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20230825104455980.png" alt="image-20230825104455980"></p>
 <p>把顺序队列首尾相连，把存储队列元素的表从逻辑上看成一个环，成为循环队列。当队头指针或者队尾指针到达数组的末尾时，会“循环”回到数组的开头继续存储数据。可以动态数组实现。</p>
 <ul>
 <li>front 指向队首元素；</li>
@@ -855,6 +856,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -863,27 +876,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -907,19 +904,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
