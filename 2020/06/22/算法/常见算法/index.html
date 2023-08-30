@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20230517172317691-3289738.png">
 <meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png">
 <meta property="article:published_time" content="2020-06-22T13:04:00.000Z">
-<meta property="article:modified_time" content="2023-08-30T05:27:46.657Z">
+<meta property="article:modified_time" content="2023-08-30T05:34:40.315Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -261,11 +261,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">      	<span class="comment">// 先存下来比较的数据</span></span><br><span class="line">        <span class="keyword">int</span> key = arr[i];</span><br><span class="line">      	<span class="comment">// 从它前面的第一个数开始比</span></span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; key) &#123;</span><br><span class="line">          	<span class="comment">// 往后挪</span></span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">          	<span class="comment">// 再往前看</span></span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">// 插入合适的位置</span></span><br><span class="line">      	<span class="comment">// 上面有j--；所以这里需要加1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>3、复杂度</strong></p>
-<ol>
-<li>O(n^2) </li>
-</ol>
+<p>O(n^2) </p>
 <p><strong>4、优化</strong></p>
-<p>通常使用的套路：</p>
 <ol>
 <li>先将当前元素保存下来；</li>
 <li>因为当前元素之前的序列是有序的，可以通过<strong>二分查找</strong>，找出当前元素应该插入的位置；</li>
@@ -278,12 +275,9 @@
 
 <h4><span id="四-归并排序稳定">四、归并排序(稳定)</span></h4><p><strong>1、算法</strong></p>
 <ul>
-<li><p>分成两个子序列；</p>
-</li>
-<li><p>递归地将这两个子序列进行排序；</p>
-</li>
-<li><p>两个排好序的子序列合并成一个有序序列。</p>
-</li>
+<li>分成两个子序列；</li>
+<li>递归地将这两个子序列进行排序；</li>
+<li>两个排好序的子序列合并成一个有序序列。</li>
 </ul>
 <p>合并两个有序的子数组时，我们需要创建两个临时数组L和R，将左半部分和右半部分的元素都复制到这两个临时数组中。然后，我们使用三个指针i、j和k来遍历这两个临时数组和原始数组，比较它们之间的元素大小，然后将较小的元素放入原始数组中。最后，我们将剩余的元素复制到原始数组的末尾。</p>
 <p><strong>2、代码</strong></p>
@@ -329,12 +323,9 @@
 </ol>
 <p><strong>1、算法</strong></p>
 <ul>
-<li><p>将待排序的数组构造成一个大根堆，此时整个数组的最大值就是堆结构的顶端；</p>
-</li>
-<li><p>将顶端的数据与末尾的数交换，此时，末尾的数就变成了最大值，剩余待排序数组个数为n-1;</p>
-</li>
-<li><p>再将剩下的待排序的n-1个数再构成大根堆，再将顶端数与n-1位置数交换，一次往复。</p>
-</li>
+<li>将待排序的数组构造成一个大根堆，此时整个数组的最大值就是堆结构的顶端；</li>
+<li>将顶端的数据与末尾的数交换，此时，末尾的数就变成了最大值，剩余待排序数组个数为n-1;</li>
+<li>再将剩下的待排序的n-1个数再构成大根堆，再将顶端数与n-1位置数交换，一次往复。</li>
 </ul>
 <p><img src="/images/%E7%AE%97%E6%B3%95/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png" alt="watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241"></p>
 <p><strong>2、代码</strong></p>
@@ -749,11 +740,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,7 +752,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,11 +760,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
