@@ -1301,8 +1301,94 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>11111</p>
-        
+        <a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#一-斐波拉契数举例">一、斐波拉契数举例</a><ul>
+<li><a href="#1-递归实现">1、递归实现</a></li>
+<li><a href="#2-for循环实现">2、for循环实现</a></li>
+</ul>
+</li>
+<li><a href="#二-如何评判算法好坏">二、如何评判算法好坏？</a><ul>
+<li><a href="#1-时间复杂度">1、时间复杂度</a><ul>
+<li><a href="#1-大o表示法">1、大O表示法</a></li>
+<li><a href="#2-斐波拉契数上面两个算法时间复杂度">2、斐波拉契数上面两个算法时间复杂度</a></li>
+<li><a href="#3-多个数据规模的时间复杂度">3、多个数据规模的时间复杂度</a></li>
+</ul>
+</li>
+<li><a href="#2-空间复杂度">2、空间复杂度</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<p>算法是用于解决特定问题的<strong>执行步骤</strong>，解决同一个问题使用不同的算法，效率可能相差很大，比如求第n个斐波那契数。下面的两个算法，当n稍大些时，执行效率差距非常明显。</p>
+<h4><span id="一-斐波拉契数举例">一、斐波拉契数举例</span></h4><p>前两个数的和组成第三个数，0，1，1，2，3，5，8，13…，即第n项等于第n-1项和第n-2项的和。</p>
+<h6><span id="1-递归实现">1、递归实现</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法一</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fib1(n - <span class="number">2</span>) + fib1(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  System.out.println(fib1(<span class="number">3</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">4</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">5</span>));</span><br><span class="line">  System.out.println(fib1(<span class="number">45</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出结果：<br>2<br>3<br>5<br>1134903170</p>
+<p>说明算法正确，但是2，3，5快速输出，而1134903170则等好几秒后才会输出，说明这个算法存在效率问题。</p>
+</blockquote>
+<h6><span id="2-for循环实现">2、for循环实现</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法二</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> num0 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> num1 = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 一共加n-1次</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n-<span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 后者是前两者的和</span></span><br><span class="line">    <span class="keyword">int</span> sum = num0 + num1;</span><br><span class="line">    <span class="comment">// 后者变成前者</span></span><br><span class="line">    num0 = num1;</span><br><span class="line">    <span class="comment">// 和变成后者</span></span><br><span class="line">    num1 = sum;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回后者</span></span><br><span class="line">  <span class="keyword">return</span> num1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  System.out.println(fib2(<span class="number">3</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">4</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">5</span>));</span><br><span class="line">  System.out.println(fib2(<span class="number">45</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出结果：<br>2<br>3<br>5<br>1134903170<br>说明算法正确，并且几乎同时输出，没有等待，说明这个算法执行效率要比递归算法高很多</p>
+</blockquote>
+<h4><span id="二-如何评判算法好坏">二、如何评判算法好坏？</span></h4><ul>
+<li>正确性，可读性，健壮性</li>
+<li><strong>时间复杂度：估算程序指令执行的次数，即决定了执行时间的长短。</strong></li>
+<li><strong>空间复杂度：估算所需占用的内存空间（比如变量比较多等）。</strong></li>
+</ul>
+<p>第一要位的肯定是算法的正确性，要确保算法能够实现需求，其次是算法的时间复杂度，至于空间复杂度在现如今硬件越来越强大的条件显得不是特别紧要，所以在算法正确的情况下，对算法进行优化重点就在于<strong>时间复杂度</strong>的优化，不同的算法解决同样的问题，执行时间可能存在巨大的差距，如上求斐波拉契数的两个算法。</p>
+<h5><span id="1-时间复杂度">1、时间复杂度</span></h5><p>如何来计算算法的时间复杂度？既然它是指程序指令执行的次数，那么就可以大概计算下算法中指令次数之和，下面计算下些算法的时间复杂度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 以下3个判断中的打印只会执行一次</span></span><br><span class="line">  <span class="comment">// 所以执行次数</span></span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 10"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 5"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &lt;= 5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; 4：	  4次</span></span><br><span class="line">  <span class="comment">// i ++：	  4次</span></span><br><span class="line">  <span class="comment">// System.out.println：1 * 4 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + 4 + 4 + 4 * 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：14</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test2</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; n：	  n次</span></span><br><span class="line">  <span class="comment">// i ++：	  n次</span></span><br><span class="line">  <span class="comment">// System.out.println：1 * n 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + n + n + n * 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test2"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：3n+1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test3</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// int i= 0： 1次</span></span><br><span class="line">  <span class="comment">// i &lt; n：	  n次</span></span><br><span class="line">  <span class="comment">// i ++：	  n次</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="comment">// 先单看这里面，不算外面的循环</span></span><br><span class="line">    <span class="comment">// j = 0：1次</span></span><br><span class="line">    <span class="comment">// j &lt; n：n次</span></span><br><span class="line">    <span class="comment">// j ++：n次</span></span><br><span class="line">    <span class="comment">// System.out.println：1 * n</span></span><br><span class="line">    <span class="comment">// 合计：3n + 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合计：1 + n + n + n * (3n + 1)</span></span><br><span class="line">  <span class="comment">// 合计：1 + 2n + 3n^2 + n</span></span><br><span class="line">  <span class="comment">// 合计：3n^2 + 3n + 1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 1 + n + n + n * (1 + 15 + 15 + 15 * 1)</span></span><br><span class="line">  <span class="comment">// 48n + 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test4"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// (n = n / 2) &gt; 0 等价于 n 能被 2 除多少次</span></span><br><span class="line">  <span class="comment">// 即 2 的 x次方 等于 n</span></span><br><span class="line">  <span class="comment">// 即 执行 x 次</span></span><br><span class="line">  <span class="comment">// 即 log2(n)</span></span><br><span class="line">  <span class="keyword">while</span> ((n = n / <span class="number">2</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test6</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 即 log5(n)</span></span><br><span class="line">  <span class="keyword">while</span> ((n = n / <span class="number">5</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test6"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test7</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// i += i 等价于 i = 2i;</span></span><br><span class="line">  <span class="comment">// 看i的变化</span></span><br><span class="line">  <span class="comment">// 1，2，4，8，16...</span></span><br><span class="line">  <span class="comment">// 2^0, 2^1, 2^2, 2^3, 2^4...</span></span><br><span class="line">  <span class="comment">// 2^x &lt; n, 即x = log2(n)</span></span><br><span class="line">  <span class="comment">// 即外层循环执行 log2(n) 次</span></span><br><span class="line">  <span class="comment">// 合计：1 + 2 * log2(n) + log2(n) * (1+2n+n)</span></span><br><span class="line">  <span class="comment">// 合计：3n * log2(n) + 3 * log2(n) + 1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i += i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">      System.out.println(<span class="string">"test7"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="1-大o表示法">1、大O表示法</span></h6><p>由上引申出<strong>大O表示法</strong>，用来描述时间复杂度，有以下几个原则。</p>
+<ul>
+<li>忽略常数<ul>
+<li>5 =&gt; O(1) – 常数阶</li>
+</ul>
+</li>
+<li>忽略系数<ul>
+<li>2n + 5 =&gt; O(n) – 线性阶</li>
+</ul>
+</li>
+<li>忽略低阶<ul>
+<li>2n^2 + 2n + 5 =&gt; O(n^2) – 平方阶</li>
+<li>2n^3 + n^2 + 2n + 5 =&gt; O(n^3) – 立方阶</li>
+</ul>
+</li>
+<li>对数阶一般省略底数<ul>
+<li>log2(n) = log2(5) * log5(n) ，统一叫log(n) =&gt; O(logn) – 对数阶</li>
+<li>2nlog2(n) + 2log2(n) + 1 =&gt; O(nlogn) – nlogn阶</li>
+</ul>
+</li>
+<li>复杂度大小<ul>
+<li>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!) &lt; O(n^n)</li>
+</ul>
+</li>
+</ul>
+<p>再来看上面的算法用大O表示法来标示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合计：14</span></span><br><span class="line"><span class="comment">// O(1)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n+1</span></span><br><span class="line"><span class="comment">// O(n)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test2"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n^2 + 3n + 1;</span></span><br><span class="line"><span class="comment">// O(n^2)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test3"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 48n + 1</span></span><br><span class="line"><span class="comment">// O(n)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">15</span>; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test4"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 即 log2(n)</span></span><br><span class="line"><span class="comment">// O(logn)</span></span><br><span class="line"><span class="keyword">while</span> ((n = n / <span class="number">2</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test5"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 即 log5(n)</span></span><br><span class="line"><span class="comment">// O(logn)</span></span><br><span class="line"><span class="keyword">while</span> ((n = n / <span class="number">5</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  System.out.println(<span class="string">"test6"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 合计：3n * log2(n) + 3 * log2(n) + 1</span></span><br><span class="line"><span class="comment">// O(nlogn)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i += i) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test7"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6><span id="2-斐波拉契数上面两个算法时间复杂度">2、斐波拉契数上面两个算法时间复杂度</span></h6><p>递归算法分析：</p>
+<p>计算时间复杂度主要看fib1函数执行多少次，假设fib1(5)，需要调用下面这么多少次fib1算法，即1 + 2 + 4 + 8 = 2^0 + 2^1 + 2^2 + 2^3 = 2^4 - 1，fib1(n)调用2^(n-1) - 1 = 0.5 * 2^n - 1；用大O表示法，即O(2^n)，时间复杂度很大，所以这个算法就很不可取。</p>
+<p><img src=".assets/image-20200614220613602.png" alt="image-20200614220613602"></p>
+<p>for循环算法：很明显时间复杂度是O(n)，所以这个算法相对很优了。</p>
+<h6><span id="3-多个数据规模的时间复杂度">3、多个数据规模的时间复杂度</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test9</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 有两个变量控制，n,j</span></span><br><span class="line">  <span class="comment">// 时间复杂度O(n+j)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="2-空间复杂度">2、空间复杂度</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 10"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span> (n &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &gt; 5"</span>);</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"n &lt;= 5"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test1"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 只定义了一个int i，可以认为空间复杂度是O(1)。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test8</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">20</span>; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> c = a + b; <span class="comment">// 常数项</span></span><br><span class="line">  <span class="keyword">int</span> [] array = <span class="keyword">new</span> <span class="keyword">int</span>[n];  <span class="comment">// n是多少，就向堆空间申请多少个int类型。</span></span><br><span class="line">  <span class="comment">// 所以可以任务空间复杂度是O(n)</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test8"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
       
 
       
@@ -1494,11 +1580,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1588,7 +1674,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">定时器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GCD</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1596,11 +1686,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">定时器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GCD</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -1711,11 +1797,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -1806,11 +1892,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -1971,18 +2057,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -1991,15 +2065,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
