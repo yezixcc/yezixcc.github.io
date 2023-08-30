@@ -14,13 +14,13 @@
 <meta property="og:url" content="http://yoursite.com/2020/06/11/%E7%AE%97%E6%B3%95/%E5%A4%8D%E6%9D%82%E5%BA%A6/index.html">
 <meta property="og:site_name" content="Sivan的博客">
 <meta property="og:description" content="算法是用于解决特定问题的执行步骤，解决同一个问题使用不同的算法，效率可能相差很大，比如求第n个斐波那契数。下面的两个算法，当n稍大些时，执行效率差距非常明显。">
-<meta property="og:image" content="http://yoursite.com/2020/06/11/%E7%AE%97%E6%B3%95/%E5%A4%8D%E6%9D%82%E5%BA%A6/.assets/image-20200614220613602.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200614220613602.png">
 <meta property="article:published_time" content="2020-06-11T13:04:00.000Z">
-<meta property="article:modified_time" content="2023-08-30T01:29:07.761Z">
+<meta property="article:modified_time" content="2023-08-30T02:50:15.452Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/06/11/%E7%AE%97%E6%B3%95/%E5%A4%8D%E6%9D%82%E5%BA%A6/.assets/image-20200614220613602.png">
+<meta name="twitter:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200614220613602.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -277,7 +277,7 @@
 
 <h6><span id="2-斐波拉契数上面两个算法时间复杂度">2、斐波拉契数上面两个算法时间复杂度</span></h6><p>递归算法分析：</p>
 <p>计算时间复杂度主要看fib1函数执行多少次，假设fib1(5)，需要调用下面这么多少次fib1算法，即1 + 2 + 4 + 8 = 2^0 + 2^1 + 2^2 + 2^3 = 2^4 - 1，fib1(n)调用2^(n-1) - 1 = 0.5 * 2^n - 1；用大O表示法，即O(2^n)，时间复杂度很大，所以这个算法就很不可取。</p>
-<p><img src=".assets/image-20200614220613602.png" alt="image-20200614220613602"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200614220613602.png" alt="image-20200614220613602"></p>
 <p>for循环算法：很明显时间复杂度是O(n)，所以这个算法相对很优了。</p>
 <h6><span id="3-多个数据规模的时间复杂度">3、多个数据规模的时间复杂度</span></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test9</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"test9"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 有两个变量控制，n,j</span></span><br><span class="line">  <span class="comment">// 时间复杂度O(n+j)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -568,18 +568,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -588,7 +576,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,6 +593,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">

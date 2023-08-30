@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>常见算法 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态">
+  <meta name="description" content="几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见算法">
 <meta property="og:url" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态">
+<meta property="og:description" content="几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态。">
 <meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20230517131707616.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/image-20230517135932076-3286650.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/image-20230517172317691-3289738.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/22/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/.assets/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20230517135932076-3286650.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20230517172317691-3289738.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png">
 <meta property="article:published_time" content="2020-06-22T13:04:00.000Z">
-<meta property="article:modified_time" content="2023-08-30T02:42:19.920Z">
+<meta property="article:modified_time" content="2023-08-30T02:49:55.157Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态</p>
+        <p>几种常见的算法，如冒泡，选择，插入，归并，快排，堆排，希尔排序，计数排序，桶排序，计数排序，递归，分治，动态。</p>
 <a id="more"></a>
 
 <!-- toc -->
@@ -317,7 +317,7 @@
 <li>直到找到应该插入的位置，将其插入到对应的位置；</li>
 <li>执行过程中，序列就会分成2部分，前面是排好序的，后面是待排序的。</li>
 </ul>
-<p><img src=".assets/image-20230517135932076-3286650.png" alt="image-20230517135932076"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20230517135932076-3286650.png" alt="image-20230517135932076"></p>
 <h5><span id="1-代码">1、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">      	<span class="comment">// 先存下来比较的数据</span></span><br><span class="line">        <span class="keyword">int</span> key = arr[i];</span><br><span class="line">      	<span class="comment">// 从它前面的第一个数开始比</span></span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; key) &#123;</span><br><span class="line">          	<span class="comment">// 往后挪</span></span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">          	<span class="comment">// 再往前看</span></span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">// 插入合适的位置</span></span><br><span class="line">      	<span class="comment">// 上面有j--；所以这里需要加1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5><span id="3-复杂度">3、复杂度</span></h5><ol>
@@ -365,7 +365,7 @@
 <li><p>对两个子序列分别进行1,2操作，直到不能再分割；</p>
 </li>
 </ul>
-<p><img src=".assets/image-20230517172317691-3289738.png" alt="image-20230517172317691"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20230517172317691-3289738.png" alt="image-20230517172317691"></p>
 <h5><span id="2-代码">2、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">10</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> n = arr.length;</span><br><span class="line"></span><br><span class="line">        quickSort(arr, <span class="number">0</span>, n-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"排序后的数组:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">            System.out.print(arr[i]+<span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">            <span class="comment">// 划分数组并获取枢轴点</span></span><br><span class="line">            <span class="keyword">int</span> pivot = partition(arr, low, high);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对枢轴点左边的子数组进行递归排序</span></span><br><span class="line">            quickSort(arr, low, pivot - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对枢轴点右边的子数组进行递归排序</span></span><br><span class="line">            quickSort(arr, pivot + <span class="number">1</span>, high);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 选取第一个元素作为枢轴点</span></span><br><span class="line">        <span class="keyword">int</span> pivot = arr[low];</span><br><span class="line">        <span class="keyword">int</span> i = low;</span><br><span class="line">        <span class="keyword">int</span> j = high;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="comment">// 从右往左扫描，查找第一个小于等于枢轴点的元素</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; arr[j] &gt; pivot) &#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 找到后将其交换到左边</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">                arr[i] = arr[j];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 从左往右扫描，查找第一个大于枢轴点的元素</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; arr[i] &lt;= pivot) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 找到后将其交换到右边</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">                arr[j] = arr[i];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将枢轴点放到最终位置</span></span><br><span class="line">        arr[i] = pivot;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回枢轴点的位置</span></span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>该代码使用了快速排序算法来对一个整型数组进行排序。</p>
@@ -390,7 +390,7 @@
 <li><p>再将剩下的待排序的n-1个数再构成大根堆，再将顶端数与n-1位置数交换，一次往复。</p>
 </li>
 </ul>
-<p><img src=".assets/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png" alt="watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241.png" alt="watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb29yaWs=,size_20,color_FFFFFF,t_70,g_se,x_16-20230518140225241"></p>
 <h5><span id="2-代码">2、代码</span></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = arr.length;</span><br><span class="line">    <span class="comment">// 构建最大堆</span></span><br><span class="line">    buildMaxHeap(arr, len);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">// 将堆顶元素与末尾元素交换位置</span></span><br><span class="line">        swap(arr, <span class="number">0</span>, i);</span><br><span class="line">        <span class="comment">// 调整堆结构，使其满足堆的定义</span></span><br><span class="line">        adjustHeap(arr, <span class="number">0</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构建最大堆</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = len / <span class="number">2</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        adjustHeap(arr, i, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调整堆结构</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">adjustHeap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span> * i + <span class="number">1</span>; j &lt; len; j = <span class="number">2</span> * j + <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j + <span class="number">1</span> &lt; len &amp;&amp; arr[j] &lt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (arr[j] &gt; temp) &#123;</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            i = j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[i] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交换元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">    arr[i] = arr[j];</span><br><span class="line">    arr[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5><span id="3-复杂度">3、复杂度</span></h5><p>复杂度为O(nlogn)，空间复杂度为O(1)</p>
@@ -758,18 +758,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -778,7 +766,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,6 +783,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">

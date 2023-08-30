@@ -14,19 +14,19 @@
 <meta property="og:url" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sivan的博客">
 <meta property="og:description" content="链表，栈，二叉树等算法练习。">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200701215822583.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200701215931636.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200701224830389.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200804142700222.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200706221809375.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200804181338727.png">
-<meta property="og:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200813195328673.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200701215822583.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200701215931636.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200701224830389.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200804142700222.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200706221809375.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200804181338727.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200813195328673.png">
 <meta property="article:published_time" content="2020-06-29T13:04:00.000Z">
-<meta property="article:modified_time" content="2023-08-30T01:21:37.094Z">
+<meta property="article:modified_time" content="2023-08-30T02:50:32.057Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/06/29/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/.assets/image-20200701215822583.png">
+<meta name="twitter:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95/image-20200701215822583.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -257,33 +257,33 @@
 
 <h5><span id="2-反转链表">2、反转链表</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br><span class="line">输出: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">public ListNode reverseList(ListNode head) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src=".assets/image-20200701215822583.png" alt="image-20200701215822583"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200701215822583.png" alt="image-20200701215822583"></p>
 <h6><span id="1-递归实现">1、递归实现</span></h6><p>要实现上面的效果，可以先考虑下图的情况，假设<code>reverseList</code>函数的功能正常，那么如果反转4节点链表，那么应该是<code>ListNode newHead = reverseList(head.next)</code>，此时只要考虑将4节点的next指向5，5节点的next指向null就可以了。</p>
 <p>递归主要的思想是弄清楚方法实现的功能是什么，默认方法已经实现，然后处理好边界，结束循环调用即可。</p>
-<p><img src=".assets/image-20200701215931636.png" alt="image-20200701215931636"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200701215931636.png" alt="image-20200701215931636"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 处理边界退出循环调用</span></span><br><span class="line">    <span class="comment">// 1.空节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2.只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = reverseList(head.next);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h6><span id="2-迭代实现">2、迭代实现</span></h6><p><img src=".assets/image-20200701224830389.png" alt="image-20200701224830389"></p>
+<h6><span id="2-迭代实现">2、迭代实现</span></h6><p><img src="/images/%E7%AE%97%E6%B3%95/image-20200701224830389.png" alt="image-20200701224830389"></p>
 <p>三指针。执行上图中的步骤，以此循环，直到head == null为止，即实现链表反转。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.空节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 2.只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) &#123; </span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">      ListNode tmp = head.next;</span><br><span class="line">      head.next = newHead;</span><br><span class="line">      newHead = head;</span><br><span class="line">      head = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h5><span id="3-环形链表">3、环形链表</span></h5><p>给定一个链表，判断链表中是否有环。</p>
-<p><img src=".assets/image-20200804142700222.png" alt="image-20200804142700222"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200804142700222.png" alt="image-20200804142700222"></p>
 <p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">0</span>,-<span class="number">4</span>], pos = <span class="number">1</span></span><br><span class="line">输出: <span class="keyword">true</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>快慢指针思想：</strong></p>
 <p>定义两个指针，slow指针一次走一步，fast指针一次走两步，如果有环，那么slow和fast指针到最后一定会重合，即指向同一个节点；如果没有环，那么fast指针一定先达到NULL，结束查找。</p>
-<p><img src=".assets/image-20200706221809375.png" alt="image-20200706221809375"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200706221809375.png" alt="image-20200706221809375"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 快慢指针解法</span></span><br><span class="line"><span class="comment">/// 定义两个指针，1个一次只走一步，另1个一次走两步，最后两个指针执行同一个元素即为环形</span></span><br><span class="line"><span class="comment">/// 快指针指向head，慢指针指向head.next</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fast == slow) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>虚拟头节点思想：</strong></p>
 <p>有时候为了让代码更加精简，统一所有节点的处理逻辑，可以在最前面增加一个虚拟的头结点（不存储数据）。</p>
-<p><img src=".assets/image-20200804181338727.png" alt="image-20200804181338727"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200804181338727.png" alt="image-20200804181338727"></p>
 <h5><span id="4-约瑟夫问题">4、约瑟夫问题</span></h5><p>8个人，每个人都有一个序号，从第1个开始，每次数3次，数到谁，谁被踢出，继续往下进行，到最后剩下的那个人胜利。</p>
-<p><img src=".assets/image-20200813195328673.png" alt="image-20200813195328673"></p>
+<p><img src="/images/%E7%AE%97%E6%B3%95/image-20200813195328673.png" alt="image-20200813195328673"></p>
 <p>利用循环链表就可以解决，单向循环和双向循环都可以，在循环链表中新增以下几个方法。</p>
 <ul>
 <li>新增一个current指针，指向某个节点，走到哪指到哪；</li>
@@ -694,18 +694,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">定时器</a>
               </li>
              
@@ -714,7 +702,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cocoapods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,6 +719,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
