@@ -16,7 +16,7 @@
 <meta property="og:description" content="category的实现原理是怎样的，平常在什么场合下使用category呢？">
 <meta property="og:image" content="https://yezixcc.github.io/images/iOS/Category/image-20230831135321025.png">
 <meta property="article:published_time" content="2019-05-27T06:09:47.000Z">
-<meta property="article:modified_time" content="2023-08-31T09:29:20.988Z">
+<meta property="article:modified_time" content="2023-08-31T09:33:39.347Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
@@ -259,16 +259,13 @@
 </li>
 </ul>
 <p>一般使用+load方法，因为会在main函数之前调用，影响开机启动时间，使用<strong>GCD一次性代码和+initialize</strong>代替。</p>
-<h3><span id="四-initialize方法调用">四、+initialize方法调用</span></h3><ol>
-<li><p>在类第一次接收到消息的时候调用一次，不使用不调用；</p>
-</li>
-<li><p>类和分类中的+initialize，只会调用其一：</p>
+<h3><span id="四-initialize方法调用">四、+initialize方法调用</span></h3><p>1、在类第一次接收到消息的时候调用一次，不使用不调用；</p>
+<p>2、类和分类中的+initialize，只会调用其一：</p>
 <ul>
 <li>分类有实现+initialize，调分类的，否则调本类的；</li>
 <li>方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。<code>objc_msgSend([Person class], @selector(initialize))</code>。</li>
 </ul>
-</li>
-<li><p>调用顺序：</p>
+<p>3、调用顺序：</p>
 <ul>
 <li><p>先初始化父类</p>
 <blockquote>
@@ -278,12 +275,8 @@
 <li><p>再初始化子类</p>
 </li>
 </ul>
-</li>
-</ol>
-<h3><span id="五-关联对象">五、关联对象</span></h3><ol>
-<li><p>在分类中添加属性只会生成setter和getter声明，不会生成成员变量和方法实现；</p>
-</li>
-<li><p>不能直接添加成员变量，可以间接实现成员变量的效果；</p>
+<h3><span id="五-关联对象">五、关联对象</span></h3><p>1、在分类中添加属性只会生成setter和getter声明，不会生成成员变量和方法实现；</p>
+<p>2、不能直接添加成员变量，可以间接实现成员变量的效果；</p>
 <ul>
 <li><p>使用静态字典存放</p>
 <blockquote>
@@ -296,12 +289,8 @@
 <li><p>runtime关联对象。</p>
 </li>
 </ul>
-</li>
-</ol>
-<h5><span id="原理">原理</span></h5><ol>
-<li><p>它的结构决定了它不能存放成员变量，因为结构内没有可以存放成员变量的数组，而类中有ivars数组可以存放成员变量。</p>
-</li>
-<li><p>核心对象：<strong>AssociationsManager</strong> – runtime自己维护了一个<strong>全局的manager</strong>，里面放了一个map(可以理解为字典)</p>
+<h5><span id="原理">原理</span></h5><p>1、它的结构决定了它不能存放成员变量，因为结构内没有可以存放成员变量的数组，而类中有ivars数组可以存放成员变量。</p>
+<p>2、核心对象：<strong>AssociationsManager</strong> – runtime自己维护了一个<strong>全局的manager</strong>，里面放了一个map(可以理解为字典)</p>
 <p>AssociationsHashMap *_map</p>
 <ul>
 <li>disguised_ptr_t：ObjectAssociationMap<ul>
@@ -313,8 +302,6 @@
 </ul>
 </li>
 </ul>
-</li>
-</ol>
 <blockquote>
 <p>总结：</p>
 <ol>
@@ -637,10 +624,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
@@ -649,11 +632,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
