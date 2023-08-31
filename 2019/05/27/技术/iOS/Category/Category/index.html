@@ -14,14 +14,14 @@
 <meta property="og:url" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/index.html">
 <meta property="og:site_name" content="Sivan的博客">
 <meta property="og:description" content="category的实现原理是怎样的，平常在什么场合下使用category呢？">
-<meta property="og:image" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/.assets/image-20230831135321025.png">
+<meta property="og:image" content="https://yezixcc.github.io/images/iOS/Category/image-20230831135321025.png">
 <meta property="article:published_time" content="2019-05-27T06:09:47.000Z">
-<meta property="article:modified_time" content="2023-08-31T08:17:43.290Z">
+<meta property="article:modified_time" content="2023-08-31T09:02:00.216Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/.assets/image-20230831135321025.png">
+<meta name="twitter:image" content="https://yezixcc.github.io/images/iOS/Category/image-20230831135321025.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -201,11 +201,17 @@
 <li><a href="#二-方法合并">二、方法合并</a></li>
 <li><a href="#三-load方法调用">三、+load方法调用</a></li>
 <li><a href="#四-initialize方法调用">四、+initialize方法调用</a></li>
-<li><a href="#五-关联对象">五、关联对象</a></li>
+<li><a href="#五-关联对象">五、关联对象</a><ul>
+<li><a href="#原理">原理</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
-<h3><span id="一-底层结构">一、底层结构</span></h3><p><img src=".assets/image-20230831135321025.png" alt="image-20230831135321025"></p>
+<h3><span id="一-底层结构">一、底层结构</span></h3><img src="https://yezixcc.github.io/images/iOS/Category/image-20230831135321025.png">
+
+
+
 <h3><span id="二-方法合并">二、方法合并</span></h3><ol>
 <li>同一类的所有分类方法都会合并到该类中的方法列表中（数组）;</li>
 <li>对象方法合并到类对象中，类方法合并到元类对象中；<ul>
@@ -218,131 +224,111 @@
 <li>不是在编译的时候合并，而是在运行时合并的，所以Category属于运行时；</li>
 <li>每一个分类都是独立的，所有的分类的结构都是一样的，只是名称不一样。</li>
 </ol>
-<p>注意：分类和类中出现相同的方法时，会优先调用分类中的方法，找到了就不再进行其他类或分类中的方法调用（+load方法除外）</p>
-<h3><span id="三-load方法调用">三、+load方法调用</span></h3><ul>
-<li><p>1、runtime加载类，分类的时候调用 – &gt; 不管有没有#import类、分类，+load方法都会被调用;</p>
+<p><strong>注意</strong>：分类和类中出现相同的方法时，会优先调用分类中的方法，找到了就不再进行其他类或分类中的方法调用（+load方法除外）</p>
+<h3><span id="三-load方法调用">三、+load方法调用</span></h3><ol>
+<li><p>runtime加载类，分类的时候调用 – &gt; 不管有没有#import类、分类，+load方法都会被调用；</p>
 </li>
-<li><p>2、每个类、分类的+load，在程序运行过程中只会调用一次</p>
+<li><p>每个类、分类的+load，在程序运行过程中只会调用一次；</p>
 </li>
-<li><p>3、类和分类中的+load都会被调用;</p>
+<li><p>类和分类中的+load都会被调用：</p>
 <ul>
-<li>a）因为底层是直接找到原来的方法列表中的+load方法，直接函数指针调用；</li>
-<li>b）其他方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。objc_msgSend([Person class], @selector(test))</li>
+<li>因为底层是直接找到原来的方法列表中的+load方法，直接函数指针调用；</li>
+<li>其他方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。objc_msgSend([Person class], @selector(test))。</li>
 </ul>
 </li>
-<li><p>4、调用顺序;</p>
+<li><p>调用顺序：</p>
 <ul>
-<li><p>1、先调用类的+load</p>
-<ul>
-<li>1、先编译的类，优先调用load – 先编译的方法先放到数组里面，所以先调用</li>
-<li>2、调用子类的+load之前，会自动先调用父类的+load，系统自动调用，无需手动[super load]</li>
-</ul>
+<li><p>先调用类的+load：</p>
+<blockquote>
+<ol>
+<li><p>先编译的类，优先调用load – 先编译的方法先放到数组里面，所以先调用；</p>
 </li>
-<li><p>2、再调用分类的+load</p>
-<ul>
-<li>1、先编译的类，优先调用load</li>
-</ul>
+<li><p>调用子类的+load之前，会自动先调用父类的+load，系统自动调用，无需手动<code>[super load]</code>。</p>
 </li>
-<li><p>3、多个不同类先编译的先调用</p>
-<ul>
-<li>1、底层是一个数组将所有+load方法装起来，先编译的放到前面，调用方法时是从0元素开始的，所以，先编译的先调用，编译顺序可从Complie Sources中查看，在前面的先编译</li>
-</ul>
+</ol>
+</blockquote>
 </li>
-</ul>
+<li><p>再调用分类的+load：</p>
+<blockquote>
+<p>先编译的类，优先调用+load</p>
+</blockquote>
 </li>
-</ul>
-<h3><span id="四-initialize方法调用">四、+initialize方法调用</span></h3><ul>
-<li><p>1、在类第一次接收到消息的时候调用一次，不使用不调用；</p>
-</li>
-<li><p>2、类和分类中的+initialize，只会调用其一；</p>
-<ul>
-<li>分类有实现+initialize，调分类的，否则调本类的</li>
-<li>方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。objc_msgSend([Person class], @selector(initialize))</li>
-</ul>
-</li>
-<li><p>3、调用顺序；</p>
-<ul>
-<li><p>1、先初始化父类</p>
-<ul>
-<li>系统主动调用，而非写[super initialize];<br>(objc_msgSend内部会主动调用，查找待调用的方法之前发现父类没有调用initialize，就会调用父类initialize)，所以父类的initailize可能会调用多次</li>
-</ul>
-</li>
-<li><p>2、再初始化子类</p>
+<li><p>多个不同类，先编译的先调用</p>
+<blockquote>
+<p>底层是一个数组将所有+load方法装起来，先编译的放到前面，调用方法时是从0元素开始的，所以，先编译的先调用，编译顺序可从Complie Sources中查看，在前面的先编译。</p>
+</blockquote>
 </li>
 </ul>
 </li>
-</ul>
-<h3><span id="五-关联对象">五、关联对象</span></h3><ul>
-<li><p>1、@property(assign, nonatomic) age;</p>
-<ul>
-<li>在分类中添加属性只会生成set和get声明，不会生成成员变量和方法实现</li>
-<li>1、- (void)setAge:(int)age</li>
-<li>2、-(int)age;</li>
-</ul>
+</ol>
+<p>一般使用+load方法，因为会在main函数之前调用，影响开机启动时间，使用<strong>GCD一次性代码和+initialize</strong>代替。</p>
+<h3><span id="四-initialize方法调用">四、+initialize方法调用</span></h3><ol>
+<li><p>在类第一次接收到消息的时候调用一次，不使用不调用；</p>
 </li>
-<li><p>2、不能直接添加成员变量，可以间接实现成员变量的效果</p>
+<li><p>类和分类中的+initialize，只会调用其一：</p>
 <ul>
-<li><p>1、静态字典  – 存放在全局</p>
-<ul>
-<li>1、内存一直占用</li>
-<li>2、线程安全问题</li>
+<li>分类有实现+initialize，调分类的，否则调本类的；</li>
+<li>方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。<code>objc_msgSend([Person class], @selector(initialize))</code>。</li>
 </ul>
 </li>
-<li><p>2、runtime关联对象</p>
+<li><p>调用顺序：</p>
+<ul>
+<li><p>先初始化父类</p>
+<blockquote>
+<p>系统主动调用，而非写[super initialize];<br>(objc_msgSend内部会主动调用，查找待调用的方法之前发现父类没有调用initialize，就会调用父类initialize)，所以父类的initailize可能会调用多次。</p>
+</blockquote>
+</li>
+<li><p>再初始化子类</p>
 </li>
 </ul>
 </li>
-<li><p>4、原理；</p>
-<ul>
-<li><p>1、它的结构决定了它不能存放成员变量，因为结构内没有可以存放成员变量的数组，而类中有ivars数组可以存放成员变量</p>
+</ol>
+<h3><span id="五-关联对象">五、关联对象</span></h3><ol>
+<li><p>在分类中添加属性只会生成setter和getter声明，不会生成成员变量和方法实现；</p>
 </li>
-<li><p>2、核心对象</p>
+<li><p>不能直接添加成员变量，可以间接实现成员变量的效果；</p>
 <ul>
-<li><p>1、AssociationsManager – runtime自己维护了一个全局的manager，里面放了一个map(可以理解为字典)</p>
+<li><p>使用静态字典存放</p>
+<blockquote>
+<ol>
+<li>内存一直占用</li>
+<li>线程安全问题</li>
+</ol>
+</blockquote>
+</li>
+<li><p>runtime关联对象。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5><span id="原理">原理</span></h5><ol>
+<li><p>它的结构决定了它不能存放成员变量，因为结构内没有可以存放成员变量的数组，而类中有ivars数组可以存放成员变量。</p>
+</li>
+<li><p>核心对象：<strong>AssociationsManager</strong> – runtime自己维护了一个<strong>全局的manager</strong>，里面放了一个map(可以理解为字典)</p>
+<p>AssociationsHashMap *_map</p>
 <ul>
-<li><p>2、AssociationsHashMap *_map</p>
-<ul>
-<li><p>3、disguised_ptr_t：ObjectAssociationMap</p>
-<ul>
-<li><p>4、void *： ObjcAssociation</p>
-<ul>
+<li>disguised_ptr_t：ObjectAssociationMap<ul>
+<li>void *： ObjcAssociation<ul>
 <li>uintptr_t _policy</li>
 <li>id _value</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>disguised_ptr_t：ObjectAssociationMap</p>
-<ul>
-<li><p>void *： ObjcAssociation</p>
-<ul>
-<li>uintptr_t _policy</li>
-<li>id _value</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>…</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>3、结论</p>
-<ul>
-<li>1、关联对象并不是存储在被关联的对象本身内存中</li>
-<li>2、关联对象存储在全局的统一的一个AssociationsManager中</li>
-<li>3、设置关联对象值为nil，移除关联对象，相当于把 void *： ObjcAssociation 这一对key value擦除</li>
-<li>4、移除所有的关联对象：void objc_removeAssociatedObjects(id object)，相当于把disguised_ptr_t：ObjectAssociationMap 这一对key value擦除</li>
-<li>5、关联策略不存在weak这一种</li>
-<li>6、对传入的object不存在强引用, object对象销毁，对应的map就会移除</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</ol>
+<blockquote>
+<p>总结：</p>
+<ol>
+<li>关联对象并不是存储在被关联的对象本身内存中；</li>
+<li>关联对象存储在全局的统一的一个AssociationsManager中；</li>
+<li>设置关联对象值为nil，移除关联对象，相当于把 void *： ObjcAssociation 这一对key value擦除；</li>
+<li>移除所有的关联对象：void objc_removeAssociatedObjects(id object)，相当于把disguised_ptr_t：ObjectAssociationMap 这一对key value擦除；</li>
+<li>关联策略不存在weak这一种；</li>
+<li>对传入的object不存在强引用, object对象销毁，对应的map就会移除。</li>
+</ol>
+</blockquote>
 
       
 
@@ -468,7 +454,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、底层结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、方法合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、+load方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、+initialize方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、关联对象</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、底层结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、方法合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、+load方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、+initialize方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、关联对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">5.0.1.</span> <span class="toc-text">原理</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -654,15 +640,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
