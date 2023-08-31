@@ -14,15 +14,15 @@
 <meta property="og:url" content="http://yoursite.com/2019/05/28/%E6%8A%80%E6%9C%AF/iOS/KVC/KVC/index.html">
 <meta property="og:site_name" content="Sivan的博客">
 <meta property="og:description" content="简单记录KVC的原理，通过KVC会触发KVO监听吗？">
-<meta property="og:image" content="http://yoursite.com/2019/05/28/%E6%8A%80%E6%9C%AF/iOS/KVC/KVC/.assets/image-20230831184715543.png">
-<meta property="og:image" content="http://yoursite.com/2019/05/28/%E6%8A%80%E6%9C%AF/iOS/KVC/KVC/.assets/image-20230831184741645.png">
+<meta property="og:image" content="https://yezixcc.github.io/images/iOS/KVC/image-20230831184715543.png">
+<meta property="og:image" content="https://yezixcc.github.io/images/iOS/KVC/image-20230831184741645.png">
 <meta property="article:published_time" content="2019-05-28T06:09:47.000Z">
-<meta property="article:modified_time" content="2023-08-31T10:49:28.017Z">
+<meta property="article:modified_time" content="2023-08-31T10:53:58.234Z">
 <meta property="article:author" content="Sivan">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/28/%E6%8A%80%E6%9C%AF/iOS/KVC/KVC/.assets/image-20230831184715543.png">
+<meta name="twitter:image" content="https://yezixcc.github.io/images/iOS/KVC/image-20230831184715543.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -246,11 +246,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSDate *earliestDate &#x3D; [self.transactions valueForKeyPath:@&quot;@min.date&quot;];</span><br></pre></td></tr></table></figure>
 
 <p>备注：@max和@min在进行判断时，都是通过调用compare:方法进行判断，所以可以通过重写该方法对判断过程进行控制。</p>
-<h3><span id="二-原理">二、原理</span></h3><h5><span id="1-setvalueforkey">1、setValue:forKey:</span></h5><p><img src=".assets/image-20230831184715543.png" alt="image-20230831184715543"></p>
-<h5><span id="2-valueforkey">2、valueForKey:</span></h5><p><img src=".assets/image-20230831184741645.png" alt="image-20230831184741645"></p>
+<h3><span id="二-原理">二、原理</span></h3><h5><span id="1-setvalueforkey">1、setValue:forKey:</span></h5><img src="https://yezixcc.github.io/images/iOS/KVC/image-20230831184715543.png">
+
+<h5><span id="2-valueforkey">2、valueForKey:</span></h5><img src="https://yezixcc.github.io/images/iOS/KVC/image-20230831184741645.png">
+
+
+
 <h3><span id="三-异常处理">三、异常处理</span></h3><p>当通过KVC给<strong>某个非对象的属性赋值为nil时</strong>，此时KVC会调用属性所属对象的setNilValueForKey:方法，并抛出NSInvalidArgumentException的异常，并使应用程序Crash。<br>我们可以通过重写下面方法，在发生这种异常时进行处理。例如给name赋值为nil的时候，就可以重写setNilValueForKey:方法并表示name是空的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)setNilValueForKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;name&quot;]) &#123;</span><br><span class="line">        [self setValue:@&quot;&quot; forKey:@”age”];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        [super setNilValueForKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<p>备注：就算没有setter方法，通过KVC方式赋值也会触发KVO监听。可能是KVC内部会调用willChangeValueForkey和didChangeValueForKey。</p>
 
       
 
@@ -338,11 +345,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/29/%E6%8A%80%E6%9C%AF/iOS/KVO/KVO/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          多线程(一)-简介
+          KVC
         
       </div>
     </a>
@@ -574,11 +581,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
