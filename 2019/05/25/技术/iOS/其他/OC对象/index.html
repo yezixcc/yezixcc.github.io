@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>配置多个git账号 | Sivan的博客</title>
+  <title>OC对象 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mac下配置多个git账户，实现向不同的git仓库提交信息。">
+  <meta name="description" content="oc对象的底层结构。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配置多个git账号">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/%E5%85%B6%E4%BB%96/Git/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/index.html">
+<meta property="og:title" content="OC对象">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="mac下配置多个git账户，实现向不同的git仓库提交信息。">
-<meta property="og:image" content="https://yezixcc.github.io/images/Git/image-20191220113007337.png">
-<meta property="article:published_time" content="2019-05-09T02:43:13.000Z">
-<meta property="article:modified_time" content="2023-08-30T10:15:43.235Z">
+<meta property="og:description" content="oc对象的底层结构。">
+<meta property="og:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/b0c88b08bf3b4df1bebbe41f72b7f576~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230831104719155.png">
+<meta property="article:published_time" content="2019-05-25T06:09:47.000Z">
+<meta property="article:modified_time" content="2023-08-31T03:07:03.994Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="其他">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://yezixcc.github.io/images/Git/image-20191220113007337.png">
+<meta name="twitter:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/b0c88b08bf3b4df1bebbe41f72b7f576~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -165,20 +166,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-其他/Git/配置多个git账号" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-技术/iOS/其他/OC对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      配置多个git账号
+      OC对象
     </h1>
   
 
         
-        <a href="/2019/05/09/%E5%85%B6%E4%BB%96/Git/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/" class="archive-article-date">
-  	<time datetime="2019-05-09T02:43:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2019-05-25T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-25</time>
 </a>
         
         <!-- 添加代码 -->
@@ -191,32 +192,146 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>mac下配置多个git账户，实现向不同的git仓库提交信息。</p>
+        <p>oc对象的底层结构。</p>
 <a id="more"></a>
 
-<p>1、先查看是否已经设置git的user.name和user.email。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list #终端下执行这个命令</span><br></pre></td></tr></table></figure>
+<!-- toc -->
 
-<p>2、设置user.name 和 user.email。如果有设置user.name，user.email可不用再设置，直接第3步。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name &quot;username&quot;  #随便起个名字都可以，提交信息时显示的就是这个名字</span><br><span class="line">git config user.email &quot;xxxx@qq.com&quot; #绑定的git仓库的邮箱</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="#oc对象">OC对象</a><ul>
+<li><a href="#一-本质">一、本质</a><ul>
+<li><a href="#1-底层语言">1、底层语言</a></li>
+<li><a href="#2-架构类型">2、架构类型</a></li>
+<li><a href="#3-数据结构">3、数据结构</a></li>
+</ul>
+</li>
+<li><a href="#二-分类">二、分类</a><ul>
+<li><a href="#1-instance对象实例对象">1、instance对象（实例对象）</a><ul>
+<li><a href="#1内存结构">1）内存结构</a></li>
+<li><a href="#2获取方法">2）获取方法</a></li>
+<li><a href="#3对象方法调用过程">3）对象方法调用过程</a></li>
+</ul>
+</li>
+<li><a href="#2-class对象类对象">2、class对象（类对象）</a><ul>
+<li><a href="#1内存结构-1">1）内存结构</a></li>
+<li><a href="#2获取方法-1">2）获取方法</a></li>
+<li><a href="#3类方法调用过程">3）类方法调用过程</a></li>
+</ul>
+</li>
+<li><a href="#3-meta-class对象元类对象">3、meta-class对象（元类对象）</a><ul>
+<li><a href="#1内存结构-2">1）内存结构</a></li>
+<li><a href="#2获取方法-2">2）获取方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
 
-<p>3、生成ssh key。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxxx@qq.com&quot; #xxxx@qq.com为绑定的git仓库的邮箱</span><br><span class="line"></span><br><span class="line">Generating public&#x2F;private rsa key pair.</span><br><span class="line">Enter file in which to save the key (&#x2F;Users&#x2F;xxx&#x2F;.ssh&#x2F;id_rsa): &#x2F;Users&#x2F;xxx&#x2F;.ssh&#x2F;id_rsa_xxx #输入一个保存新的rsa的路径，就输入原.ssh文件路径，自定义文件名称，以避免覆盖原有的id_rsa文件。</span><br><span class="line"></span><br><span class="line">Enter passphrase (empty for no passphrase): #按Enter继续</span><br><span class="line">Enter same passphrase again: #按Enter继续</span><br><span class="line">Your identification has been saved in &#x2F;Users&#x2F;xxx&#x2F;.ssh&#x2F;id_rsa_xxx.</span><br><span class="line">Your public key has been saved in &#x2F;Users&#x2F;xxx&#x2F;.ssh&#x2F;id_rsa_xxx.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:XYOrPG2URcthygQoaCxbQo+MFlPWHxi1uHhK5hLhN3R xxxx@qq.com</span><br><span class="line">The key&#39;s randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">|.&#x3D;.+..+o... +    |</span><br><span class="line">|&#x3D; @ .oo..o * o   |</span><br><span class="line">|.@ o E... + *    |</span><br><span class="line">|+ . + .. . &#x3D; .   |</span><br><span class="line">| o * o  S &#x3D;      |</span><br><span class="line">|  * +  . +       |</span><br><span class="line">| . o    + o      |</span><br><span class="line">|  .      o       |</span><br><span class="line">|                 |</span><br><span class="line">+----[SHA256]-----+</span><br><span class="line"></span><br><span class="line">#提示成功了，生成了id_rsa_xxx和id_rsa_xxx.pub两个文件</span><br></pre></td></tr></table></figure>
+<h2><span id="oc对象">OC对象</span></h2><h3><span id="一-本质">一、本质</span></h3><h4><span id="1-底层语言">1、底层语言</span></h4><ul>
+<li>OC</li>
+<li>C/C++</li>
+<li>汇编语言</li>
+<li>机器语言</li>
+</ul>
+<h4><span id="2-架构类型">2、架构类型</span></h4><ul>
+<li>i386（模拟器）</li>
+<li>armv7（32bit处理器）</li>
+<li>arm64（64位处理器）</li>
+</ul>
+<h4><span id="3-数据结构">3、数据结构</span></h4><ul>
+<li><p>结构体：一个OC对象可能包含很多成员变量，各变量类型可能不同，而只有结构体才能容纳不同类型的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123; </span><br><span class="line">    Class isa ; </span><br><span class="line">&#125; ;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>占用字节：</p>
+<ul>
+<li>指针：8字节</li>
+<li>int型：4字节</li>
+<li>double型：8字节</li>
+<li>long型：8字节</li>
+<li>block：也是指针，8字节。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1个 指针 占8个字节</span><br><span class="line">1个 int型 占用4个字节</span><br><span class="line">1个 double型 占用8个字节</span><br><span class="line">1个 long型 占用8个字节</span><br><span class="line">block 也是指针，8个字节</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义Student对象占用字节？</p>
+<ul>
+<li>1、NSObject_IMPL结构体(class isa) – 8</li>
+<li>2、int _no – 4</li>
+<li>3、int _age – 4</li>
+<li>总结：<br>8+4+4=16个字节，如果是再增加一个int类型成员变量，系统总分配内存就是32个字节。（系统内存对齐）；</li>
+</ul>
+</li>
+<li><p>内存对齐：</p>
+<ul>
+<li>结构体：8，16，24，32…，结构体内存必须是其最大成员变量的整数倍</li>
+<li>iOS系统：16，32，64…，都是16的倍数</li>
+</ul>
+</li>
+<li><p>源码地址：<a href="https://opensource.apple.com/tarballs/" target="_blank" rel="noopener">https://opensource.apple.com/tarballs/</a></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>获取NSObject类实例对象的成员变量所占用大小：</strong></p>
+<p>1、<code>class_getInstanceSize([NSObject class]);</code> —- 8；</p>
+<p>获取对象所分配的内存大小（系统给分配的大小）</p>
+<p>2、<code>malloc_size();</code> —- 16</p>
+<p>系统分配了16个字节内存，但NSObject对象内部只使用了8个字节内存（isa）。CoreFundation框架中硬性规定，所有对象必须至少分配16个字节内存。sizeof()是求实例类型的内存。</p>
+</blockquote>
+<h3><span id="二-分类">二、分类</span></h3><img src="https://yezixcc.github.io/images/iOS/CocoaPods/b0c88b08bf3b4df1bebbe41f72b7f576~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
 
-<p>4、cd ~/.ssh，进入.ssh文件，在用户/你的用户名/.ssh目录下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+<h4><span id="1-instance对象实例对象">1、instance对象（实例对象）</span></h4><h5><span id="1内存结构">1）内存结构</span></h5><ul>
+<li>isa指针 –&gt; class对象</li>
+<li>成员变量具体值</li>
+</ul>
+<h5><span id="2获取方法">2）获取方法</span></h5><ul>
+<li>alloc</li>
+</ul>
+<p>实例对象只存成员变量的具体值，因为一个类可以创建很多实例对象，比如student1，student2…，每个对象成员变量值可能不一样，然而方法都是一样的，所以没有必要每个对象中都存放一份类中的方法，方法是存放在类对象的方法列表里面的，只有一份。</p>
+<h5><span id="3对象方法调用过程">3）对象方法调用过程</span></h5><p>本质就是给调用对象发消息。</p>
+<p><code>[person action]</code>底层c++代码：<code>objc_msgSend(person, @selector(action))</code>。</p>
+<ul>
+<li>向一个实例对象发送消息，调用action方法，而 <strong>对象方法</strong> 是存放在 <strong>类对象</strong> 的，所以需要寻找到 类对象 ，从而找到对象方法的实现进行调用，此时isa指针就是关键；</li>
+<li>通过isa指针找到 类对象，如果 类对象 中没有该方法，则通过 类对象 的<strong>superclass指针</strong>一层一层往<strong>父类的 类对象</strong> 中找，直到NSObject的 类对象 中都没有找到想要调用的方法，此时就抛出异常 – unrecognized selector sent to instance</li>
+</ul>
+<p>在64bit下，isa地址值 &amp; ISA_MASK = class对象地址值</p>
+<h4><span id="2-class对象类对象">2、class对象（类对象）</span></h4><h5><span id="1内存结构">1）内存结构</span></h5><img src="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230831104719155.png">
 
-<p>看到此时有id_rsa，id_rsa_pub，id_rsa_xxx，id_rsa_xxx.pub，known_hosts这几个文件，用文本打开id_rsa_xxx文件，复制备用。</p>
-<p>5、登录git仓库，配置ssh key。</p>
-<img src="https://yezixcc.github.io/images/Git/image-20191220113007337.png">
+<ul>
+<li>isa指针 –&gt; meta-class对象</li>
+<li>superclass指针 – &gt;  父类的类对象（<strong>NSObject没有父类了，其类对象的superclass指针指向nil</strong>）</li>
+<li>类的属性信息、类的对象方法信息</li>
+<li>类的协议信息、类的成员变量信息（不是指值，指变量的名称，类型信息 ）</li>
+<li>总的来说就是只需要存储一份的东西都放在这里，每个类在内存中只有一个类对象</li>
+</ul>
+<h5><span id="2获取方法">2）获取方法</span></h5><ul>
+<li><p><code>[NSObject class]</code></p>
+</li>
+<li><p><code>object_getClass(obj )</code>： 获取obj的isa指向的东西，如果传入是实例对象就返回类对象，</p>
+<p>如果传入类对象，就返回元类对象；</p>
+</li>
+<li><p><code>objc_getClass(“类名称字符串”)</code></p>
+</li>
+</ul>
+<h5><span id="3类方法调用过程">3）类方法调用过程</span></h5><p><code>[Person action]</code>底层c++代码：<code>objc_msgSend([Person class], @selector(action))</code>。</p>
+<ul>
+<li>向一个 <strong>类对象</strong> 发送消息，调用action方法，而 <strong>类方法</strong> 是存放在 <strong>元类对象</strong> 的，所以需要寻找到 元类对象 ，从而找到 类方法 的实现进行调用，此时isa指针就是关键；</li>
+<li>通过isa指针找到 元类对象 ，如果 元类对象中 没有该方法，则通过 元类对象 的<strong>superclass</strong>指针一层一层往<strong>父类的 元类对象</strong> 中找，直到NSObject的 元类对象 中都没有找到想要调用的方法，此时就会往 NSObject的 类对象 中找（因为NSObject元类对象的superclass指向NSObject的类对象）有没有相同名称的 对象方法，如果有就会调用该对象方法，否则就抛出异常 – unrecognized selector sent to class</li>
+</ul>
+<p><em>OC中的类方法调用不是严格的类方法调用，NSObject类方法找不到就找对象方法 – 仅限NSObject</em></p>
+<h4><span id="3-meta-class对象元类对象">3、meta-class对象（元类对象）</span></h4><h5><span id="1内存结构">1）内存结构</span></h5><ul>
+<li>isa指针 –&gt; NSObject的meta-class对象</li>
+<li>superclass指针 –&gt; 父类的元类对象（NSObject没有父类了，其元类对象的superclass指向NSObject的类对象，并不是指向nil，这个和类对象有点区别）</li>
+<li>类方法信息</li>
+<li>内存结构和类对象一样（都是Class类型），用途不一样，包含的信息不一样</li>
+<li>虽然内存结构中也有类的属性信息等其他信息，但都是空值</li>
+<li>每个类在内存中有且只有一个元类对象</li>
+</ul>
+<h5><span id="2获取方法">2）获取方法</span></h5><ul>
+<li><code>object_getClass([NSObject class] )</code></li>
+</ul>
 
-<p>将上面复制的id_rsa_xxx文件内容粘贴到Key里面，Title自己定义一个就好了。</p>
-<p>6、在.ssh文件下新建名为config的文件，文件内容就是配置的git和ssh  key。</p>
-<p>Host：仓库别名，自己取</p>
-<p>Hostname：git repository的真实域名</p>
-<p>IdentityFile：对应的id_rsa</p>
-<p>注意：配的别名和域名不一样，使用的时候也要把相应的域名改为别名，不同的仓库平台建议别名和域名一致。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#gitee</span><br><span class="line">Host gitee.com   </span><br><span class="line">Hostname gitee.com</span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa</span><br><span class="line"></span><br><span class="line">#github  </span><br><span class="line">Host github.com</span><br><span class="line">Hostname github.com   </span><br><span class="line">IdentityFile ~&#x2F;.ssh&#x2F;id_rsa_xxx</span><br></pre></td></tr></table></figure>
       
 
       
@@ -229,11 +344,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		
 		</ul>
@@ -289,7 +404,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/09/%E5%85%B6%E4%BB%96/Git/%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -303,18 +418,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/10/%E6%8A%80%E6%9C%AF/iOS/CocoaPods/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CocoaPods-创建私有Pods
+          多线程(一)-简介
         
       </div>
     </a>
   
   
-    <a href="/2019/05/07/%E5%85%B6%E4%BB%96/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/yilia%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">yilia主题添加评论插件</div>
+    <a href="/2019/05/20/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/synthesize/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">@synthesize</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -341,7 +456,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">OC对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.1.</span> <span class="toc-text">一、本质</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、底层语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、架构类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、数据结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.2.</span> <span class="toc-text">二、分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、instance对象（实例对象）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">1）内存结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2）获取方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">3）对象方法调用过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、class对象（类对象）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1）内存结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2）获取方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3）类方法调用过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、meta-class对象（元类对象）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">1）内存结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">2）获取方法</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -376,7 +491,7 @@ if(true){
   	repo: 'gitalk',
   	owner: 'yezixcc',
   	admin: ['yezixcc'],
-  	id: 'Thu May 09 2019 10:43:13 GMT+0800',
+  	id: 'Sat May 25 2019 14:09:47 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
@@ -499,11 +614,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,7 +622,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,7 +638,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,11 +654,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">

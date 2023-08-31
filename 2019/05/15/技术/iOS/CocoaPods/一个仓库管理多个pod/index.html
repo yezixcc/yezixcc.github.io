@@ -40,10 +40,10 @@
 <meta property="og:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230817191313162.png">
 <meta property="og:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230817191405946.png">
 <meta property="article:published_time" content="2019-05-15T06:09:47.000Z">
-<meta property="article:modified_time" content="2023-08-30T10:39:59.283Z">
+<meta property="article:modified_time" content="2023-08-31T01:10:20.643Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta property="article:tag" content="CocoaPods">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230817145513605.png">
@@ -252,24 +252,17 @@
 </ul>
 <!-- tocstop -->
 
-<h2><span id="一个仓库管理多个pod">一个仓库管理多个pod</span></h2><h4><span id="一-创建远程仓库">一、创建远程仓库</span></h4><ol>
-<li><p>从git上创建一个新的远程仓库，获得远程仓库地址：</p>
+<h2><span id="一个仓库管理多个pod">一个仓库管理多个pod</span></h2><h4><span id="一-创建远程仓库">一、创建远程仓库</span></h4><p>1、从git上创建一个新的远程仓库，获得远程仓库地址：</p>
 <p><code>https://gitee.com/yezixcc/orphan_branch_test.git</code></p>
-</li>
-<li><p>利用sourcetree远程克隆项目到本地，此时桌面就有一个空文件夹了：</p>
+<p>2、利用sourcetree远程克隆项目到本地，此时桌面就有一个空文件夹了：</p>
 <img src="https://yezixcc.github.io/images/iOS/CocoaPods/image-20230817145513605.png">
 
-</li>
-</ol>
 <h4><span id="二-创建orphan分支">二、创建Orphan分支</span></h4><p>普通分支通常都是从master分支继承出来的，而orphan分支是一个独立的空分支，不继承master，不同的orphan分支之间互不依赖，这样就实现了一个git仓库管理多个不同pod。</p>
-<ol>
-<li><p>创建orphan分支：</p>
+<p>创建orphan分支：</p>
 <p>GUI工具（SourceTree）都没有创建orphan分支的功能，只能通过git命令来创建；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 1. 先进入从远程克隆下来的项目根目录</span><br><span class="line">cd &#x2F;Users&#x2F;jqq&#x2F;Desktop&#x2F;orphan_branch_test</span><br><span class="line"></span><br><span class="line"># 2. 创建orphan分支</span><br><span class="line"># 如果本次的pod是网络库，则可以将名称设为network&#x2F;network</span><br><span class="line"># 表示network文件夹下的network分支，看起来更加清晰</span><br><span class="line">git checkout --orphan network&#x2F;network</span><br><span class="line"></span><br><span class="line"># 3. 删除上一个分支的内容（因为创建新的orphan分支时，会自动将上一个分支的内容复制过来，存放在暂存里面，我们需要将其删除，保证新分支是一个空的）</span><br><span class="line">git rm -rf .</span><br></pre></td></tr></table></figure>
 
 <p>此时，在sourcetree上还看不到新创建的分支，因为还没添加任何内容在这个分支上，接下来就是创建pod项目，然后放入这个分支仓库中。如果切换过来还有上个分支的文件，也删除掉，保证是空的文件夹（仅保留.git隐藏文件）。</p>
-</li>
-</ol>
 <h4><span id="三-创建pod">三、创建pod</span></h4><h5><span id="1-创建pod示例工程项目">1、创建pod示例工程项目</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 1. 进入其他目录，比如Desktop，非刚才拿下来的本地仓库目录</span><br><span class="line">cd &#x2F;Users&#x2F;jqq&#x2F;Desktop</span><br><span class="line"></span><br><span class="line"># 2. 创建pod示例工程(假如叫network)</span><br><span class="line">pod lib create network</span><br></pre></td></tr></table></figure>
 
 <p>至此，可以看到桌面文件夹下有network项目工程了，进入network文件夹，删除掉下面两个文件。</p>
@@ -366,11 +359,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -454,7 +447,7 @@
     </a>
   
   
-    <a href="/2019/05/10/%E6%8A%80%E6%9C%AF/iOS/CocoaPods/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/05/11/%E6%8A%80%E6%9C%AF/iOS/CocoaPods/Cocoapods-%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89pods/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">CocoaPods-创建私有Pods</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -640,11 +633,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,7 +641,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,7 +657,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,11 +673,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
