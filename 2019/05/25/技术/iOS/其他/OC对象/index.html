@@ -17,10 +17,10 @@
 <meta property="og:image" content="https://yezixcc.github.io/images/iOS/%E5%85%B6%E4%BB%96/b0c88b08bf3b4df1bebbe41f72b7f576~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
 <meta property="og:image" content="https://yezixcc.github.io/images/iOS/%E5%85%B6%E4%BB%96/image-20230831104719155.png">
 <meta property="article:published_time" content="2019-05-25T06:09:47.000Z">
-<meta property="article:modified_time" content="2023-08-31T03:14:43.991Z">
+<meta property="article:modified_time" content="2023-08-31T03:29:49.593Z">
 <meta property="article:author" content="Sivan">
-<meta property="article:tag" content="技术">
 <meta property="article:tag" content="iOS">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://yezixcc.github.io/images/iOS/%E5%85%B6%E4%BB%96/b0c88b08bf3b4df1bebbe41f72b7f576~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
   
@@ -305,13 +305,9 @@
 <li>总的来说就是只需要存储一份的东西都放在这里，每个类在内存中只有一个类对象</li>
 </ul>
 <h5><span id="2获取方法">2）获取方法</span></h5><ul>
-<li><p><code>[NSObject class]</code></p>
-</li>
-<li><p><code>object_getClass(obj )</code>： 获取obj的isa指向的东西，如果传入是实例对象就返回类对象，</p>
-<p>如果传入类对象，就返回元类对象；</p>
-</li>
-<li><p><code>objc_getClass(“类名称字符串”)</code></p>
-</li>
+<li><code>[NSObject class]</code></li>
+<li><code>object_getClass(obj )</code>： 获取obj的isa指向的东西，如果传入是实例对象就返回类对象，如果传入类对象，就返回元类对象；</li>
+<li><code>objc_getClass(“类名称字符串”)</code></li>
 </ul>
 <h5><span id="3类方法调用过程">3）类方法调用过程</span></h5><p><code>[Person action]</code>底层c++代码：<code>objc_msgSend([Person class], @selector(action))</code>。</p>
 <ul>
@@ -343,11 +339,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -613,7 +609,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -621,11 +621,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">定时器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GCD</a>
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,15 +637,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
