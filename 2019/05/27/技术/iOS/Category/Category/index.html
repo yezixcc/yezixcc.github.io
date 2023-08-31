@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 技术 | Sivan的博客</title>
+  <title>OC对象 | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随遇而安">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sivan的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF/page/3/index.html">
+  <meta name="description" content="category的实现原理是怎样的，平常在什么场合下使用category呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC对象">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="随遇而安">
+<meta property="og:description" content="category的实现原理是怎样的，平常在什么场合下使用category呢？">
+<meta property="og:image" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/.assets/image-20230831135321025.png">
+<meta property="article:published_time" content="2019-05-27T06:09:47.000Z">
+<meta property="article:modified_time" content="2023-08-31T07:01:38.335Z">
 <meta property="article:author" content="Sivan">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/.assets/image-20230831135321025.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -159,322 +165,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-技术/iOS/Category/Category" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/02/iOS%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-01-02T05:50:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/02/iOS%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">iOS单例模式</a>
+    <h1 class="article-title" itemprop="name">
+      OC对象
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" class="archive-article-date">
-  	<time datetime="2019-12-25T08:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%85%AD-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">多线程(六)-线程通信</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%89-GCD/" class="archive-article-date">
-  	<time datetime="2019-12-25T08:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%89-GCD/">多线程(三)-GCD</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%94-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" class="archive-article-date">
-  	<time datetime="2019-12-25T08:06:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%94-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">多线程(五)-线程安全</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%8C-NSThread/" class="archive-article-date">
-  	<time datetime="2019-12-25T05:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%BA%8C-NSThread/">多线程(二)-NSThread</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-12-24T08:51:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/">多线程(一)-简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/" class="archive-article-date">
+        
+        <a href="/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/" class="archive-article-date">
   	<time datetime="2019-05-27T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/">OC对象</a>
-    </h1>
-  
+        
+        <!-- 添加代码 -->
+        
+            <span class="archive-article-date">
+                
+            </span>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>category的实现原理是怎样的，平常在什么场合下使用category呢？</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<!-- toc -->
+
+<ul>
+<li><a href="#一-底层结构">一、底层结构</a></li>
+<li><a href="#二-方法合并">二、方法合并</a></li>
+<li><a href="#三-load方法调用">三、+load方法调用</a></li>
+<li><a href="#四-initialize方法调用">四、+initialize方法调用</a></li>
+<li><a href="#五-关联对象">五、关联对象</a></li>
+</ul>
+<!-- tocstop -->
+
+<h3><span id="一-底层结构">一、底层结构</span></h3><p><img src=".assets/image-20230831135321025.png" alt="image-20230831135321025"></p>
+<h3><span id="二-方法合并">二、方法合并</span></h3><ol>
+<li><p>同一类的所有分类方法都会合并到该类中的方法列表中（数组）;</p>
+</li>
+<li><p>对象方法合并到类对象中，类方法合并到元类对象中;</p>
+<ul>
+<li>原来方法列表数组扩容;</li>
+<li>原来的方法元素往后移动;</li>
+<li>在前面插入分类中的方法;</li>
+<li>后编译的方法放到方法列表的前面;</li>
+</ul>
+</li>
+<li><p>不是在编译的时候合并，而是在运行时合并的，所以Category属于运行时;</p>
+</li>
+<li><p>每一个分类都是独立的，所有的分类的结构都是一样的，只是名称不一样;</p>
+</li>
+</ol>
+<p>注意：分类和类中出现相同的方法时，会优先调用分类中的方法，找到了就不再进行其他类或分类中的方法调用（+load方法除外）</p>
+<h3><span id="三-load方法调用">三、+load方法调用</span></h3><ul>
+<li><p>1、runtime加载类，分类的时候调用 – &gt; 不管有没有#import类、分类，+load方法都会被调用;</p>
+</li>
+<li><p>2、每个类、分类的+load，在程序运行过程中只会调用一次</p>
+</li>
+<li><p>3、类和分类中的+load都会被调用;</p>
+<ul>
+<li>a）因为底层是直接找到原来的方法列表中的+load方法，直接函数指针调用；</li>
+<li>b）其他方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。objc_msgSend([Person class], @selector(test))</li>
+</ul>
+</li>
+<li><p>4、调用顺序;</p>
+<ul>
+<li><p>1、先调用类的+load</p>
+<ul>
+<li>1、先编译的类，优先调用load – 先编译的方法先放到数组里面，所以先调用</li>
+<li>2、调用子类的+load之前，会自动先调用父类的+load，系统自动调用，无需手动[super load]</li>
+</ul>
+</li>
+<li><p>2、再调用分类的+load</p>
+<ul>
+<li>1、先编译的类，优先调用load</li>
+</ul>
+</li>
+<li><p>3、多个不同类先编译的先调用</p>
+<ul>
+<li>1、底层是一个数组将所有+load方法装起来，先编译的放到前面，调用方法时是从0元素开始的，所以，先编译的先调用，编译顺序可从Complie Sources中查看，在前面的先编译</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="四-initialize方法调用">四、+initialize方法调用</span></h3><ul>
+<li><p>1、在类第一次接收到消息的时候调用一次，不使用不调用；</p>
+</li>
+<li><p>2、类和分类中的+initialize，只会调用其一；</p>
+<ul>
+<li>分类有实现+initialize，调分类的，否则调本类的</li>
+<li>方法调用本质是通过消息机制，向对象发送消息实现方法调用，这种方式势必通过isa指针进行方法查找，所以一旦找到，就不再寻找。objc_msgSend([Person class], @selector(initialize))</li>
+</ul>
+</li>
+<li><p>3、调用顺序；</p>
+<ul>
+<li><p>1、先初始化父类</p>
+<ul>
+<li>系统主动调用，而非写[super initialize];<br>(objc_msgSend内部会主动调用，查找待调用的方法之前发现父类没有调用initialize，就会调用父类initialize)，所以父类的initailize可能会调用多次</li>
+</ul>
+</li>
+<li><p>2、再初始化子类</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="五-关联对象">五、关联对象</span></h3><ul>
+<li><p>1、@property(assign, nonatomic) age;</p>
+<ul>
+<li>在分类中添加属性只会生成set和get声明，不会生成成员变量和方法实现</li>
+<li>1、- (void)setAge:(int)age</li>
+<li>2、-(int)age;</li>
+</ul>
+</li>
+<li><p>2、不能直接添加成员变量，可以间接实现成员变量的效果</p>
+<ul>
+<li><p>1、静态字典  – 存放在全局</p>
+<ul>
+<li>1、内存一直占用</li>
+<li>2、线程安全问题</li>
+</ul>
+</li>
+<li><p>2、runtime关联对象</p>
+</li>
+</ul>
+</li>
+<li><p>4、原理；</p>
+<ul>
+<li><p>1、它的结构决定了它不能存放成员变量，因为结构内没有可以存放成员变量的数组，而类中有ivars数组可以存放成员变量</p>
+</li>
+<li><p>2、核心对象</p>
+<ul>
+<li><p>1、AssociationsManager – runtime自己维护了一个全局的manager，里面放了一个map(可以理解为字典)</p>
+<ul>
+<li><p>2、AssociationsHashMap *_map</p>
+<ul>
+<li><p>3、disguised_ptr_t：ObjectAssociationMap</p>
+<ul>
+<li><p>4、void *： ObjcAssociation</p>
+<ul>
+<li>uintptr_t _policy</li>
+<li>id _value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>disguised_ptr_t：ObjectAssociationMap</p>
+<ul>
+<li><p>void *： ObjcAssociation</p>
+<ul>
+<li>uintptr_t _policy</li>
+<li>id _value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3、结论</p>
+<ul>
+<li>1、关联对象并不是存储在被关联的对象本身内存中</li>
+<li>2、关联对象存储在全局的统一的一个AssociationsManager中</li>
+<li>3、设置关联对象值为nil，移除关联对象，相当于把 void *： ObjcAssociation 这一对key value擦除</li>
+<li>4、移除所有的关联对象：void objc_removeAssociatedObjects(id object)，相当于把disguised_ptr_t：ObjectAssociationMap 这一对key value擦除</li>
+<li>5、关联策略不存在weak这一种</li>
+<li>6、对传入的object不存在强引用, object对象销毁，对应的map就会移除</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -490,152 +370,149 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/27/%E6%8A%80%E6%9C%AF/iOS/Category/Category/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2019-05-25T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-25</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多线程(一)-简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OC对象</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/25/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/OC%E5%AF%B9%E8%B1%A1/">OC对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、底层结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、方法合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、+load方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、+initialize方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、关联对象</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/20/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/synthesize/" class="archive-article-date">
-  	<time datetime="2019-05-20T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/20/%E6%8A%80%E6%9C%AF/iOS/%E5%85%B6%E4%BB%96/synthesize/">@synthesize</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/15/%E6%8A%80%E6%9C%AF/iOS/CocoaPods/%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AApod/" class="archive-article-date">
-  	<time datetime="2019-05-15T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/15/%E6%8A%80%E6%9C%AF/iOS/CocoaPods/%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AApod/">一个仓库管理多个pod</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CocoaPods</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/%E6%8A%80%E6%9C%AF/page/2/">Prev</a><a class="page-number" href="/tags/%E6%8A%80%E6%9C%AF/">1</a><a class="page-number" href="/tags/%E6%8A%80%E6%9C%AF/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/tags/%E6%8A%80%E6%9C%AF/page/4/">4</a><a class="extend next" rel="next" href="/tags/%E6%8A%80%E6%9C%AF/page/4/">Next</a>
-    </nav>
+  
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'c7d97c5e6aab3a4c52c1',
+  	clientSecret: '0343ce0a588bdd565879aba7f7844ae801001fa2',
+  	repo: 'gitalk',
+  	owner: 'yezixcc',
+  	admin: ['yezixcc'],
+  	id: 'Mon May 27 2019 14:09:47 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
   
 
 
@@ -666,9 +543,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
