@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Sivan的博客</title>
+  <title>block | Sivan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随遇而安">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sivan的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="block是什么？block本质就是封装了函数调用以及调用环境（block的参数）的oc对象，常用来做回调使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="block">
+<meta property="og:url" content="http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/index.html">
 <meta property="og:site_name" content="Sivan的博客">
-<meta property="og:description" content="随遇而安">
+<meta property="og:description" content="block是什么？block本质就是封装了函数调用以及调用环境（block的参数）的oc对象，常用来做回调使用。">
+<meta property="og:image" content="http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/.assets/image-20230901144426490.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/.assets/image-20230904092008985.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/.assets/image-20230904182730202.png">
+<meta property="article:published_time" content="2019-06-01T06:09:47.000Z">
+<meta property="article:modified_time" content="2023-09-04T10:43:49.670Z">
 <meta property="article:author" content="Sivan">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/.assets/image-20230901144426490.png">
   
     <link rel="alternative" href="/atom.xml" title="Sivan的博客" type="application/atom+xml">
   
@@ -159,254 +167,256 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-技术/iOS/Block/block" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      block
+    </h1>
+  
+
+        
+        <a href="/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/" class="archive-article-date">
+  	<time datetime="2019-06-01T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-01</time>
+</a>
+        
+        <!-- 添加代码 -->
+        
+            <span class="archive-article-date">
+                
+            </span>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>block是什么？block本质就是封装了函数调用以及调用环境（block的参数）的oc对象，常用来做回调使用。</p>
+<a id="more"></a>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#一-底层结构">一、底层结构</a></li>
+<li><a href="#二-变量捕获">二、变量捕获</a><ul>
+<li><a href="#1-局部变量">1、局部变量</a><ul>
+<li><a href="#1自定变量auto">1）自定变量（auto）</a></li>
+<li><a href="#2静态变量static">2）静态变量（static）</a></li>
+</ul>
+</li>
+<li><a href="#2-全局变量">2、全局变量</a><ul>
+<li><a href="#1无static">1）无static</a></li>
+<li><a href="#2有static">2）有static</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#三-内存分区">三、内存分区</a><ul>
+<li><a href="#1-栈区">1、栈区</a></li>
+<li><a href="#2-堆区">2、堆区</a></li>
+<li><a href="#3-全局区静态区">3、全局区/静态区</a></li>
+<li><a href="#4-常量区">4、常量区</a></li>
+<li><a href="#5-代码区">5、代码区</a></li>
+</ul>
+</li>
+<li><a href="#四-类型">四、类型</a><ul>
+<li><a href="#1-__nsglobalblock__">1、<code>__NSGlobalBlock__</code></a></li>
+<li><a href="#2-__nsstackblock__">2、<code>__NSStackBlock__</code></a></li>
+<li><a href="#3-__nsmallocblock__">3、<code>__NSMallocBlock__</code></a></li>
+</ul>
+</li>
+<li><a href="#五-arc下自动copy">五、ARC下自动copy</a></li>
+<li><a href="#六-block内部访问对象类型的auto变量">六、block内部访问对象类型的auto变量</a><ul>
+<li><a href="#1-栈区block">1、栈区block</a></li>
+<li><a href="#2-堆区block">2、堆区block</a></li>
+</ul>
+</li>
+<li><a href="#七-如何才能在block内部修改外部变量值">七、如何才能在block内部修改外部变量值</a><ul>
+<li><a href="#1-变成静态变量">1、变成静态变量</a></li>
+<li><a href="#2-变成全局变量">2、变成全局变量</a></li>
+<li><a href="#3-用__block修饰变量">3、用__block修饰变量</a></li>
+</ul>
+</li>
+<li><a href="#八-循环引用">八、循环引用</a><ul>
+<li><a href="#1-声明block为什么时候copy不用strong">1、声明block为什么时候copy，不用strong？</a></li>
+<li><a href="#2-__weak-__unsafe_unretained">2、<code>__weak、__unsafe_unretained</code></a></li>
+<li><a href="#3-__block">3、<code>__block</code></a></li>
+</ul>
+</li>
+<li><a href="#九-常见问题">九、常见问题</a><ul>
+<li><a href="#1-__block的作用是什么有什么使用注意点">1、__block的作用是什么？有什么使用注意点？</a></li>
+<li><a href="#2-block的属性修饰词为什么是copy使用block有哪些使用注意">2、block的属性修饰词为什么是copy？使用block有哪些使用注意？</a></li>
+<li><a href="#3-block在修改nsmutablearray需不需要添加__block">3、block在修改NSMutableArray，需不需要添加__block？</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h3><span id="一-底层结构">一、底层结构</span></h3><p><img src=".assets/image-20230901144426490.png" alt="image-20230901144426490"></p>
+<ul>
+<li>1、<code>*FuncPtr</code>保存待调用函数的函数指针；</li>
+<li>2、<code>age</code>被保存封装到了block对象中（捕获）;</li>
+<li>3、<code>Desc</code>包含了block的描述信息。</li>
+</ul>
+<p>本质还是封装了函数调用以及调用环境（block的参数）的OC对象。</p>
+<h3><span id="二-变量捕获">二、变量捕获</span></h3><h4><span id="1-局部变量">1、局部变量</span></h4><h5><span id="1自定变量auto">1）自定变量（auto）</span></h5><p>每定义一个局部变量，都是默认auto变量， <code>int age = 10</code>  = &gt;  <code>auto int age = 10</code>，<code>auto</code>只存在于局部变量中，全局变量不能用<code>auto</code>修饰，<code>self是局部变量</code>，方法默认传入的参数。</p>
+<ul>
+<li>1、存储在<strong>栈区</strong>，出了代码块，栈内存回收，变量销毁；</li>
+<li>2、作用域、生命周期 —&gt; 代码块内；</li>
+<li>3、<strong>值传递</strong>；</li>
+<li>4、可能跨函数访问，<strong>需要捕获</strong>。</li>
+</ul>
+<h5><span id="2静态变量static">2）静态变量（static）</span></h5><ul>
+<li>1、存储在<strong>静态区</strong> ，程序结束，变量才被销毁;</li>
+<li>2、作用域 –&gt; 代码块内，生命周期 –&gt; 整个源程序；</li>
+<li>3、<strong>指针传递</strong>；</li>
+<li>4、可能跨函数访问，<strong>需要捕获</strong>;</li>
+</ul>
+<h4><span id="2-全局变量">2、全局变量</span></h4><h5><span id="1无static">1）无static</span></h5><ul>
+<li>1、存储在<strong>静态区</strong> –&gt; 程序结束，变量才被销毁;</li>
+<li>2、作用域、生命周期 –&gt; 整个源程序；</li>
+<li>3、<strong>可用extern关键字</strong>在文件外引用；</li>
+</ul>
+<h5><span id="2有static">2）有static</span></h5><ul>
+<li><p>1、存储在静态存储区 –&gt; 程序结束，变量才被销毁；</p>
+</li>
+<li><p>2、作用域 –&gt; 声明它的文件内；生命周期 –&gt; 整个源程序；</p>
+</li>
+<li><p>3、<strong>不可用extern关键字</strong>在文件外引用；</p>
+</li>
+</ul>
+<h3><span id="三-内存分区">三、内存分区</span></h3><p><img src=".assets/image-20230904092008985.png" alt="image-20230904092008985"></p>
+<h4><span id="1-栈区">1、栈区</span></h4><ul>
+<li>运行时自动分配，系统管理；</li>
+<li>地址从高到低；</li>
+<li>局部自动变量；</li>
+<li>函数的参数（id,self,SEL,cmd）：函数的参数以前放在栈区，现在一般放在寄存器，效率更高；</li>
+<li>深度递归，循环调用产生大量局部变量，可能造成栈内存耗尽而使程序崩溃。</li>
+</ul>
+<h4><span id="2-堆区">2、堆区</span></h4><ul>
+<li>运行时分配，手动管理；</li>
+<li>oc中是alloc，new开辟的空间，c中使用malloc，calloc，realloc；</li>
+<li>地址从低到高，分配方式类似于链表；</li>
+<li>动态分配内存，程序员申请，管理（ARC下自动释放池管理了）；</li>
+<li>ARC下对象在runloop循环结束后（kCFRunLoopBeforeWaiting）自动释放。</li>
+</ul>
+<h4><span id="3-全局区静态区">3、全局区/静态区</span></h4><ul>
+<li><p>编译时分配；</p>
+</li>
+<li><p>全局变量，静态变量，类对象；</p>
+</li>
+<li><p>未初始化的全局变量（函数外部的变量）；</p>
+</li>
+<li><p>未初始化的静态变量（static修饰的变量）；</p>
+</li>
+</ul>
+<h4><span id="4-常量区">4、常量区</span></h4><ul>
+<li>编译时分配；</li>
+<li>已初始化的全局变量；</li>
+<li>已初始化的静态变量；</li>
+<li>常量（const修饰，不可修改）；</li>
+</ul>
+<h4><span id="5-代码区">5、代码区</span></h4><ul>
+<li><p>运行时分配（代码段是在编译时确定）；</p>
+</li>
+<li><p>存放程序的代码段；</p>
+</li>
+</ul>
+<h3><span id="四-类型">四、类型</span></h3><p>看是什么类型的<code>block</code>，就看它的<code>isa</code>指针指向什么<code>Class</code>，总结有3种类型，最终都指向<code>NSBlock -&gt; NSObject</code>。</p>
+<h4><span id="1-__nsglobalblock__">1、<code>__NSGlobalBlock__</code></span></h4><ul>
+<li><p><strong>全局区</strong></p>
+</li>
+<li><p>block<strong>内部没有访问auto变量</strong>的都是这种类型，平常使用比较少，因为基本都会在block内部访问auto变量；</p>
+</li>
+<li><p>调用copy，什么也不做；</p>
+</li>
+</ul>
+<h4><span id="2-__nsstackblock__">2、<code>__NSStackBlock__</code></span></h4><ul>
+<li><p><strong>栈区</strong></p>
+</li>
+<li><p>block<strong>内部有访问auto变量</strong>的都是这种类型（MRC下）；</p>
+</li>
+<li><p>存在栈区会有问题，栈上内存由系统控制，一旦出了代码块，内存可能被销毁，后面再用到block，可能会遇到坏内存或其他数据；</p>
+<ul>
+<li>要解决这个问题，就是将block升级为malloc类型，放到堆区，这样即使原来栈上的block释放了，堆上的还在，所以可以继续使用，但是使用完毕后需要手动释放block；</li>
+</ul>
+</li>
+<li><p><strong>调用copy，系统会将block从栈区拷贝一份到堆区，升级为<code>__NSMallocBlock__</code>，返回新的block对象。</strong></p>
+</li>
+</ul>
+<h4><span id="3-__nsmallocblock__">3、<code>__NSMallocBlock__</code></span></h4><ul>
+<li><p><strong>堆区</strong></p>
+</li>
+<li><p>调用copy，引用计数+1；</p>
+</li>
+</ul>
+<h3><span id="五-arc下自动copy">五、ARC下自动copy</span></h3><ul>
+<li><p>1、将block做为返回值时</p>
+</li>
+<li><p>2、block被__strong指针引用时（局部变量接收block都是强引用）</p>
+</li>
+<li><p>3、block作为Cocoa API中方法名含有usingBlock的方法参数时</p>
+</li>
+<li><p>4、block作为GCD的方法参数时。</p>
+</li>
+</ul>
+<h3><span id="六-block内部访问对象类型的auto变量">六、block内部访问对象类型的auto变量</span></h3><h4><span id="1-栈区block">1、栈区block</span></h4><ul>
+<li>不管auto变量用什么修饰(<code>__strong</code>，<code>__weak</code>，<code>__block</code>)都不会对<code>auto变量</code>产生强引用，所以就会有block未释放，auto变量可能已经释放了；</li>
+</ul>
+<h4><span id="2-堆区block">2、堆区block</span></h4><ul>
+<li>1、<code>copy函数</code>内部会调用<code>_Block_object_assign</code>函数；</li>
+<li>2、<code>_Block_object_assign</code>函数会根据auto变量的修饰符（<code>__strong，__weak</code>）作相应的操作，强引用，弱引用。auto如未写修饰符，默认是<code>__strong</code>，如果是<code>__block</code>变量，则会强引用；</li>
+<li>3、block从堆上移除，会调用<code>dispose函数</code> –&gt; <code>_Block_object_dispose函数</code> –&gt; 自动释放引用的auto的变量；</li>
+</ul>
+<h3><span id="七-如何才能在block内部修改外部变量值">七、如何才能在block内部修改外部变量值</span></h3><h4><span id="1-变成静态变量">1、变成静态变量</span></h4><p>用static修饰变量，就变成了地址传递，就可以修改对应的值了。缺陷是存在<strong>全局区</strong>。</p>
+<h4><span id="2-变成全局变量">2、变成全局变量</span></h4><p>定义成全局变量，不用传递，直接可以全局使用。缺陷是存在<strong>全局区</strong>。</p>
+<h4><span id="3-用__block修饰变量">3、用__block修饰变量</span></h4><ul>
+<li>1、只能修饰auto变量，不能修饰全局变量，静态变量；</li>
+<li>2、编译器将__block变量包装成了一个对象；</li>
+<li>3、栈上的block对__block变量 – 弱引用；</li>
+<li>4、堆上的block对__block变量 – 强引用；</li>
+<li>5、栈上的block拷贝到堆上的时候，会将block内部使用到的<code>__block变量</code>也一起拷贝到堆上，并且强引用该<code>__block变量</code>；</li>
+<li>6、两个block内部都使用了<code>__block变量</code>，该变量只会拷贝一份到堆上；</li>
+</ul>
+<h3><span id="八-循环引用">八、循环引用</span></h3><h4><span id="1-声明block为什么时候copy不用strong">1、声明block为什么时候copy，不用strong？</span></h4><ul>
+<li>1、ARC下不管是copy还是strong，都会自动进行copy到堆上，所有两者都可用；</li>
+<li>2、MRC下不会自动进行copy到堆上，需使用copy修饰；</li>
+<li>3、为保持一致，开发过程中都使用copy来修饰；</li>
+</ul>
+<h4><span id="2-__weak-__unsafe_unretained">2、<code>__weak、__unsafe_unretained</code></span></h4><ul>
+<li>1、都能产生弱引用，解决循环引用；</li>
+<li>2、<code>__weak</code>修饰，一旦对象释放，__weak指针置为nil；</li>
+<li>3、<code>__unsafe_unretained</code>修饰，一旦对象释放，<code>__unsafe_unretained</code>指针不会置为nil，但其实那块内存已经回收，再次使用该指针就会出现内存泄漏(MRC下没有weak，所以只能用这种或者__block)</li>
+</ul>
+<h4><span id="3-__block">3、<code>__block</code></span></h4><ul>
+<li><p>MRC下，block中的<code>__block变量</code>不会对对象进行强引用，所有不需要上面的调用block和手动置为nil。</p>
+</li>
+<li><p>ARC下：</p>
+<p><img src=".assets/image-20230904182730202.png" alt="image-20230904182730202"></p>
+</li>
+</ul>
+<h3><span id="九-常见问题">九、常见问题</span></h3><h4><span id="1-__block的作用是什么有什么使用注意点">1、__block的作用是什么？有什么使用注意点？</span></h4><ul>
+<li>1、__block会将变量包装成一个对象；</li>
+<li>2、__block用于解决block内部无法修改auto变量值的问题；</li>
+<li>3、MRC下，__block不会对auto对象产生强引用，解决循环引用的问题。</li>
+</ul>
+<h4><span id="2-block的属性修饰词为什么是copy使用block有哪些使用注意">2、block的属性修饰词为什么是copy？使用block有哪些使用注意？</span></h4><ul>
+<li>1、没有copy就不会在堆上，栈上的出了代码块就释放了；；</li>
+<li>2、循环引用的问题。</li>
+</ul>
+<h4><span id="3-block在修改nsmutablearray需不需要添加__block">3、block在修改NSMutableArray，需不需要添加__block？</span></h4><ul>
+<li>1、不需要，因为是使用它，不是修改它，能不用__block就不用，因为会生成更多东西。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/23/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2020-06-23T14:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/23/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E6%A0%88/">线性结构-栈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/18/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-18T14:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/18/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">线性结构-链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/15/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84/" class="archive-article-date">
-  	<time datetime="2020-06-15T14:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/15/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E6%95%B0%E7%BB%84/">线性结构-数组</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/15/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-06-15T14:46:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/15/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2020-01-21T12:52:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/21/GCD%E5%AE%9A%E6%97%B6%E5%99%A8/">GCD的定时器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">定时器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GCD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-01-21T08:28:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/21/RunLoop%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">RunLoop基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -422,198 +432,149 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/01/%E6%8A%80%E6%9C%AF/iOS/Block/block/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
-  	<time datetime="2020-01-20T08:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/12/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多线程(一)-简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/29/%E6%8A%80%E6%9C%AF/iOS/KVO/KVO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">KVO</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/20/RunLoop%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/">RunLoop基本介绍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text">一、底层结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">2.</span> <span class="toc-text">二、变量捕获</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">2.1.</span> <span class="toc-text">1、局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.1.</span> <span class="toc-text">1）自定变量（auto）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.2.</span> <span class="toc-text">2）静态变量（static）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">2.2.</span> <span class="toc-text">2、全局变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.2.1.</span> <span class="toc-text">1）无static</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.2.2.</span> <span class="toc-text">2）有static</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">3.</span> <span class="toc-text">三、内存分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.1.</span> <span class="toc-text">1、栈区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.2.</span> <span class="toc-text">2、堆区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.3.</span> <span class="toc-text">3、全局区&#x2F;静态区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.4.</span> <span class="toc-text">4、常量区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.5.</span> <span class="toc-text">5、代码区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text">四、类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">4.1.</span> <span class="toc-text">1、__NSGlobalBlock__</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">4.2.</span> <span class="toc-text">2、__NSStackBlock__</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">4.3.</span> <span class="toc-text">3、__NSMallocBlock__</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">5.</span> <span class="toc-text">五、ARC下自动copy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">6.</span> <span class="toc-text">六、block内部访问对象类型的auto变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">6.1.</span> <span class="toc-text">1、栈区block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">6.2.</span> <span class="toc-text">2、堆区block</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">7.</span> <span class="toc-text">七、如何才能在block内部修改外部变量值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">7.1.</span> <span class="toc-text">1、变成静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">7.2.</span> <span class="toc-text">2、变成全局变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">7.3.</span> <span class="toc-text">3、用__block修饰变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">8.</span> <span class="toc-text">八、循环引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">8.1.</span> <span class="toc-text">1、声明block为什么时候copy，不用strong？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">8.2.</span> <span class="toc-text">2、__weak、__unsafe_unretained</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">8.3.</span> <span class="toc-text">3、__block</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">9.</span> <span class="toc-text">九、常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">9.1.</span> <span class="toc-text">1、__block的作用是什么？有什么使用注意点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">9.2.</span> <span class="toc-text">2、block的属性修饰词为什么是copy？使用block有哪些使用注意？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">9.3.</span> <span class="toc-text">3、block在修改NSMutableArray，需不需要添加__block？</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/20/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2020-01-20T06:03:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/20/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8B%E8%BD%BD/">多任务下载</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/iOS13%E9%97%AE%E9%A2%98%E5%B0%8F%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2020-01-06T01:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/iOS13%E9%97%AE%E9%A2%98%E5%B0%8F%E9%9B%86/">iOS问题小集</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/02/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%9B%9B-NSOperation/" class="archive-article-date">
-  	<time datetime="2020-01-02T07:39:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/02/%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E5%9B%9B-NSOperation/">多线程(四)-NSOperation</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next</a>
-    </nav>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'c7d97c5e6aab3a4c52c1',
+  	clientSecret: '0343ce0a588bdd565879aba7f7844ae801001fa2',
+  	repo: 'gitalk',
+  	owner: 'yezixcc',
+  	admin: ['yezixcc'],
+  	id: 'Sat Jun 01 2019 14:09:47 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
   
 
 
@@ -644,8 +605,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
